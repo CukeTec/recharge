@@ -11,6 +11,11 @@
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
+    <div class="am-header-left am-header-nav">
+        <a href="app.html">
+            <span class="am-header-nav-title"><img src="images/titlelefta.png" alt="" class="titleLeftA"/></span>
+        </a>
+    </div>
     <h1 class="am-header-title relative">账单</h1>
 </header>
 <div class="am-tabs" id="demo1" data-am-tabs>
@@ -20,7 +25,7 @@
         <li class=""><a href="javascript:;">充值</a></li>
     </ul>
     <div class="am-tabs-bd">
-        <div class="am-tab-panel am-active billCon">
+        <ul class="am-tab-panel am-active billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
                     <span class="am-fl titleLeft">中心营养早餐</span>
@@ -81,8 +86,8 @@
                     <span class="am-fl">刷卡消费</span>
                 </div>
             </div>
-        </div>
-        <div class="am-tab-panel billCon">
+        </ul>
+        <ul class="am-tab-panel billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
                     <span class="am-fl titleLeft">中心营养早餐</span>
@@ -143,8 +148,8 @@
                     <span class="am-fl">刷卡消费</span>
                 </div>
             </div>
-        </div>
-        <div class="am-tab-panel billCon">
+        </ul>
+        <ul class="am-tab-panel billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
                     <span class="am-fl titleLeft">中心营养早餐</span>
@@ -205,7 +210,7 @@
                     <span class="am-fl">刷卡消费</span>
                 </div>
             </div>
-        </div>
+        </ul>
     </div>
 </div>
 <!-- Navbar -->
@@ -229,16 +234,16 @@
                 <span class="am-navbar-label">充值</span>
             </a>
         </li>
-        <li class="slt">
-            <a href="store.html"  class="navBtn relative">
-                <img src="images/btnbg.png" alt="" class="allbg am-img-responsive"/>
-                <img src="images/btniconhover_3.png"  alt="商户"/>
+        <li>
+            <a href="store.html">
+                <img src="images/btnicon_3.png"  alt="商户"/>
                 <span class="am-navbar-label">商户</span>
             </a>
         </li>
-        <li>
-            <a href="app.html">
-                <img src="images/btnicon_4.png"  alt="我的"/>
+        <li class="slt">
+            <a href="app.html" class="navBtn relative">
+                <img src="images/btnbg.png" alt="" class="allbg am-img-responsive"/>
+                <img src="images/btniconhover_4.png"  alt="我的"/>
                 <span class="am-navbar-label">我的</span>
             </a>
         </li>

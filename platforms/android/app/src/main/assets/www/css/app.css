@@ -132,6 +132,9 @@ body {
 .am-navbar-nav .slt a {
   color: #fff;
 }
+.am-navbar-nav .selt a {
+  color: #fff;
+}
 .am-navbar-nav a.centerA {
   z-index: 100;
   top: -0.32592593rem;
@@ -154,7 +157,7 @@ body {
   width: 2.44444444rem;
   background-color: #f0f0f0;
   position: absolute;
-  top: -0.56296296rem;
+  top: -0.44444444rem;
   left: 50%;
   margin-left: -1.22222222rem;
   border-radius: 1.48148148rem;
@@ -167,7 +170,20 @@ body {
   width: 2.22222222rem;
   background-color: #fff;
   position: absolute;
-  top: -0.2962963rem;
+  top: -0.22222222rem;
+  left: 50%;
+  margin-left: -1.11111111rem;
+  border-radius: 1.48148148rem;
+  border: 1px solid #dadada;
+}
+.centerBtn.selt:after {
+  display: inline-block;
+  content: '';
+  height: 2.22222222rem;
+  width: 2.22222222rem;
+  background-color: #ec900c;
+  position: absolute;
+  top: -0.22222222rem;
   left: 50%;
   margin-left: -1.11111111rem;
   border-radius: 1.48148148rem;
@@ -300,7 +316,7 @@ h3.am-list-item-hd {
 .am-navbar-nav a .am-navbar-label {
   font-size: 0.38518519rem;
   margin-top: 0rem;
-  padding-top: 0.08888889rem;
+  padding-top: 0.11851852rem;
 }
 .am-header-default .am-header-nav {
   height: 2.17777778rem;
@@ -585,6 +601,31 @@ fieldset {
   border: none;
   box-shadow: none;
 }
+.am-form input[type=password].loginInput {
+  width: 9.00740741rem;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  color: #fff;
+  border: none;
+  font-size: 0.53333333rem;
+  background: transparent;
+  padding: 0;
+  margin: 0.44444444rem 0;
+}
+.am-form input[type=password].loginInput:focus {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-modify: read-write-plaintext-only;
+  border: none;
+  box-shadow: none;
+}
+input:focus {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-modify: read-write-plaintext-only;
+  border: none;
+  box-shadow: none;
+}
 .userBg {
   display: inline-block;
   width: 2.04444444rem;
@@ -600,6 +641,7 @@ fieldset {
 .loginBtn {
   display: block;
   height: 2.22222222rem;
+  line-height: 2.22222222rem;
   width: 11.18518519rem;
   margin: 0 auto;
   background: #ec900c;
@@ -742,12 +784,16 @@ fieldset {
   width: 100%;
   background-color: #ec900c;
   height: 2.22222222rem;
+  line-height: 2.22222222rem;
   color: #fff;
   text-align: center;
   font-size: 0.53333333rem;
   position: fixed;
   bottom: 0;
   left: 0;
+}
+.makeSureBtn.am-btn {
+  line-height: 0;
 }
 .makeSureBtn:hover {
   color: #fff;
@@ -883,12 +929,14 @@ fieldset {
   color: #333;
   font-size: 0.53333333rem;
 }
-.refillMoney span {
-  display: inline-block;
+.refillMoney input {
+  width: 11.11111111rem;
   height: 2.22222222rem;
   line-height: 2.22222222rem;
   font-size: 1.18518519rem;
   color: #333;
+  border: none;
+  background: none;
 }
 .cardOperate.noborder {
   border-bottom: 0px solid #ddd;
@@ -1008,6 +1056,7 @@ fieldset {
   padding: 0.2962963rem;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  margin-top: 0;
 }
 .billList {
   width: 15.37777778rem;
@@ -1105,7 +1154,7 @@ fieldset {
 }
 .examineType label {
   display: inline-block;
-  width: 2.14814815rem;
+  margin-left: 0.59259259rem;
   text-align: right;
   height: 1.18518519rem;
   line-height: 1.18518519rem;
@@ -1146,6 +1195,20 @@ fieldset {
 }
 .marginB30 {
   margin-bottom: 0.44444444rem;
+}
+.nextStep {
+  display: block;
+  width: 100%;
+  background-color: #ec900c;
+  height: 2.22222222rem;
+  line-height: 2.22222222rem;
+  color: #fff;
+  text-align: center;
+  font-size: 0.53333333rem;
+  margin-top: 5.92592593rem;
+}
+.nextStep:hover {
+  color: #fff;
 }
 @media only screen and (max-width: 320px) {
   .am-navbar-nav a .am-navbar-label,
