@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class HttpRequestPlugin extends CordovaPlugin {
     private static String LOGIN = "login"; //HTTP请求
+    public static String token = "";
 
     /**
      * 执行http请求
@@ -61,6 +62,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         data.put("macid",SecurityUtil.getMac()); //获取mac地址
         String rel = HttpUtil.sendRequest(url,data);
         Map<String,Object> relData = JsonParser.toObj(rel,Map.class);
+        token = relData.get("token").toString();
         Log.e("token",relData.get("token").toString());
         if(null!=rel){
             callbackContext.success(rel);//如果不调用success回调，则js中successCallback不会执行
