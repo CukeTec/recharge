@@ -19,6 +19,8 @@ import java.util.concurrent.FutureTask;
  */
 public class HttpUtil {
 
+
+
     /**
      * 向服务器发送post请求
      * @param url

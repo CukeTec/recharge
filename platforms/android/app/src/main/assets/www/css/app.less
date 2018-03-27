@@ -137,6 +137,8 @@ h3.am-list-item-hd{font-size:46/@rem;}
 .bottomText{width:100%; font-size:28/@rem; position: absolute; bottom:48/@rem; text-align: center; color:#ccc; z-index:15;}
 .bdHidden{overflow:hidden;}
 .homebg{overflow:hidden; height:1920/@rem; background: url("../images/homebg.png") no-repeat; background-size: 100% 100%;}
+.homebg.test{background: none; position: relative; z-index: 10;}
+.homebgtest{height:70%; width:100%; position: absolute; top:0px; left:0px; z-index:0; overflow: hidden;}
 //.homebg img{display:block; max-height:1920/@rem;}
 .logo{width:319/@rem; height:374/@rem; overflow:hidden; position: absolute; top:30%; left:50%; margin-left:-159.5/@rem; margin-top:-112.2/@rem;}
 .logo img{display:inline-block; width:676/@rem; height:398/@rem;}
@@ -151,8 +153,10 @@ fieldset{margin:0; padding:0;}
 .userBg{display: inline-block; width:138/@rem; height:132/@rem;}
 .userBg img{display:block; width:60/@rem; height:60/@rem; margin:0 auto; margin-top:30/@rem;}
 .loginBtn{display:block; height:150/@rem; width:755/@rem; margin:0 auto; background: #ec900c; font-size: 40/@rem; text-align: center; color:#fff;  border-radius: 12/@rem; -webkit-border-radius: 12/@rem; -moz-border-radius: 12/@rem;}
+.loginBtn.test{width:861/@rem; margin-top:160/@rem; margin-left:-54/@rem;}
 .loginBtn:hover{color:#fff;}
 .moreBtn{display: block; width:100%; text-align: center; font-size: 42/@rem; color:#1c1617; position: fixed; bottom:90/@rem; left:0;}
+.moreBtn.test{color:#606ee5; font-size: 32/@rem; text-decoration: underline;}
 .moreBtn:hover{text-decoration: underline;}
 
 /**************************************************input setting********************************************/
@@ -178,7 +182,6 @@ fieldset{margin:0; padding:0;}
 .am-form input[type=tel],
 .am-form input[type=color],
 .am-form select,
-.am-form textarea,
 .am-form-field{width:710/@rem; color:#333; height:60/@rem; line-height:60/@rem; border:none;  font-size:36/@rem; background: #fff; padding:0; margin:40/@rem 5/@rem;}
 .am-form .am-form input[type=number],
 .am-form input[type=search],
@@ -194,7 +197,6 @@ fieldset{margin:0; padding:0;}
 .am-form input[type=tel],
 .am-form input[type=color],
 .am-form select,
-.am-form textarea,
 .am-form-field:focus{outline: none; -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-user-modify:read-write-plaintext-only;}
 .questionText{display:inline-block; width:740/@rem; font-size:36/@rem; height:60/@rem; line-height: 60/@rem; margin:40/@rem 5/@rem;}
 .makeSureBtn{width:100%; background-color: #ec900c; height:150/@rem; color:#fff; text-align: center; font-size: 36/@rem; position: fixed; bottom:0; left:0;}
@@ -208,10 +210,91 @@ fieldset{margin:0; padding:0;}
 .cardOperate label{display: inline-block; width:244/@rem; text-align:right; margin-right:70/@rem; height:238/@rem; font-weight:normal; margin-bottom:0; line-height: 238/@rem; color:#999; font-size: 32/@rem;}
 .cardOperate span{display: inline-block; height:238/@rem; line-height: 238/@rem; font-size: 46/@rem; color:#333;}
 .cardStatus{height:80/@rem; line-height:80/@rem;}
+.cardStatus.yesboder{border-bottom:1px solid #c8c7cc;}
 .cardStatus label{display: inline-block; width:294/@rem; text-align:right; height:80/@rem; line-height:80/@rem; font-weight:normal; margin-bottom:0; color:#999; font-size:36/@rem;}
 .cardStatus span{display: inline-block; height:80/@rem; line-height:80/@rem; font-size: 36/@rem; color:#333;}
+.cardStatus.yesboder label{display: inline-block; width:244/@rem;}
 .bggrey{height:20/@rem; border:1px solid #c8c7cc; background-color: #f3f3f3;}
 .frezenCard{display: block; width:100%; text-align: center; height:150/@rem; line-height: 150/@rem; color:#333; font-size:40/@rem; position: fixed; bottom:0; left:0; border-top:1px solid #ccc;}
+
+/********************************我的权限********************************/
+.authorityBox{padding:80/@rem 80/@rem 0 80/@rem;}
+.marginR60{margin-right:60/@rem;}
+.marginT62{margin-top:62/@rem;}
+.authorityBg{width:430/@rem; height:440/@rem;}
+.authorityBg img{display:inline-block; width:430/@rem; height:368/@rem;}
+.authorityBg>div{width:100%; text-align: center; color:#666; font-size: 36/@rem; margin-top:20/@rem;}
+
+/*****************************卡充值************************************/
+.refillMoney{height:150/@rem; line-height: 150/@rem;}
+.refillMoney label{display: inline-block; width:288/@rem; text-align:right; margin-right:20/@rem; height:150/@rem; line-height: 150/@rem; font-weight:normal; margin-bottom:0; color:#333; font-size: 36/@rem;}
+.refillMoney span{display: inline-block; height:150/@rem; line-height: 150/@rem; font-size: 80/@rem; color:#333;}
+.cardOperate.noborder{border-bottom:0px solid #ddd;}
+.refillUl .refillList{height:150/@rem; line-height: 150/@rem; border-bottom:1px solid #c8c7cc; list-style: none;}
+.refillIcon{display: inline-block; width:80/@rem; height:80/@rem; margin-left:116/@rem; margin-top:35/@rem;}
+.refillIcon img{display:block; width:80/@rem; height:80/@rem;}
+.refillText{display:inline-block; font-size: 36/@rem; line-height: 150/@rem; color:#333; margin-left:30/@rem;}
+.am-checkbox, .am-radio{display: inline-block; width:40/@rem; height:40/@rem; min-height:40/@rem; margin-bottom:0; margin-right:80/@rem;}
+.am-radio .am-icon-checked:before, .am-radio-inline .am-icon-checked:before{
+  width:40/@rem; height:40/@rem;
+  margin-top:20/@rem;
+  background: url("../images/radioslt.png") no-repeat;
+  background-size: cover;
+  content:'';
+}
+.am-radio .am-icon-unchecked:before, .am-radio-inline .am-icon-unchecked:before{
+  width:40/@rem; height:40/@rem;
+  margin-top:20/@rem;
+  background: url("../images/radio.png") no-repeat;
+  background-size: cover;
+  content:'';
+}
+/*****************************新建消息************************************/
+.marginT95{margin-top:95/@rem;}
+.settingUl.nobottom{margin-bottom:0; padding-bottom:0;}
+.settingUl li.noborder{border-bottom:0px solid #ddd;}
+.am-form .msgTextarea{display:block; width:988/@rem; height:732/@rem; color:#333; font-size: 26/@rem; line-height: 26/@rem; padding:15/@rem 5/@rem; margin-top:30/@rem; margin-left:45/@rem;border:1px solid #ddd; resize: none;}
+.specialli{margin-bottom:200/@rem;}
+.specialli .labelW{display: block;}
+.specialli .textarea{display: block;}
+
+/***********************************账单*******************************************/
+.am-nav-justify>li{height:120/@rem; font-size:38/@rem;}
+.am-nav-tabs.am-nav-justify>li>a{height:120/@rem; line-height:120/@rem; padding:0; color:#ec900c; font-size:38/@rem; border:none; border-bottom:8/@rem solid transparent; color:#666666}
+.am-nav-tabs.am-nav-justify>.am-active>a, .am-nav-tabs.am-nav-justify>.am-active>a:focus, .am-nav-tabs.am-nav-justify>.am-active>a:hover{
+  height:120/@rem; line-height:120/@rem; padding:0;
+  border:none;
+  border-bottom:8/@rem solid #ec900c;
+  color:#ec900c;
+}
+.am-tabs-bd .am-tab-panel.billCon{background-color: #f1f1f1; padding:20/@rem; overflow:auto; -webkit-overflow-scrolling:touch;}
+.billList{width:1038/@rem; height:358/@rem; border:1px solid #cccccc; margin-bottom:20/@rem; background-color: #fff;}
+.billTitle{height:100/@rem;}
+.billTitle .titleLeft{height:100/@rem; line-height: 115/@rem; font-size:46/@rem; color:#333; margin-left:40/@rem;}
+.billTitle .titleRight{height:100/@rem; line-height: 130/@rem; font-size:32/@rem; color:#666; margin-right:32/@rem;}
+.billMoneyTitle{width: 100%; text-align: center; height:50/@rem; line-height: 50/@rem; color:#999; font-size:36/@rem;}
+.billMoney{font-size: 80/@rem; color:#c20808; height:100/@rem; line-height: 100/@rem; text-align: center;}
+.billMoney.green{color:#189100;}
+.billMoney em{font-size:36/@rem; color:#999; font-style: normal;}
+.billType label{display: inline-block; width:225/@rem; text-align:right; height:90/@rem; line-height: 90/@rem; font-weight:normal; margin-bottom:0; color:#999; font-size: 36/@rem;}
+.billType span{display: inline-block; height:90/@rem; line-height: 90/@rem; font-size: 36/@rem; color:#333;}
+
+/************************************申请列表***********************************/
+.examineTitle{height:90/@rem;}
+.examineTitle .titleLeft{height:90/@rem; line-height: 90/@rem; font-size:36/@rem; color:#333; margin-left:40/@rem;}
+.examineTitle .titleRight{height:90/@rem; line-height: 110/@rem; font-size:32/@rem; color:#666; margin-right:32/@rem;}
+.examineList{width:1040/@rem; height:180/@rem; border:1px solid #cccccc; border-left:6/@rem solid #189100; margin-bottom:20/@rem; background-color: #fff;}
+.examineList.green{border-left:6/@rem solid #ec900c;}
+.examineType label{display: inline-block; width:145/@rem; text-align:right; height:80/@rem; line-height: 80/@rem; font-weight:normal; margin-bottom:0; color:#999; font-size: 32/@rem;}
+.examineType .numberColor{display: inline-block; height:80/@rem; line-height: 80/@rem; font-weight:normal; color:#2054c9; font-size: 32/@rem;}
+.examineList .examineStaus{height:80/@rem; line-height: 80/@rem; font-weight:normal; color:#189100; font-size: 36/@rem; margin-right:32/@rem;}
+.examineList.green .examineStaus{height:80/@rem; line-height: 80/@rem; font-weight:normal; color:#ec900c; font-size: 36/@rem; margin-right:32/@rem;}
+.am-tabs-bd.noborder{border-bottom:0px solid #ddd;}
+.htmlGrey{background-color: #f1f1f1;}
+.marginB30{margin-bottom:30/@rem;}
+
+
+
 
 
 
