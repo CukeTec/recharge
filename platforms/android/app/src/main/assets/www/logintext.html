@@ -6,6 +6,11 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body class="bdHidden relative">
 <div class="homebgtest">
@@ -24,21 +29,19 @@
                 <!-- input 框-->
                 <div class="am-form-group am-cf inputBox marginB30">
                     <span class="am-fl userBg"><img src="images/userbg.png" alt=""/></span>
-                    <input type="text" class="am-fl am-radius loginInput" placeholder="请输入账号">
+                    <input type="text" class="am-fl am-radius loginInput" placeholder="请输入账号" value="469747"/>
                 </div>
                 <!-- input 框-->
                 <div class="am-form-group am-cf inputBox">
                     <span class="am-fl userBg"><img src="images/pswdbg.png" alt=""/></span>
-                    <input type="text" class="am-fl am-radius loginInput" placeholder="请输入密码">
+                    <input type="password" class="am-fl am-radius loginInput" placeholder="请输入密码" value="123456"/>
                 </div>
                 <!-- 按钮-->
-                <button type="submit" class="am-btn loginBtn test">登录</button>
+                <button id="loginBtn" type="button" class="am-btn loginBtn test">登录</button>
             </div>
         </div>
     </fieldset>
 </form>
 <a href="javascript:;" class="moreBtn test">忘记密码</a>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
+
 </body>

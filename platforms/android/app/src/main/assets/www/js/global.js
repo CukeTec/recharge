@@ -1,6 +1,10 @@
 $(function () {
 	initpage();
+
+
 });
+
+
 
 /**
  * rem布局 
