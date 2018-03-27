@@ -1,0 +1,4 @@
+#Tue Mar 27 14:44:29 CST 2018
+base.0=/Users/tanluole/Documents/Android_ws/recharge/platforms/android/app/build/intermediates/transforms/dexMerger/debug/459
+renamed.0=classes.dex
+file.0=/Users/tanluole/Documents/Android_ws/recharge/platforms/android/app/build/intermediates/transforms/dexMerger/debug/459/classes.dex

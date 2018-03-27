@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "瑞生活",
+  "short_name": "瑞生活",
+  "version": "io.cordova.hellocordova",
+  "description": "移动充值购物APP",
+  "author": "Apache Cordova Team",
+  "icons": [],
+  "start_url": "index.html"
+}
