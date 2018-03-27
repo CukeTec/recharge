@@ -2,7 +2,7 @@ package org.apache.cordova.whitelist;
 
 import android.util.Log;
 
-import com.google.gson.JsonObject;
+import com.run.bean.Question;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
 import com.run.util.SecurityUtil;
@@ -11,7 +11,6 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

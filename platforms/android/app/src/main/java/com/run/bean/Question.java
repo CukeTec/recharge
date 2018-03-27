@@ -1,4 +1,4 @@
-package org.apache.cordova.whitelist;
+package com.run.bean;
 
 /**
  * Created by Xiao on 2018/3/27.
