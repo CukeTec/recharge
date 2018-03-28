@@ -1,4 +1,3 @@
-var messageId = [];
 document.addEventListener('deviceready', function () {
      var url = document.URL;
      var id = url.split("?")[1];
