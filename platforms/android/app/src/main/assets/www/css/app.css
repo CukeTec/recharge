@@ -75,7 +75,7 @@ body {
   margin-top: 1.5rem;
 }
 .am-list-news-default .am-list .am-list-thumb img {
-  width: 50%;
+  width: 46%;
   vertical-align: middle;
   margin: 0 auto;
 }
@@ -190,7 +190,11 @@ body {
   border: 1px solid #dadada;
 }
 .msgListnew {
-  margin: 0px;
+  position: absolute;
+  top: 2.22222222rem;
+  bottom: 2.37037037rem;
+  left: 0;
+  width: 100%;
 }
 .am-header {
   height: 2.177rem;
@@ -286,12 +290,8 @@ h3.am-list-item-hd {
   max-height: 4.26666667rem;
   height: 4.26666667rem;
 }
-.am-list-news.am-list-news-default.storeListNew.am-no-layout {
-  width: 14.81481481rem;
-}
 .am-list-news-default {
-  margin-left: 0.59259259rem;
-  margin-right: 0.59259259rem;
+  margin: 0;
 }
 .storeListNew {
   margin-top: 0px;
@@ -299,6 +299,14 @@ h3.am-list-item-hd {
 .am-list-news-default.storeListNew .am-list .am-list-item-desced {
   padding-bottom: 0.6962963rem;
   padding-top: 0.44444444rem;
+}
+.storeListNew {
+  position: absolute;
+  top: 2.22222222rem;
+  bottom: 2.37037037rem;
+  left: 0;
+  width: 100%;
+  padding: 0 0.59259259rem;
 }
 .storeListNew .am-list > li {
   height: 5.27407407rem;
@@ -454,7 +462,7 @@ h3.am-list-item-hd {
 }
 .cardInfo {
   position: absolute;
-  top: 4.41481481rem;
+  top: 4.22222222rem;
   left: 2.93333333rem;
   color: #fff;
   z-index: 100;
@@ -470,12 +478,15 @@ h3.am-list-item-hd {
   font-size: 1.48148148rem;
   display: block;
   margin-top: -0.2962963rem;
+  font-style: italic;
 }
 .cardTime {
   font-size: 0.53333333rem;
   display: block;
   margin-left: 6.22222222rem;
-  margin-top: -0.74074074rem;
+  margin-top: -0.44444444rem;
+  margin-bottom: 0;
+  font-weight: normal;
 }
 .numType {
   display: inline-block;
@@ -669,6 +680,7 @@ input:focus {
   position: fixed;
   bottom: 1.33333333rem;
   left: 0;
+  z-index: 100;
 }
 .moreBtn.test {
   color: #606ee5;
@@ -681,7 +693,12 @@ input:focus {
 /**************************************************input setting********************************************/
 .settingUl {
   padding: 0.2962963rem 0.59259259rem;
-  margin-bottom: 2.22222222rem;
+  position: absolute;
+  width: 100%;
+  bottom: 2.22222222rem;
+  top: 2.22222222rem;
+  overflow: auto;
+  margin-bottom: 0;
 }
 .settingUl li {
   height: 2.19259259rem;
@@ -997,11 +1014,18 @@ fieldset {
 .marginT95 {
   margin-top: 1.40740741rem;
 }
-.settingUl.nobottom {
+.settingUlN.nobottom {
+  padding: 0.2962963rem 0.59259259rem;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.settingUl li.noborder {
+.settingUlN li {
+  height: 2.19259259rem;
+  line-height: 2.19259259rem;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+}
+.settingUlN li.noborder {
   border-bottom: 0px solid #ddd;
 }
 .am-form .msgTextarea {
@@ -1209,6 +1233,59 @@ fieldset {
 }
 .nextStep:hover {
   color: #fff;
+}
+.logoutBtn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 2.22222222rem;
+  line-height: 2.22222222rem;
+  color: #333;
+  font-size: 0.59259259rem;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1.11111111rem;
+}
+.am-modal-dialog {
+  width: 8.88888889rem;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.am-modal-bd {
+  padding: 0.59259259rem;
+  font-size: 0.53333333rem;
+  line-height: 0.88888889rem;
+  color: #ccc;
+}
+.am-with-fixed-navbar {
+  padding-bottom: 2.37037037rem;
+}
+body {
+  position: static;
+  width: 100%;
+  height: 100%;
+}
+#wrapper {
+  position: absolute;
+  top: 2.22222222rem;
+  bottom: 2.22222222rem;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+#wrapper.wraper {
+  position: absolute;
+  top: 4rem;
+  background-color: #f1f1f1;
+}
+#wrapper.morehigh {
+  position: absolute;
+  top: 4rem;
+  bottom: 0.74074074rem;
+  background-color: #f1f1f1;
+}
+.am-nav-tabs.am-nav-justify {
+  border-bottom: 1px solid #ccc;
 }
 @media only screen and (max-width: 320px) {
   .am-navbar-nav a .am-navbar-label,

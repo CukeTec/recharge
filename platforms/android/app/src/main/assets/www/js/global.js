@@ -1,11 +1,7 @@
+
 $(function () {
   //rem布局
   initpage();
-  //平滑滚动条
-  //var IScroll = $.AMUI.iScroll;
-  //var myScroll = new IScroll('#wrapper',{
-  //  click:true
-  //});
 });
 
 /**
@@ -19,3 +15,14 @@ function initpage()
     var _html = document.getElementsByTagName('html')[0];  
     _html.style.fontSize =view_width/16+'px';
   }
+var myScroll;
+function iscroll(){
+  //平滑滚动条
+  myScroll = new IScroll('#wrapper',{
+    click:true,
+    taps:true,
+    mouseWheel:true,
+    scrollbars: true
+  });
+}
+
