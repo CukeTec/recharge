@@ -2,7 +2,6 @@ document.addEventListener('deviceready', function () {
      cordova.exec(success, fail, "httpRequest", "msg", ["http://sireyun.com:8081/PSMGABService/messageRecord"]);
 }, false);
 function success(msg){
-console.log(msg)
     var message;
     $.each(JSON.parse(msg), function(i,v){
          message = '<li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left" value=' + v.messageInnerId + '>'
