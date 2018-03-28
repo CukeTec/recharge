@@ -1,8 +1,7 @@
 package org.apache.cordova.whitelist;
 
-import android.util.Log;
-
 import com.run.bean.Question;
+import com.run.bean.Result;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
 import com.run.util.SecurityUtil;
@@ -25,8 +24,10 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String CARDINFO = "cardInfo"; //获取卡片信息
     private static String CHANGEPWD = "changepwd"; //修改密码
     private static String SETQUESTION = "setQuestion"; //设置问题
-    private static Double userInnerId = 0d;
+    private static Integer userInnerId;
     public static String token = "";
+    public static Result relData = null; //登录返回消息
+
 
     /**
      * 执行http请求
@@ -75,12 +76,10 @@ public class HttpRequestPlugin extends CordovaPlugin {
         data.put("userPassword", SecurityUtil.getMd5(userPassword));//MD5处理
         data.put("macid", SecurityUtil.getMac()); //获取mac地址
         String rel = HttpUtil.sendRequest(url, data);
-        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
-        token = relData.get("token").toString();
-        ArrayList<Map<String,Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
-        Map<String, Object> map = result.get(0);
-        userInnerId = ((Double) map.get("userInnerId"));
-        Log.e("token", relData.get("token").toString());
+        relData = JsonParser.toObj(rel, Result.class);
+        token = relData.getToken();
+        userInnerId = relData.getResult().get(0).getUserInnerId();
+
         if (null != rel) {
             callbackContext.success(rel);//如果不调用success回调，则js中successCallback不会执行
             return true;
