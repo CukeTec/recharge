@@ -1,9 +1,11 @@
+var messageId = [];
 document.addEventListener('deviceready', function () {
      cordova.exec(success, fail, "httpRequest", "msg", ["http://sireyun.com:8081/PSMGABService/messageRecord"]);
 }, false);
 function success(msg){
     var message;
     $.each(JSON.parse(msg), function(i,v){
+         messageId.push(v.messageInnerId);
          message = '<li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left" value=' + v.messageInnerId + '>'
                        + '<div class="am-u-sm-4 am-list-thumb msgListH relative">'
                        + '<a href="msgdetail.html" class=""><img src="images/listicon_1.png" alt="ddd"/></a>'
@@ -18,3 +20,10 @@ function success(msg){
 function fail(msg){
     return;
 }
+function jumpto(msg){
+    window.location.href="msg.html";
+    return;
+}
+$("#clear").click(function(){
+    cordova.exec(jumpto, fail, "httpRequest", "msgdel", ["http://sireyun.com:8081/PSMGABService/messageDel", messageId]);
+})

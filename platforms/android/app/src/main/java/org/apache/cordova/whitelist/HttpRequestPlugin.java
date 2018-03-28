@@ -44,6 +44,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String VALQUESTION = "validateQuestion"; //验证问题
     private static String GETQUESTION = "getQuestion"; //查看问题
     private static String MSG = "msg"; //获取消息
+    private static String MSGDEL = "msgdel"; //获取消息
     private static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
@@ -82,7 +83,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return zfbRecharge(args, callbackContext);
         }else if(MSG.equals(action)){
             return getMessage(args, callbackContext);
-        }else   { //默认第一个参数就是数据
+        }else if(MSGDEL.equals(action)){
+            return delMessage(args, callbackContext);
+        }else { //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
             String rel = HttpUtil.sendRequest(url, data);
@@ -422,5 +425,27 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
+    }
+    /**
+     * 删除消息
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean delMessage(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONArray messageId = args.getJSONArray(1);
+        String url = args.getString(0);
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("cardId", relData.getResult().get(0).getCardId());
+        data.put("token", token);//MD5处理
+        for(int i=0;i<messageId.length();i++){
+            data.put("messageInnerId", messageId.get(i));
+            String str = HttpUtil.sendRequest(url, data);
+        }
+        callbackContext.success("success");//如果不调用success回调，则js中successCallback不会执行
+        return true;
     }
 }
