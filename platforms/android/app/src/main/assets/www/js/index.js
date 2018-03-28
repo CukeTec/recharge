@@ -19,7 +19,14 @@ function fixCardInfo(){
 function success(msg){
    var rechargeRatio = msg.rechargeRatio;
    var cardId = msg.cardId;
-   alert("rechargeRatio:"+rechargeRatio+"cardId:"+cardId);
+   var cardTime = msg.endTime;
+   var accountMoney = msg.accountMoney;
+   //alert("rechargeRatio:"+rechargeRatio+"cardId:"+cardId);
+
+   $("#cardId").text(cardId);
+   $("#cardTime").text(cardTime);
+   $("#accountMoney").text(accountMoney);
+   $("#rechargeRatio").text(rechargeRatio);
 }
 
 function fail(msg){

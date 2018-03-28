@@ -18,16 +18,16 @@
     <img src="images/cardbg.png" alt="" class="am-img-responsive cardImg"/>
     <div class="cardInfo">
         <em class="cardName">正式卡</em>
-        <span class="cardNum font_card">00443</span>
+        <span id="cardId" class="cardNum font_card"></span>
         <div class="cardTime">
-            <label>有效期至：</label><span>永久</span>
+            <label>有效期至：</label><span id="cardTime" ></span>
         </div>
     </div>
-    <div class="bottomText">说明：本卡片在有效日期内使用有效，充值比例为1:1</div>
+    <div id="rechargeRatio" class="bottomText"></div>
 </div>
 <div class="cardMoney relative">
     <em class="left numType">￥</em>
-    <em class="left bigNum">12308</em>
+    <em id="accountMoney" class="left bigNum"></em>
     <em class="left smallNum">.00</em>
 </div>
 <!-- Navbar -->
