@@ -1,7 +1,12 @@
-$(document).ready(function(){
 
-    fixCardInfo();
-});
+
+/**
+ * document.ready不能立马执行cordova.exec
+ */
+document.addEventListener('deviceready', function () {
+     fixCardInfo();
+
+}, false);
 
 /**
  * 填充卡信息
@@ -14,6 +19,7 @@ function fixCardInfo(){
 //获取卡信息成功
 function success(msg){
 
+   alert(msg);
 }
 
 function fail(msg){
