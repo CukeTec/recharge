@@ -5,12 +5,21 @@ package com.run.bean;
  */
 public class CardInfo {
 
+    private String cardId; //卡id
     private Integer accountState;
     private Integer grantsMoney;
     private String rechargeRatio;
     private Integer cashMoney;
     private String cardType;
     private Integer accountMoney;
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
+    }
 
     public Integer getAccountState() {
         return accountState;
