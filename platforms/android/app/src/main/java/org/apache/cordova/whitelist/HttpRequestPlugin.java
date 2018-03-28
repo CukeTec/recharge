@@ -45,7 +45,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String GETQUESTION = "getQuestion"; //查看问题
     private static String MSG = "msg"; //获取消息
     private static String MSGDEL = "msgdel"; //删除消息
-    private static String MSGDETAIL = "msgDetail"; //消息详情
+    private static String MSGDETAIL = "msgDetail"; //获取消息
     private static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
