@@ -55,6 +55,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
 
 
+
     /**
      * 执行http请求
      *
@@ -290,13 +291,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String cardId = "1272223438"; //获取卡号
         String userId = "469747"; //用户id
 
-        /**
-         userInnerId	Int	用户id
-         cardId	String	卡号
-         userId	String	用户id
-         token	String	token验证
-         **/
-
         //获取订单号
         Map<String,String>  data = new HashMap<>();
         data.put("userInnerId",userInnerId);
@@ -308,70 +302,114 @@ public class HttpRequestPlugin extends CordovaPlugin {
         if(rel == null || relData.isEmpty()){
             message.put("code","-1");
             message.put("msg","服务器返回为空");
+            callbackContext.error(message);
+            return true;
         }
 
-        Object result = relData.get("result");
+        String state = (String) relData.get("success");
+        if(!state.equals(Constans.STATE_200)){
+            if(state.equals(Constans.STATE_404)){
+                message.put("code","404");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else if(state.equals(Constans.STATE_405)){
+                message.put("code","405");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else {
+                message.put("code","-1");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+
+        }
+
+
+        List<Map<String,Object>> result = (List<Map<String,Object>>)relData.get("result");
         //Object 转 数组 再取数组里面的 json字符串  再取value值  object = "result":[{"orderCode":"201803270250251"}]
         //TODO 拼接充值参数
-        String orderNum = "";
+        if(result == null || result.size() < 1){
+            message.put("code","-1");
+            message.put("msg","服务器订单号为空");
+            callbackContext.error(message);
+            return true;
+        }
+        Map<String,Object> oerderMap = result.get(0);
+        if(oerderMap == null || oerderMap.isEmpty()){
+            message.put("code","-1");
+            message.put("msg","服务器订单号为空");
+            callbackContext.error(message);
+            return true;
+        }
+
+        //订单号
+        String orderNum = oerderMap.get("orderCode").toString();
 
 
         if(type.equals("1")){ //支付宝充值
+            try {
+                //下面两句最关键，利用intent启动新的Activity
+                Intent intent = new Intent().setClass(cordova.getActivity(), Class.forName("ZHIFUBAO"));
+                this.cordova.startActivityForResult(this, intent, 1);
 
+                //获取新的Activity
+                Activity myActivity = this.cordova.getActivity();
+
+
+                mHandler = new Handler();
+
+                Handler uiHandler = new Handler();
+
+                //下面三句为cordova插件回调页面的逻辑代码
+                PluginResult mPlugin = new PluginResult(PluginResult.Status.NO_RESULT);
+                mPlugin.setKeepCallback(true);
+
+                if(type.equals("0")){ //支付宝支付
+
+                    boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
+                    Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
+                    String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+
+                    String privateKey = ZfbUtil.ZFB_PRIVATE_RSA;
+                    String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+                    final String orderInfo = orderParam + "&" + sign;
+
+                    Runnable payRunnable = new Runnable() {
+
+                        @Override
+                        public void run() {
+                            PayTask alipay = new PayTask(myActivity);
+                            Map<String, String> result = alipay.payV2(orderInfo, true);
+                            Log.i("msp", result.toString());
+
+                            Message msg = new Message();
+                            msg.what = ZfbUtil.SDK_PAY_FLAG;
+                            msg.obj = result;
+                            mHandler.sendMessage(msg);
+                        }
+                    };
+
+                    Thread payThread = new Thread(payRunnable);
+                    payThread.start();
+                }
+
+                callbackContext.sendPluginResult(mPlugin);
+                callbackContext.success("交易成功");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                message.put("code","-1");
+                message.put("msg","网络异常");
+                callbackContext.error(message);
+                return false;
+            }
         }else{
 
-        }
-        try {
-            //下面两句最关键，利用intent启动新的Activity
-            Intent intent = new Intent().setClass(cordova.getActivity(), Class.forName("ZHIFUBAO"));
-            this.cordova.startActivityForResult(this, intent, 1);
-
-            //获取新的Activity
-            Activity myActivity = this.cordova.getActivity();
-
-            mHandler = new Handler();
-
-            Handler uiHandler = new Handler();
-
-            //下面三句为cordova插件回调页面的逻辑代码
-            PluginResult mPlugin = new PluginResult(PluginResult.Status.NO_RESULT);
-            mPlugin.setKeepCallback(true);
-
-            if(type.equals("0")){ //支付宝支付
-
-                boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
-                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
-                String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
-
-                String privateKey = ZfbUtil.ZFB_PRIVATE_RSA;
-                String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-                final String orderInfo = orderParam + "&" + sign;
-
-                Runnable payRunnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        PayTask alipay = new PayTask(myActivity);
-                        Map<String, String> result = alipay.payV2(orderInfo, true);
-                        Log.i("msp", result.toString());
-
-                        Message msg = new Message();
-                        msg.what = ZfbUtil.SDK_PAY_FLAG;
-                        msg.obj = result;
-                        mHandler.sendMessage(msg);
-                    }
-                };
-
-                Thread payThread = new Thread(payRunnable);
-                payThread.start();
-            }
-
-            callbackContext.sendPluginResult(mPlugin);
-            callbackContext.success("success");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         }
 
 
