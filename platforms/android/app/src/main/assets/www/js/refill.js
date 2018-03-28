@@ -29,11 +29,19 @@ $(document).ready(function(){
     });
 });
 
-//登录成功
+
 function success(msg){
-	window.location.href="index.html";
+	alert(msg);
 }
 
 function fail(msg){
-	alert(msg);
+    var err = JSON.stringify(msg);
+    var code = err.get("code");
+    var msg = err.get("msg")
+    if(code === '404' || code === '405'){
+        alert(err.get("msg"));
+        window.location.href="index.html";
+    }else{
+        alert(err.get("msg"));
+    }
 }
