@@ -6,11 +6,6 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="js/amazeui.min.js"></script>
-    <script type="text/javascript" src="js/global.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/refill.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -25,7 +20,7 @@
 <div class="bggrey"></div>
 <div class="refillMoney am-cf">
     <label class="am-fl">充值金额：</label>
-    <input type="text" class="am-fl" id="amount" value="100.00">
+    <input type="text" class="am-fl" value="100.00">
 </div>
 <div class="bggrey"></div>
 <div class="cardStatus am-cf yesboder">
@@ -38,7 +33,7 @@
         </span>
         <span class="refillText am-fl">微信支付</span>
         <label class="am-radio am-fr refillradio">
-            <input type="radio" name="pay" value="0" data-am-ucheck/>
+            <input type="radio" name="pay" data-am-ucheck/>
         </label>
     </div>
     <div class="refillList am-cf">
@@ -47,13 +42,11 @@
         </span>
         <span class="refillText am-fl">支付宝支付</span>
         <label class="am-radio am-fr refillradio">
-            <input type="radio" name="pay" value="1" data-am-ucheck checked/>
+            <input type="radio" name="pay" data-am-ucheck checked/>
         </label>
     </div>
 </div>
-<a href="javascript:void(0);" id="makeSureBtn" class="nextStep">下一步</a>
-
-<input type="hidden" id="cardno" value="1272223438">
+<a href="javascript:;" class="nextStep">下一步</a>
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
     <ul class="am-navbar-nav am-cf am-avg-sm-4 navUl">
@@ -90,6 +83,9 @@
         </li>
     </ul>
 </div>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
 
 </body>
 </html>
