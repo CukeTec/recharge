@@ -6,6 +6,11 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/refill.js"></script>
 </head>
 <body>
 <!-- Header -->
@@ -46,7 +51,10 @@
         </label>
     </div>
 </div>
-<a href="javascript:;" class="nextStep">下一步</a>
+<!--<a href="javascript:;" class="nextStep">下一步</a>-->
+<button type="submit" class="am-btn makeSureBtn" id="makeSureBtn">充  值</button>
+<input type="hidden" id="cardno" value="1272223438">
+<input type="hidden" id="amount" value="100">
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
     <ul class="am-navbar-nav am-cf am-avg-sm-4 navUl">
@@ -83,9 +91,6 @@
         </li>
     </ul>
 </div>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
 
 </body>
 </html>
