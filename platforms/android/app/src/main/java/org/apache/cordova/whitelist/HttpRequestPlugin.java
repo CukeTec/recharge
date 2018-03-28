@@ -26,6 +26,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String CARDINFO = "cardInfo"; //获取卡片信息
     private static String CHANGEPWD = "changepwd"; //修改密码
     private static String SETQUESTION = "setQuestion"; //设置问题
+    private static String VALQUESTION = "validateQuestion"; //验证问题
+    private static String GETQUESTION = "getQuestion"; //验证问题
     private static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
@@ -49,7 +51,11 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return changePassword(args, callbackContext);
         } else if (SETQUESTION.equals(action)) {
             return setQuestion(args, callbackContext);
-        }  { //默认第一个参数就是数据
+        } else if (VALQUESTION.equals(action)) {
+            return validateQuestion(args, callbackContext);
+        } else if (GETQUESTION.equals(action)) {
+            return getQuestion(args, callbackContext);
+        } else  { //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
             String rel = HttpUtil.sendRequest(url, data);
@@ -165,6 +171,62 @@ public class HttpRequestPlugin extends CordovaPlugin {
         data.put("userInnerId", userInnerId);
         data.put("token", token);//MD5处理
         data.put("question", result);
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        if (null != rel) {
+            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 验证问题
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean validateQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        String url = args.getString(0);
+        JSONArray questions = args.getJSONArray(1);
+        List<Question> result = new ArrayList<>();
+        String questionJson = null;
+        Question question = null;
+        for(int i=0;i<questions.length();i++){
+            questionJson = questions.get(i).toString();
+            question = JsonParser.toObj(questionJson, Question.class);
+            result.add(question);
+        }
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("token", token);//MD5处理
+        data.put("question", result);
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        if (null != rel) {
+            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 查看问题
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean getQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        String url = args.getString(0);
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("token", token);//MD5处理
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if (null != rel) {
