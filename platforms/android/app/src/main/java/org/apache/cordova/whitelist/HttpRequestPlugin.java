@@ -1,5 +1,6 @@
 package org.apache.cordova.whitelist;
 
+import com.run.bean.CardResult;
 import com.run.bean.Question;
 import com.run.bean.Result;
 import com.run.util.HttpUtil;
@@ -10,6 +11,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,10 +106,11 @@ public class HttpRequestPlugin extends CordovaPlugin {
         data.put("token", token);//MD5处理
 
         String rel = HttpUtil.sendRequest(url, data);
-        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        CardResult relData = JsonParser.toObj(rel, CardResult.class);
 
         if (null != rel) {
-            callbackContext.success(rel);//如果不调用success回调，则js中successCallback不会执行
+            JSONObject obj = new JSONObject(JsonParser.toJson(relData.getResult().get(0)));
+            callbackContext.success(obj);//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
