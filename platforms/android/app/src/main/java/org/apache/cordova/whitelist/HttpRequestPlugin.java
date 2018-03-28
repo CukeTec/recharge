@@ -44,7 +44,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String VALQUESTION = "validateQuestion"; //验证问题
     private static String GETQUESTION = "getQuestion"; //查看问题
     private static String MSG = "msg"; //获取消息
-    private static String MSGDEL = "msgdel"; //获取消息
+    private static String MSGDEL = "msgdel"; //删除消息
+    private static String MSGDETAIL = "msgDetail"; //获取消息
     private static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
@@ -85,7 +86,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return getMessage(args, callbackContext);
         }else if(MSGDEL.equals(action)){
             return delMessage(args, callbackContext);
-        }else { //默认第一个参数就是数据
+        }else if(MSGDETAIL.equals(action)){
+            return mesDetail(args, callbackContext);
+        }else{ //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
             String rel = HttpUtil.sendRequest(url, data);
@@ -447,5 +450,31 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }
         callbackContext.success("success");//如果不调用success回调，则js中successCallback不会执行
         return true;
+    }
+    /**
+     * 删除消息
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean mesDetail(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        String messageId = args.getString(1);
+        String url = args.getString(0);
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("cardId", relData.getResult().get(0).getCardId());
+        data.put("token", token);//MD5处理
+        data.put("messageInnerId", messageId);
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
+        if (null != rel) {
+            callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
+            return true;
+        } else {
+            return false;
+        }
     }
 }

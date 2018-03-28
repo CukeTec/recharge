@@ -8,7 +8,7 @@ function success(msg){
          messageId.push(v.messageInnerId);
          message = '<li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left" value=' + v.messageInnerId + '>'
                        + '<div class="am-u-sm-4 am-list-thumb msgListH relative">'
-                       + '<a href="msgdetail.html" class=""><img src="images/listicon_1.png" alt="ddd"/></a>'
+                       + '<a href="msgdetail.html?' + v.messageInnerId + '" class=""><img src="images/listicon_1.png" alt="ddd"/></a>'
                        + '<span class="listiconText">'+ v.sendUser + '</span></div>'
                        + '<div class="am-u-sm-8 am-list-main msgListH"><h3 class="am-list-item-hd">维护通知</h3>'
                        + '<div class="am-list-item-text listCon">' + v.messageName
