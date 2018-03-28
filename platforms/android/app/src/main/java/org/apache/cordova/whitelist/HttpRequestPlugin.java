@@ -286,7 +286,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String type = args.getString(1); //充值方式
 
         String url = BASEURL + "orderNum"; //订单号url
-        String token = ""; //获取token
         String userInnerId = "1"; //获取用户id
         String cardId = "1272223438"; //获取卡号
         String userId = "469747"; //用户id
@@ -297,7 +296,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
          userId	String	用户id
          token	String	token验证
          **/
-
 
         //获取订单号
         Map<String,String>  data = new HashMap<>();
@@ -318,9 +316,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String orderNum = "";
 
 
-
-
-        if(type.equals("0")){ //支付宝充值
+        if(type.equals("1")){ //支付宝充值
 
         }else{
 
