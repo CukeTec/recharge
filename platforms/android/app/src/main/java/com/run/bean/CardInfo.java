@@ -6,12 +6,21 @@ package com.run.bean;
 public class CardInfo {
 
     private String cardId; //卡id
-    private Integer accountState;
-    private Integer grantsMoney;
-    private String rechargeRatio;
-    private Integer cashMoney;
-    private String cardType;
-    private Integer accountMoney;
+    private Integer accountState; //账号状态
+    private String endTime; //有效期
+    private Integer grantsMoney; //补助账户金额
+    private String rechargeRatio; //充值比例
+    private Integer cashMoney; //现金账户金额
+    private String cardType; //卡类型
+    private Integer accountMoney; //主要账户金额
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 
     public String getCardId() {
         return cardId;
