@@ -42,7 +42,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String CHANGEPWD = "changepwd"; //修改密码
     private static String SETQUESTION = "setQuestion"; //设置问题
     private static String VALQUESTION = "validateQuestion"; //验证问题
-    private static String GETQUESTION = "getQuestion"; //验证问题
+    private static String GETQUESTION = "getQuestion"; //查看问题
+    private static String MSG = "msg"; //获取消息
     private static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
@@ -78,9 +79,10 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else if (GETQUESTION.equals(action)) {
             return getQuestion(args, callbackContext);
         }  else if(RECHARGE.equals(action)){
-
             return zfbRecharge(args, callbackContext);
-        }else  { //默认第一个参数就是数据
+        }else if(MSG.equals(action)){
+            return getMessage(args, callbackContext);
+        }else   { //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
             String rel = HttpUtil.sendRequest(url, data);
@@ -395,4 +397,29 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }
     }
 
+
+
+    /**
+     * 获取消息
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean getMessage(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        String url = args.getString(0);
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("cardId", relData.getResult().get(0).getCardId());
+        data.put("token", token);//MD5处理
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        if (null != rel) {
+            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
