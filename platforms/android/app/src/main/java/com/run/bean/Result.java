@@ -1,7 +1,6 @@
 package com.run.bean;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * http请求结果
@@ -12,7 +11,7 @@ public class Result {
 
     private String success;
     private String msg;
-    private List<Map<String,Object>> result;
+    private List<RelInfo> result;
     private String token;
 
     public String getSuccess() {
@@ -31,11 +30,11 @@ public class Result {
         this.msg = msg;
     }
 
-    public List<Map<String, Object>> getResult() {
+    public List<RelInfo> getResult() {
         return result;
     }
 
-    public void setResult(List<Map<String, Object>> result) {
+    public void setResult(List<RelInfo> result) {
         this.result = result;
     }
 
