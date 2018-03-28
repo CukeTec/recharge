@@ -170,7 +170,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if (null != rel) {
-            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            callbackContext.success(relData.get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
@@ -203,7 +203,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if (null != rel) {
-            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            callbackContext.success(relData.get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
@@ -236,7 +236,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if (null != rel) {
-            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            callbackContext.success(relData.get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
@@ -259,7 +259,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if (null != rel) {
-            callbackContext.success(JsonParser.toObj(rel, Map.class).get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+            callbackContext.success(relData.get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
@@ -415,8 +415,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
         data.put("token", token);//MD5处理
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
         if (null != rel) {
-            callbackContext.success(JsonParser.toObj(rel, Map.class).get("result").toString());//如果不调用success回调，则js中successCallback不会执行
+            callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
