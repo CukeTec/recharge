@@ -98,10 +98,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
      */
     private boolean getCardInfo(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
-        String userId = args.getString(1);
 
-        Map<String, String> data = new HashMap<>();
-        data.put("userInnerId", userId);
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
         data.put("token", token);//MD5处理
 
         String rel = HttpUtil.sendRequest(url, data);
