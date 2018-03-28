@@ -16,5 +16,5 @@ function success(msg){
     });
 }
 function fail(msg){
-    alert(msg);
+    return;
 }
