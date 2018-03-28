@@ -669,6 +669,7 @@ input:focus {
   position: fixed;
   bottom: 1.33333333rem;
   left: 0;
+  z-index: 100;
 }
 .moreBtn.test {
   color: #606ee5;
@@ -1209,6 +1210,18 @@ fieldset {
 }
 .nextStep:hover {
   color: #fff;
+}
+.logoutBtn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 2.22222222rem;
+  line-height: 2.22222222rem;
+  color: #333;
+  font-size: 0.59259259rem;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1.11111111rem;
 }
 @media only screen and (max-width: 320px) {
   .am-navbar-nav a .am-navbar-label,
