@@ -1,7 +1,9 @@
 package org.apache.cordova.whitelist;
 
+import com.run.bean.CardInfo;
 import com.run.bean.CardResult;
 import com.run.bean.Question;
+import com.run.bean.RelInfo;
 import com.run.bean.Result;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
@@ -29,6 +31,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
+    public static RelInfo relInfo = null; //登录消息详情
+
 
 
     /**
@@ -80,7 +84,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String rel = HttpUtil.sendRequest(url, data);
         relData = JsonParser.toObj(rel, Result.class);
         token = relData.getToken();
-        userInnerId = relData.getResult().get(0).getUserInnerId();
+        relInfo = relData.getResult().get(0);
+        userInnerId = relInfo.getUserInnerId();
 
         if (null != rel) {
             callbackContext.success(rel);//如果不调用success回调，则js中successCallback不会执行
@@ -107,7 +112,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         String rel = HttpUtil.sendRequest(url, data);
         CardResult relData = JsonParser.toObj(rel, CardResult.class);
-
+        CardInfo cardInfo = relData.getResult().get(0);
+        cardInfo.setCardId(relInfo.getCardId());
         if (null != rel) {
             JSONObject obj = new JSONObject(JsonParser.toJson(relData.getResult().get(0)));
             callbackContext.success(obj);//如果不调用success回调，则js中successCallback不会执行
