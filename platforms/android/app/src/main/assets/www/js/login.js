@@ -5,6 +5,12 @@ $(document).ready(function(){
          cordova.exec(success, fail, "httpRequest", "login", ["http://sireyun.com:8081/PSMGABService/loginAuth",
          	"469747","123456"]);
     });
+
+    $("#forget").click(function(){
+       alert('111');
+           window.location.href="setting.html";
+
+    });
 });
 
 //登录成功

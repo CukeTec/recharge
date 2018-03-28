@@ -17,8 +17,9 @@ function fixCardInfo(){
 
 //获取卡信息成功
 function success(msg){
-
-   alert(msg);
+   var rechargeRatio = msg.rechargeRatio;
+   var cardId = msg.cardId;
+   alert("rechargeRatio:"+rechargeRatio+"cardId:"+cardId);
 }
 
 function fail(msg){
