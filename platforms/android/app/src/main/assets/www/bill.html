@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css?a=233543" type="text/css">
 </head>
-<body>
+<body onload="iscroll()">
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
@@ -28,7 +28,7 @@
         <ul class="am-tab-panel am-active billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐</span>
+                    <span class="am-fl titleLeft">中心营养早餐1</span>
                     <span class="am-fr titleRight">2018-03-01  11:02:11</span>
                 </div>
                 <div class="billMoneyTitle">金额</div>
@@ -90,7 +90,7 @@
         <ul class="am-tab-panel billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐</span>
+                    <span class="am-fl titleLeft">中心营养早餐2</span>
                     <span class="am-fr titleRight">2018-03-01  11:02:11</span>
                 </div>
                 <div class="billMoneyTitle">金额</div>
@@ -251,6 +251,12 @@
 </div>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
+<script>
+    $('#billtab').find('a').on('opened.tabs.amui',function(e){
+        myScroll.scrollTo(0,0,100)
+    });
+</script>
 </body>
 </html>
