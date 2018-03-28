@@ -23,6 +23,7 @@ import com.run.zfbpay.ZfbUtil;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +33,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.cordova.hellocordova.MainActivity;
 
 /**
  * 前端JS调用http请求
@@ -353,9 +356,11 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         if(type.equals("1")){ //支付宝充值
             try {
-                //下面两句最关键，利用intent启动新的Activity
-                Intent intent = new Intent().setClass(cordova.getActivity(), Class.forName("ZHIFUBAO"));
-                this.cordova.startActivityForResult(this, intent, 1);
+
+//                Intent intent = new Intent().setClass(
+//                        cordova.getActivity(),
+//                        Class.forName(MainActivity.class));
+//                this.cordova.startActivityForResult(this, intent, 1);
 
                 //获取新的Activity
                 Activity myActivity = this.cordova.getActivity();
@@ -364,49 +369,45 @@ public class HttpRequestPlugin extends CordovaPlugin {
                 mHandler = new Handler();
 
                 Handler uiHandler = new Handler();
+/*
 
                 //下面三句为cordova插件回调页面的逻辑代码
                 PluginResult mPlugin = new PluginResult(PluginResult.Status.NO_RESULT);
                 mPlugin.setKeepCallback(true);
+*/
+                boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
+                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
+                String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
-                if(type.equals("0")){ //支付宝支付
+                String privateKey = ZfbUtil.ZFB_PRIVATE_RSA;
+                String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+                final String orderInfo = orderParam + "&" + sign;
 
-                    boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
-                    Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
-                    String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+                Runnable payRunnable = new Runnable() {
 
-                    String privateKey = ZfbUtil.ZFB_PRIVATE_RSA;
-                    String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-                    final String orderInfo = orderParam + "&" + sign;
+                    @Override
+                    public void run() {
+                        PayTask alipay = new PayTask(myActivity);
+                        Map<String, String> result = alipay.payV2(orderInfo, true);
+                        Log.i("msp", result.toString());
 
-                    Runnable payRunnable = new Runnable() {
+                        Message msg = new Message();
+                        msg.what = ZfbUtil.SDK_PAY_FLAG;
+                        msg.obj = result;
+                        mHandler.sendMessage(msg);
+                    }
+                };
 
-                        @Override
-                        public void run() {
-                            PayTask alipay = new PayTask(myActivity);
-                            Map<String, String> result = alipay.payV2(orderInfo, true);
-                            Log.i("msp", result.toString());
-
-                            Message msg = new Message();
-                            msg.what = ZfbUtil.SDK_PAY_FLAG;
-                            msg.obj = result;
-                            mHandler.sendMessage(msg);
-                        }
-                    };
-
-                    Thread payThread = new Thread(payRunnable);
-                    payThread.start();
-                }
-
-                callbackContext.sendPluginResult(mPlugin);
-                callbackContext.success("交易成功");
+                Thread payThread = new Thread(payRunnable);
+                payThread.start();
 
             } catch (Exception e) {
+                LOG.i("-----e-----",e.getMessage());
                 e.printStackTrace();
                 message.put("code","-1");
                 message.put("msg","网络异常");
                 callbackContext.error(message);
-                return false;
+                return true;
             }
         }else{
 
@@ -415,10 +416,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         return false;
     }
-
-
-
-
 
     //onActivityResult为第二个Activity执行完后的回调接收方法
     @Override
