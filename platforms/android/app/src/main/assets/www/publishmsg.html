@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
 </head>
-<body>
+<body onload="iscroll()">
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
@@ -23,7 +23,7 @@
         </a>
     </div>
 </header>
-<div data-am-widget="list_news" class="am-list-news am-list-news-default msgListnew">
+<div data-am-widget="list_news" class="am-list-news am-list-news-default msgListnew" id="wrapper">
     <ul class="am-list">
         <li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left">
             <div class="am-u-sm-4 am-list-thumb msgListH relative">
@@ -123,6 +123,7 @@
 </div>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 </body>
 </html>
