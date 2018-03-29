@@ -60,29 +60,12 @@
         </li>
     </ul>
 </div>
-<!--提示框-->
-<div class="am-modal am-modal-no-btn" tabindex="-1" id="mymodal">
-    <div class="am-modal-dialog">
-        <div class="am-modal-bd">
-           这里显示提示内容这里显示提示内容这里显示提示内容
-        </div>
-    </div>
-</div>
+
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
 <script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/msg.js"></script>
-<script>
-    $(function(){
-        $('.clearBtn').off().on('click',function(){
-            $('#mymodal').modal('open');
-            setTimeout(function(){
-                $('#mymodal').modal('close');
-            },5000);
-        });
-    });
-</script>
 </body>
 </html>

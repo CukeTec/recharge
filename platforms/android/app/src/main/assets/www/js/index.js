@@ -21,8 +21,9 @@ function success(msg){
    var cardId = msg.cardId;
    var cardTime = msg.endTime;
    var accountMoney = msg.accountMoney;
+   var cardType = msg.cardType;
    //alert("rechargeRatio:"+rechargeRatio+"cardId:"+cardId);
-
+    $("#cardType").text(cardType);
    $("#cardId").text(cardId);
    $("#cardTime").text(cardTime);
    $("#accountMoney").text(accountMoney);

@@ -24,15 +24,24 @@
         </div>
     </div>
 </div>
+<!--提示框-->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="mymodal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            正在努力开发中。。。。敬请期待！
+        </div>
+    </div>
+</div>
 <section class="am-panel am-panel-default sectionList">
     <ul class="am-list blog-list myList">
         <!--<li><a href="#" class="am-text-truncate"><img src="images/sectionicon_1.png" alt="" class="am-margin-left sectionIcon"/>我的访客<img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li> -->
-        <li><a href="bill.html" class="am-text-truncate"><img src="images/sectionicon_2.png" alt="" class="am-margin-left sectionIcon"/>我的订单 <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
+        <!--<li><a href="bill.html" class="am-text-truncate"><img src="images/sectionicon_2.png" alt="" class="am-margin-left sectionIcon"/>我的订单 <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>-->
+        <li><a href="javascript:void(0)" id="modal" class="am-text-truncate"><img src="images/sectionicon_2.png" alt="" class="am-margin-left sectionIcon"/>我的订单 <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
         <li><a href="myauthority.html" class="am-text-truncate"><img src="images/sectionicon_3.png" alt="" class="am-margin-left sectionIcon"/>我的权限<img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
-        <li><a href="examinelist.html" class="am-text-truncate"><img src="images/sectionicon_4.png" alt="" class="am-margin-left sectionIcon"/>审批申请 <em>（管理员登录显示）</em> <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
+        <!--<li><a href="examinelist.html" class="am-text-truncate"><img src="images/sectionicon_4.png" alt="" class="am-margin-left sectionIcon"/>审批申请 <em>（管理员登录显示）</em> <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>-->
         <li><a href="cardoperate.html" class="am-text-truncate"><img src="images/sectionicon_5.png" alt="" class="am-margin-left sectionIcon"/>卡片操作 <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
         <li><a href="accountsafe.html" class="am-text-truncate"><img src="images/sectionicon_6.png" alt="" class="am-margin-left sectionIcon"/>账号安全 <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
-        <li><a href="publishmsg.html" class="am-text-truncate"><img src="images/sectionicon_7.png" alt="" class="am-margin-left sectionIcon"/>发布消息 <em>（管理员登录显示）</em> <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>
+        <!--<li><a href="publishmsg.html" class="am-text-truncate"><img src="images/sectionicon_7.png" alt="" class="am-margin-left sectionIcon"/>发布消息 <em>（管理员登录显示）</em> <img src="images/rightangle.png" alt="" class="am-margin-right sectionAngleIcon am-fr"/></a></li>-->
     </ul>
 </section>
 <a href="javascript:;" class="logoutBtn">退出</a>
@@ -75,5 +84,15 @@
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
+<script>
+    $(function(){
+        $("#modal").click(function(){
+            $('#mymodal').modal('open');
+            setTimeout(function(){
+                $('#mymodal').modal('close');
+            },1000);
+        })
+    });
+</script>
 </body>
 </html>

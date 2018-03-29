@@ -367,8 +367,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
                 mHandler = new Handler();
 
-                Handler uiHandler = new Handler();
-
                 boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
                 Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
                 String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
