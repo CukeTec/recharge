@@ -1,10 +1,12 @@
 package org.apache.cordova.whitelist;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
+import android.os.Handler;
 import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
@@ -21,6 +23,7 @@ import com.run.zfbpay.ZfbUtil;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.PluginResult;
 import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +56,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
     public final static String BASEURL = "http://sireyun.com:8081/PSMGABService/";
 
     private Handler mHandler = null;
-
 
 
 
@@ -356,14 +358,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
         //订单号
         String orderNum = oerderMap.get("orderCode").toString();
 
-
         if(type.equals("1")){ //支付宝充值
             try {
-
-//                Intent intent = new Intent().setClass(
-//                        cordova.getActivity(),
-//                        Class.forName(MainActivity.class));
-//                this.cordova.startActivityForResult(this, intent, 1);
 
                 //获取新的Activity
                 Activity myActivity = this.cordova.getActivity();
@@ -372,12 +368,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
                 mHandler = new Handler();
 
                 Handler uiHandler = new Handler();
-/*
 
-                //下面三句为cordova插件回调页面的逻辑代码
-                PluginResult mPlugin = new PluginResult(PluginResult.Status.NO_RESULT);
-                mPlugin.setKeepCallback(true);
-*/
                 boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
                 Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
                 String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
@@ -419,6 +410,10 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         return false;
     }
+
+
+
+
 
     //onActivityResult为第二个Activity执行完后的回调接收方法
     @Override
