@@ -1,12 +1,10 @@
 package org.apache.cordova.whitelist;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
@@ -23,7 +21,6 @@ import com.run.zfbpay.ZfbUtil;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
 import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,10 +49,14 @@ public class HttpRequestPlugin extends CordovaPlugin {
     public static Result relData = null; //登录返回消息
     public static RelInfo relInfo = null; //登录消息详情
 
+    private static String RECHARGEPRE = "rechargepre";//进入充值请求
     private static String RECHARGE = "rechargeaction"; //充值请求
     public final static String BASEURL = "http://sireyun.com:8081/PSMGABService/";
+    private static String FREEZECARD = "freezeCard"; //冻结接口
+    private static String UNFREEZEINFO = "unfreezeInfo"; //解冻申请
 
     private Handler mHandler = null;
+
 
 
 
@@ -81,7 +82,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return validateQuestion(args, callbackContext);
         } else if (GETQUESTION.equals(action)) {
             return getQuestion(args, callbackContext);
-        }  else if(RECHARGE.equals(action)){
+        } else if (RECHARGEPRE.equals(action)){ //进入充值请求
+            return  rechargePre(args, callbackContext);
+        } else if(RECHARGE.equals(action)){
             return zfbRecharge(args, callbackContext);
         }else if(MSG.equals(action)){
             return getMessage(args, callbackContext);
@@ -89,6 +92,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return delMessage(args, callbackContext);
         }else if(MSGDETAIL.equals(action)){
             return mesDetail(args, callbackContext);
+        }else if(FREEZECARD.equals(action)){ //冻结接口
+
+            return freezeCard(args, callbackContext);
         }else{ //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
@@ -281,6 +287,27 @@ public class HttpRequestPlugin extends CordovaPlugin {
      * @return
      * @throws JSONException
      */
+    public boolean rechargePre(JSONArray args, CallbackContext callbackContext) throws JSONException{
+        if (relInfo == null){
+
+            callbackContext.error("查询不到卡号");
+            return true;
+        }
+
+        String cardId = relInfo.getCardId(); //卡号
+        callbackContext.success(cardId);
+
+        return true;
+    }
+
+    /**
+     * 支付宝充值请求
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
     public boolean zfbRecharge(JSONArray args, CallbackContext callbackContext) throws JSONException{
         JSONObject message = new JSONObject();
         if(args == null || args.length() < 1){
@@ -360,11 +387,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         if(type.equals("1")){ //支付宝充值
             try {
-
                 //获取新的Activity
                 Activity myActivity = this.cordova.getActivity();
-
-
                 mHandler = new Handler();
 
                 boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
@@ -408,10 +432,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         return false;
     }
-
-
-
-
 
     //onActivityResult为第二个Activity执行完后的回调接收方法
     @Override
@@ -500,4 +520,140 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return false;
         }
     }
+
+    /**
+     * 冻结卡片
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean freezeCard(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject message = new JSONObject();
+        if(relInfo == null){
+            message.put("code", "404");
+            message.put("msg","过期");
+            callbackContext.error(message);
+
+            return true;
+        }
+
+        userInnerId = relInfo.getUserInnerId();	// 用户id
+        String cardId = relInfo.getCardId(); //卡号
+        String token = relInfo.getToken(); //验证
+
+        String url = BASEURL + "freezeCard";
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("cardId", cardId);
+        data.put("token", token);
+
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+
+
+        if(rel == null || relData.isEmpty()){
+            message.put("code","-1");
+            message.put("msg","服务器返回为空");
+            callbackContext.error(message);
+            return true;
+        }
+
+        String state = (String) relData.get("success");
+        if(!state.equals(Constans.STATE_200)){
+            if(state.equals(Constans.STATE_404)){
+                message.put("code","404");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else if(state.equals(Constans.STATE_405)){
+                message.put("code","405");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else {
+                message.put("code","-1");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+        }
+
+        callbackContext.success("冻结成功");
+        return true;
+    }
+
+
+    /**
+     * 解冻申请
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean unFreeze(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject message = new JSONObject();
+        if(relInfo == null){
+            message.put("code", "404");
+            message.put("msg","过期");
+            callbackContext.error(message);
+
+            return true;
+        }
+
+        userInnerId = relInfo.getUserInnerId();	// 用户id
+        String cardId = relInfo.getCardId(); //卡号
+        String applyType = "1"; //1 解冻申请
+        String applyRemark = "申请解冻"; // 申请理由
+        String token = relInfo.getToken(); //验证
+
+        String url = BASEURL + "unfreezeInfo";
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("cardId", cardId);
+        data.put("applyType", applyType);
+        data.put("applyRemark", applyRemark);
+        data.put("token", token);
+
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+
+
+        if(rel == null || relData.isEmpty()){
+            message.put("code","-1");
+            message.put("msg","服务器返回为空");
+            callbackContext.error(message);
+            return true;
+        }
+
+        String state = (String) relData.get("success");
+        if(!state.equals(Constans.STATE_200)){
+            if(state.equals(Constans.STATE_404)){
+                message.put("code","404");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else if(state.equals(Constans.STATE_405)){
+                message.put("code","405");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else {
+                message.put("code","-1");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+        }
+
+        callbackContext.success("申请成功");
+        return true;
+    }
+
 }

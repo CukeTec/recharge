@@ -20,7 +20,7 @@
 </header>
 <div class="cardOperate am-cf noborder">
     <label class="am-fl">卡号</label>
-    <span class="am-fl">1272223438</span>
+    <span class="am-fl" id="cardId">1272223438</span>
 </div>
 <div class="bggrey"></div>
 <div class="refillMoney am-cf">
@@ -92,4 +92,20 @@
 </div>
 
 </body>
+<script type="text/javascript">
+    //获取卡号
+    $(function(){
+
+        cordova.exec(succ, error, "httpRequest", "rechargepre", [""]);
+    });
+    function succ(msg){
+        $("#cardId").html(msg);
+        $("#cardno").val(msg);
+    }
+
+    function error(msg){
+        alert("查询不到卡号");
+    }
+
+</script>
 </html>
