@@ -6,9 +6,13 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/cardoperate.js"></script>
 </head>
 <body>
-<!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
     <div class="am-header-left am-header-nav">
@@ -20,17 +24,45 @@
 </header>
 <div class="cardOperate am-cf">
     <label class="am-fl">卡号</label>
-    <span class="am-fl">2100 0051 9874 443</span>
+    <span class="am-fl" id="cardid">2100 0051 9874 443</span>
 </div>
 <div class="cardStatus am-cf">
     <label class="am-fl">智能卡状态：</label>
-    <span class="am-fl">正常</span>
+    <span class="am-fl" id="status">正常</span>
 </div>
 <div class="bggrey"></div>
-<a href="javascript:;" class="frezenCard">冻结卡片</a>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
+<a href="javascript:void(0);" class="frezenCard" id="frezenCard" style="display: none;">冻结卡片</a>
+<a href="javascript:void(0);" class="frezenCard" id="unfreezeInfo" style="display: none;">申请解冻</a>
 
 </body>
+<script type="text/javascript">
+    $(function(){
+		cordova.exec(succe, fails, "httpRequest", "cardInfo", [""]);
+    });
+
+   function succe(msg){
+       var cardId = msg.cardId;
+       var accountState = msg.accountState;
+       $("#cardId").text(cardId);
+
+      if(accountState === '0'){
+           $("#status").text("正常");
+           $("#frezenCard").css("display","block");
+      }else if(accountState === '1'){
+           $("#status").text("冻结");
+           $("#frezenCard").css("display","block");
+      }else if(accountState === '2'){
+           $("#status").text("无账户信息");
+      }else if(accountState === '3'){
+           $("#status").text("已过期");
+      }
+
+   }
+
+    function fails(msg){
+        alert(msg);
+    }
+
+
+</script>
 </html>

@@ -14,7 +14,7 @@
     <h1 class="am-header-title relative">商户</h1>
 </header>
 <div data-am-widget="list_news" class="am-list-news am-list-news-default storeListNew" id="wrapper">
-    <ul class="am-list">
+    <!--<ul class="am-list">
             <li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left am-cf">
                 <div class="am-list-thumb storeList am-fl">
                     <a href="storedetail.html" class="">
@@ -167,7 +167,15 @@
                 </div>
             </div>
         </li>
-        </ul>
+        </ul>-->
+    <!--提示框-->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="mymodal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd">
+                正在努力开发中。。。。敬请期待！
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Navbar -->
@@ -210,5 +218,13 @@
 <script type="text/javascript" src="js/amazeui.min.js"></script>
 <script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
+<script>
+    $(function(){
+            $('#mymodal').modal('open');
+            setTimeout(function(){
+                $('#mymodal').modal('close');
+            },1000);
+    });
+</script>
 </body>
 </html>
