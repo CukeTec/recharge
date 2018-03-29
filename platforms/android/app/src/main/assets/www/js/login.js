@@ -7,7 +7,6 @@ $(document).ready(function(){
     });
 
     $("#forget").click(function(){
-       alert('111');
            window.location.href="setting.html";
 
     });
