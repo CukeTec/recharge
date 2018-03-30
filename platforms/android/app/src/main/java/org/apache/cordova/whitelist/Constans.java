@@ -18,4 +18,8 @@ public class Constans {
     /** 第三方返回 404 过期 */
     public final static String STATE_404 = "404";
 
+    /** 状态码  */
+    public final static String STATE = "state";
+
+
 }
