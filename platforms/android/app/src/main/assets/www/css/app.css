@@ -123,7 +123,10 @@ body {
   position: absolute;
   left: 50%;
   margin-left: -0.81481481rem;
-  top: 10%;
+  top: 8%;
+}
+.navBtn .centerA .allbg {
+  top: 22%;
 }
 .am-navbar-nav a {
   color: #666;
@@ -322,9 +325,12 @@ h3.am-list-item-hd {
   padding-left: 0rem;
 }
 .am-navbar-nav a .am-navbar-label {
+  display: block;
+  height: 0.71111111rem;
+  line-height: 0.71111111rem;
   font-size: 0.38518519rem;
-  margin-top: 0rem;
-  padding-top: 0.11851852rem;
+  margin-top: 0.02962963rem;
+  padding-top: 0;
 }
 .am-header-default .am-header-nav {
   height: 2.17777778rem;
@@ -424,12 +430,13 @@ h3.am-list-item-hd {
 .am-navbar-nav a {
   display: inline-block;
   height: 2.22222222rem;
+  line-height: 1.11111111rem;
   margin-top: 0;
 }
 .am-navbar-nav a img {
   width: 1.03703704rem;
   height: 1.03703704rem;
-  /*margin-top:15/@rem;*/
+  margin: auto;
 }
 .am-navbar .am-navbar-nav li {
   z-index: 10;
@@ -462,6 +469,7 @@ h3.am-list-item-hd {
 }
 .cardInfo {
   position: absolute;
+  width: 10.51851852rem;
   top: 4.22222222rem;
   left: 2.93333333rem;
   color: #fff;
@@ -469,22 +477,31 @@ h3.am-list-item-hd {
 }
 .cardName {
   display: block;
+  height: 0.53333333rem;
+  line-height: 0.53333333rem;
   font-weight: bold;
   font-size: 0.53333333rem;
   color: #fff;
 }
 .cardNum {
   font-family: font_card;
+  height: 1.92592593rem;
+  line-height: 1.92592593rem;
   font-size: 1.48148148rem;
   display: block;
-  margin-top: -0.2962963rem;
   font-style: italic;
 }
+.cardTime label {
+  font-weight: normal!important;
+}
+.cardTime span {
+  font-weight: normal!important;
+}
 .cardTime {
-  font-size: 0.53333333rem;
+  font-size: 0.41481481rem;
   display: block;
-  margin-left: 6.22222222rem;
-  margin-top: -0.44444444rem;
+  margin-right: 0.59259259rem;
+  margin-top: -0.07407407rem;
   margin-bottom: 0;
   font-weight: normal;
 }
@@ -529,52 +546,40 @@ h3.am-list-item-hd {
 .homebg {
   overflow: hidden;
   height: 28.44444444rem;
-  background: url("../images/homebg.png") no-repeat;
-  background-size: 100% 100%;
+  background: none;
 }
 .homebg.test {
   background: none;
   position: relative;
   z-index: 10;
 }
-.homebgtest {
-  height: 70%;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 0;
-  overflow: hidden;
-}
 .logo {
-  width: 4.72592593rem;
-  height: 5.54074074rem;
+  width: 3.11111111rem;
+  height: 4.45925926rem;
   overflow: hidden;
   position: absolute;
-  top: 30%;
+  top: 5.71851852rem;
   left: 50%;
-  margin-left: -2.36296296rem;
-  margin-top: -1.66222222rem;
+  margin-left: -1.55555556rem;
 }
 .logo img {
   display: inline-block;
-  width: 10.01481481rem;
-  height: 5.8962963rem;
+  width: 3.11111111rem;
+  height: 4.45925926rem;
 }
 .loginlogo {
-  width: 4.72592593rem;
-  height: 5.54074074rem;
+  width: 3.11111111rem;
+  height: 4.45925926rem;
   overflow: hidden;
   position: absolute;
-  top: 12%;
+  top: 4.23703704rem;
   left: 50%;
-  margin-left: -2.36296296rem;
-  margin-top: -0.66488889rem;
+  margin-left: -1.55555556rem;
 }
 .loginlogo img {
   display: inline-block;
-  width: 7.77777778rem;
-  height: 5.86666667rem;
+  width: 3.11111111rem;
+  height: 4.45925926rem;
 }
 fieldset {
   margin: 0;
@@ -583,22 +588,22 @@ fieldset {
 .inputCon {
   width: 11.18518519rem;
   margin: 0 auto;
-  margin-top: 75%;
+  margin-top: 11.11111111rem;
 }
 .inputBox {
   width: 11.18518519rem;
   height: 1.95555556rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #c2c2c2;
   border-radius: 0.17777778rem;
   -webkit-border-radius: 0.17777778rem;
   -moz-border-radius: 0.17777778rem;
-  background: #0a0808;
+  background: #fff;
 }
 .am-form input[type=text].loginInput {
   width: 9.00740741rem;
   height: 1.06666667rem;
   line-height: 1.06666667rem;
-  color: #fff;
+  color: #333;
   border: none;
   font-size: 0.53333333rem;
   background: transparent;
@@ -616,7 +621,7 @@ fieldset {
   width: 9.00740741rem;
   height: 1.06666667rem;
   line-height: 1.06666667rem;
-  color: #fff;
+  color: #333;
   border: none;
   font-size: 0.53333333rem;
   background: transparent;
@@ -655,6 +660,7 @@ input:focus {
   line-height: 2.22222222rem;
   width: 11.18518519rem;
   margin: 0 auto;
+  margin-top: 5.15555556rem;
   background: #ec900c;
   font-size: 0.59259259rem;
   text-align: center;
@@ -665,7 +671,7 @@ input:focus {
 }
 .loginBtn.test {
   width: 12.75555556rem;
-  margin-top: 2.37037037rem;
+  margin-top: 5.15555556rem;
   margin-left: -0.8rem;
 }
 .loginBtn:hover {
@@ -690,13 +696,13 @@ input:focus {
 .moreBtn:hover {
   text-decoration: underline;
 }
+.am-form-group {
+  margin-bottom: 0;
+}
 /**************************************************input setting********************************************/
 .settingUl {
   padding: 0.2962963rem 0.59259259rem;
-  position: absolute;
-  width: 100%;
-  bottom: 2.22222222rem;
-  top: 2.22222222rem;
+  /*position: absolute; width:100%; bottom:150/@rem; top:150/@rem;*/
   overflow: auto;
   margin-bottom: 0;
 }
@@ -1173,7 +1179,7 @@ fieldset {
   margin-bottom: 0.2962963rem;
   background-color: #fff;
 }
-.examineList.green {
+.examineList.yellow {
   border-left: 0.08888889rem solid #ec900c;
 }
 .examineType label {
@@ -1203,7 +1209,7 @@ fieldset {
   font-size: 0.53333333rem;
   margin-right: 0.47407407rem;
 }
-.examineList.green .examineStaus {
+.examineList.yellow .examineStaus {
   height: 1.18518519rem;
   line-height: 1.18518519rem;
   font-weight: normal;
@@ -1284,8 +1290,126 @@ body {
   bottom: 0.74074074rem;
   background-color: #f1f1f1;
 }
+#wrapper.myapp {
+  top: 0;
+}
 .am-nav-tabs.am-nav-justify {
   border-bottom: 1px solid #ccc;
+  background-color: #fff;
+}
+.bottomimg {
+  width: 100%;
+  height: 9.73333333rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.bottomimg img {
+  display: block;
+  width: 100%;
+  height: 9.73333333rem;
+}
+.upBox {
+  width: 100%;
+  height: 12.08888889rem;
+  position: absolute;
+  bottom: -12.08888889rem;
+  left: 0;
+  z-index: 200;
+  background-color: #fff;
+}
+.upshadow {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 199;
+}
+.sureList label {
+  display: inline-block;
+  width: 5.11111111rem;
+  height: 1.45185185rem;
+  margin-bottom: 0;
+  text-align: right;
+  line-height: 1.45185185rem;
+  font-size: 0.53333333rem;
+  color: #999;
+  font-weight: normal;
+}
+.sureList span {
+  display: inline-block;
+  margin-left: 0.74074074rem;
+  width: 10.07407407rem;
+  height: 1.45185185rem;
+  line-height: 1.45185185rem;
+  font-size: 0.53333333rem;
+  color: #333;
+}
+.marginT95 {
+  margin-top: 1.40740741rem;
+}
+.bottomBtn {
+  position: absolute;
+  bottom: 0px;
+  height: 2.25185185rem;
+  border-top: 1px solid #d5d5d5;
+  border-bottom: 1px solid #d5d5d5;
+}
+.bottomBtn a {
+  display: inline-block;
+  height: 2.22222222rem;
+  line-height: 2.22222222rem;
+  text-align: center;
+  font-size: 0.59259259rem;
+}
+.bottomBtn a.agreeBtn {
+  width: 8rem;
+  background-color: #0c85ec;
+  color: #fff;
+  border-right: 1px solid #d5d5d5;
+}
+.bottomBtn a.refuseBtn {
+  width: 8rem;
+  background-color: #fff;
+  color: #333;
+}
+.hide {
+  display: none;
+}
+.refuseTextarea {
+  display: block;
+  width: 14.63703704rem;
+  height: 6.77037037rem;
+  color: #333;
+  font-size: 0.38518519rem;
+  line-height: 0.38518519rem;
+  padding: 0.22222222rem 0.07407407rem;
+  margin-top: 0.44444444rem;
+  margin-left: 0.66666667rem;
+  border: 1px solid #ccc;
+  resize: none;
+}
+.paddingT30 {
+  padding-top: 0.44444444rem;
+}
+.sureBtn {
+  width: 16rem;
+  background-color: #0c85ec;
+  color: #fff;
+}
+.sureBtn:hover {
+  color: #fff;
+}
+.sureBtn:focus {
+  color: #fff;
+}
+.examineCon {
+  height: 12.08888889rem;
+}
+.paddingT95 {
+  padding-top: 1.40740741rem;
 }
 @media only screen and (max-width: 320px) {
   .am-navbar-nav a .am-navbar-label,
@@ -1299,5 +1423,8 @@ body {
   }
   .warnBox {
     left: 2rem;
+  }
+  .loginBtn.test {
+    margin-top: 2.96296296rem;
   }
 }
