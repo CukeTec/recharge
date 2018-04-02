@@ -11,6 +11,24 @@
     <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/refill.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('deviceready', function () {
+             getCardno();
+        }, false);
+
+        function getCardno(){
+            cordova.exec(succ, error, "httpRequest", "rechargepre", [""]);
+        }
+        function succ(msg){
+            $("#cardId").text(msg);
+            $("#cardno").val(msg);
+        }
+
+        function error(msg){
+            alert("查询不到卡号");
+        }
+
+</script>
 </head>
 <body>
 <!-- Header -->
@@ -92,20 +110,5 @@
 </div>
 
 </body>
-<script type="text/javascript">
-    //获取卡号
-    $(function(){
 
-        cordova.exec(succ, error, "httpRequest", "rechargepre", [""]);
-    });
-    function succ(msg){
-        $("#cardId").html(msg);
-        $("#cardno").val(msg);
-    }
-
-    function error(msg){
-        alert("查询不到卡号");
-    }
-
-</script>
 </html>
