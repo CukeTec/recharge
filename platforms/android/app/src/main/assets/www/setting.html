@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css?a=233543" type="text/css">
 </head>
-<body>
+<body onload="iscroll()">
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
@@ -19,7 +19,7 @@
     <h1 class="am-header-title relative">设置问题</h1>
 </header>
 <form class="am-form">
-    <fieldset>
+    <fieldset >
         <div id="wrapper">
         <ul class="settingUl">
             <li class="relative">
@@ -99,11 +99,5 @@
 <script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/setting.js"></script>
-<script>
-    $(function(){
-        iscroll();
-    });
-</script>
 </body>
 </html>
