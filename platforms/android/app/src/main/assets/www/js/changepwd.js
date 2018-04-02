@@ -4,6 +4,10 @@ $(".makeSureBtn").click(function(){
         alert("密码不一致");
         return;
     }
+    if(inputs[1].value.trim() == ""){
+        alert("密码不可为空");
+        return;
+    }
     cordova.exec(success, fail, "httpRequest", "changepwd", ["http://sireyun.com:8081/PSMGABService/changeUserPW", inputs[0].value, inputs[1].value]);
 });
 

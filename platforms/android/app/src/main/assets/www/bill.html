@@ -6,6 +6,53 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css?a=233543" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/bill.js"></script>
+    <script type="text/javascript">
+        var billId = [];
+        $(function(){
+             bill();
+        });
+
+        function bill(){
+            alert(123);
+            var startDate = "";
+            var endDate = "";
+            cordova.exec(success, fail, "httpRequest", "consumtionaction", [startDate,endDate]);
+        }
+
+        function success(msg){
+            alert(msg);
+             var bills;
+             $.each(JSON.parse(msg), function(i,v){
+                 alert(v);
+                 billId.push(v.userInnerId);
+                 bills = '<div class="billList">'
+                            +'<div class="billTitle am-cf">'
+                            +'<span class="am-fl titleLeft">' + v.conType + '</span>'
+                            +'<span class="am-fr titleRight">' + v.conDate + '</span>'
+                            +'</div><div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>' + v.money + '</div>
+                            +'<div class="billType am-cf"><label class="am-fl">消费种类：</label><span class="am-fl">'+刷卡消费+'</span></div></div>';
+                 $("#total_bill").append(bills);
+             });
+        }
+
+        function fail(msg){
+            var err = JSON.stringify(msg);
+            var code = err.get("code");
+            var msg = err.get("msg");
+            if(code === '404' || code === '405'){
+                alert(err.get("msg"));
+                window.location.href="index.html";
+            }else{
+                alert(err.get("msg"));
+            }
+        }
+    </script>
 </head>
 <body onload="iscroll()">
 <!-- Header -->
@@ -20,73 +67,16 @@
 </header>
 <div class="am-tabs" id="demo1" data-am-tabs>
     <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-        <li class="am-active"><a href="javascript:;">全部</a></li>
-        <li class=""><a href="javascript:;">消费</a></li>
-        <li class=""><a href="javascript:;">充值</a></li>
+        <li class="am-active"><a href="javascript:void(0);" id="totalBtn">全部</a></li>
+        <li class=""><a href="javascript:void(0);">消费</a></li>
+        <li class=""><a href="javascript:void(0);">充值</a></li>
     </ul>
     <div class="am-tabs-bd">
-        <ul class="am-tab-panel am-active billCon">
-            <div class="billList">
-                <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐1</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="billMoneyTitle">金额</div>
-                <div class="billMoney"><em>￥</em>-20.00</div>
-                <div class="billType am-cf">
-                    <label class="am-fl">消费种类：</label>
-                    <span class="am-fl">刷卡消费</span>
-                </div>
-            </div>
-            <div class="billList">
-                <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="billMoneyTitle">金额</div>
-                <div class="billMoney"><em>￥</em>-20.00</div>
-                <div class="billType am-cf">
-                    <label class="am-fl">消费种类：</label>
-                    <span class="am-fl">刷卡消费</span>
-                </div>
-            </div>
-            <div class="billList">
-                <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="billMoneyTitle">金额</div>
-                <div class="billMoney"><em>￥</em>-20.00</div>
-                <div class="billType am-cf">
-                    <label class="am-fl">消费种类：</label>
-                    <span class="am-fl">刷卡消费</span>
-                </div>
-            </div>
-            <div class="billList">
-                <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="billMoneyTitle">金额</div>
-                <div class="billMoney green"><em>￥</em>150.00</div>
-                <div class="billType am-cf">
-                    <label class="am-fl">消费种类：</label>
-                    <span class="am-fl">刷卡消费</span>
-                </div>
-            </div>
-            <div class="billList">
-                <div class='billTitle am-cf'>
-                    <span class="am-fl titleLeft">中心营养早餐</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="billMoneyTitle">金额</div>
-                <div class="billMoney"><em>￥</em>-20.00</div>
-                <div class="billType am-cf">
-                    <label class="am-fl">消费种类：</label>
-                    <span class="am-fl">刷卡消费</span>
-                </div>
-            </div>
+        <ul class="am-tab-panel am-active billCon" id="total_bill">
+
+
         </ul>
+
         <ul class="am-tab-panel billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
@@ -149,7 +139,8 @@
                 </div>
             </div>
         </ul>
-        <ul class="am-tab-panel billCon">
+
+        <ul class="am-tab-panel billCon" id="billCon">
             <div class="billList">
                 <div class='billTitle am-cf'>
                     <span class="am-fl titleLeft">中心营养早餐</span>
@@ -249,10 +240,7 @@
         </li>
     </ul>
 </div>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/iscroll.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
+
 <script>
     $('#billtab').find('a').on('opened.tabs.amui',function(e){
         myScroll.scrollTo(0,0,100)

@@ -8,11 +8,14 @@ import android.os.Message;
 import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
+import com.run.bean.ApplyRecord;
+import com.run.bean.Bill;
 import com.run.bean.CardInfo;
 import com.run.bean.CardResult;
 import com.run.bean.Question;
 import com.run.bean.RelInfo;
 import com.run.bean.Result;
+import com.run.util.Encript;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
 import com.run.util.SecurityUtil;
@@ -54,6 +57,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
     public final static String BASEURL = "http://sireyun.com:8081/PSMGABService/";
     private static String FREEZECARD = "freezeCard"; //冻结接口
     private static String UNFREEZEINFO = "unfreezeInfo"; //解冻申请
+    private static String COMSUMTIONACTION = "consumtionaction"; //消费记录接口
+    private static String APPLYRECORD = "applyrecordaction"; //申请记录接口
+    private static String MESSAGEDEAL = "messagedealaction"; //审核处理接口
 
     private Handler mHandler = null;
 
@@ -95,7 +101,24 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }else if(FREEZECARD.equals(action)){ //冻结接口
 
             return freezeCard(args, callbackContext);
-        }else{ //默认第一个参数就是数据
+        }
+        else if(UNFREEZEINFO.equals(action)){ //申请解冻
+
+            return unFreeze(args, callbackContext);
+        }
+        else if(COMSUMTIONACTION.equals(action)){ //账单接口
+
+            return consumtionAction(args, callbackContext);
+        }
+        else if(APPLYRECORD.equals(action)){ //申请记录
+
+            return applyrecordAction(args, callbackContext);
+        }
+        else if(MESSAGEDEAL.equals(action)){ //审核处理
+
+            return messageDealAction(args, callbackContext);
+        }
+        else{ //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
             String rel = HttpUtil.sendRequest(url, data);
@@ -121,9 +144,11 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String userPassword = args.getString(2);
         Map<String, String> data = new HashMap<>();
         data.put("userId", userId);
-        data.put("userPassword", SecurityUtil.getMd5(userPassword));//MD5处理
+        data.put("userPassword", Encript.md5(userPassword));//MD5处理
         data.put("macid", SecurityUtil.getMac()); //获取mac地址
         String rel = HttpUtil.sendRequest(url, data);
+
+  //      String rel = "{\"state\":\"200\",\"msg\":\"成功\",\"result\":[{\"userId\":\"469747\",\"userPassword\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"userInnerId\":1,\"oldpassword\":null,\"newpassword\":null,\"token\":null,\"macid\":\"353321073054770\",\"cardId\":\"1272223438\",\"applyType\":null,\"applyRemark\":null,\"startDate\":null,\"endDate\":null,\"messageInnerId\":null,\"messageName\":null,\"messageDetail\":null,\"messageGroup\":null,\"applyInnerId\":null,\"auditState\":null,\"auditDetail\":null,\"questionInnerId\":null,\"questionName\":null,\"questionKey\":null,\"fuserName\":null,\"question\":null,\"fimageUrl\":null,\"fuserPhone\":null,\"fdepName\":null,\"fdepInnerId\":null,\"fdeviceInnerId\":null,\"fcarNum\":null,\"fstate\":null}],\"token\":\"572d8b3178828bc31586bcc25969916403b7029c56b4304486b96a4f34e0460a44ad6af2087658e99ce874bdf08235fbe437090f0c263f5eacb476e0972bf0d416714d00ab9534f9283ee10dcc54f0aa8ce8ee918531756b3b6dbf28440ea1daa836738c241c0da82ff1b47fb105c8492bf22523a4dc6fcc7fe1af67998a4aa7\"}";
         relData = JsonParser.toObj(rel, Result.class);
         token = relData.getToken();
         relInfo = relData.getResult().get(0);
@@ -147,6 +172,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
      */
     private boolean getCardInfo(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
+        if(url == null || url.length() < 1 || url == ""){
+            url = BASEURL + "cardInfo";
+        }
 
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
@@ -341,7 +369,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return true;
         }
 
-        String state = (String) relData.get("success");
+        String state = (String) relData.get(Constans.STATE);
         if(!state.equals(Constans.STATE_200)){
             if(state.equals(Constans.STATE_404)){
                 message.put("code","404");
@@ -560,7 +588,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return true;
         }
 
-        String state = (String) relData.get("success");
+        String state = (String) relData.get(Constans.STATE);
         if(!state.equals(Constans.STATE_200)){
             if(state.equals(Constans.STATE_404)){
                 message.put("code","404");
@@ -609,7 +637,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String cardId = relInfo.getCardId(); //卡号
         String applyType = "1"; //1 解冻申请
         String applyRemark = "申请解冻"; // 申请理由
-        String token = relInfo.getToken(); //验证
 
         String url = BASEURL + "unfreezeInfo";
         Map<String, Object> data = new HashMap<>();
@@ -630,7 +657,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return true;
         }
 
-        String state = (String) relData.get("success");
+        String state = (String) relData.get(Constans.STATE);
         if(!state.equals(Constans.STATE_200)){
             if(state.equals(Constans.STATE_404)){
                 message.put("code","404");
@@ -655,5 +682,224 @@ public class HttpRequestPlugin extends CordovaPlugin {
         callbackContext.success("申请成功");
         return true;
     }
+
+    /**
+     * 账单
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean consumtionAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject message = new JSONObject();
+        if(relInfo == null){
+            message.put("code", "404");
+            message.put("msg","过期");
+            callbackContext.error(message);
+
+            return true;
+        }
+
+        userInnerId = relInfo.getUserInnerId();	// 用户id
+        String startDate = ""; //开始时间
+        String endDate = ""; //结束时间
+
+        if(args.length() > 0 && args != null){
+            startDate = args.getString(0);
+            endDate = args.getString(1);
+        }
+
+        String url = BASEURL + "getConsumptionInfo";
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("startDate", startDate);
+        data.put("endDate", endDate);
+        data.put("token", token);
+
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+
+        if(rel == null || relData.isEmpty()){
+            message.put("code","-1");
+            message.put("msg","服务器返回为空");
+            callbackContext.error(message);
+            return true;
+        }
+
+        String state = (String) relData.get(Constans.STATE);
+        if(!state.equals(Constans.STATE_200)){
+            if(state.equals(Constans.STATE_404)){
+                message.put("code","404");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else if(state.equals(Constans.STATE_405)){
+                message.put("code","405");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else {
+                message.put("code","-1");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+        }
+
+        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>)relData.get("result");
+        callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
+
+        return true;
+    }
+
+    /**
+     * 申请记录
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean applyrecordAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject message = new JSONObject();
+        if(relInfo == null){
+            message.put("code", "404");
+            message.put("msg","过期");
+            callbackContext.error(message);
+
+            return true;
+        }
+
+        userInnerId = relInfo.getUserInnerId();	// 用户id
+        String cardId = relInfo.getCardId(); //卡号
+
+        String url = BASEURL + "applyRecord";
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("cardId", cardId);
+        data.put("token", token);
+
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+
+        if(rel == null || relData.isEmpty()){
+            message.put("code","-1");
+            message.put("msg","服务器返回为空");
+            callbackContext.error(message);
+            return true;
+        }
+
+        String state = (String) relData.get(Constans.STATE);
+        if(!state.equals(Constans.STATE_200)){
+            if(state.equals(Constans.STATE_404)){
+                message.put("code","404");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else if(state.equals(Constans.STATE_405)){
+                message.put("code","405");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else {
+                message.put("code","-1");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+        }
+
+        List<ApplyRecord> list = (List<ApplyRecord>)relData.get("result");
+        message.put("obj", list);
+        callbackContext.success(message);
+
+        return true;
+    }
+
+    /**
+     * 解冻申请审核
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean messageDealAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject message = new JSONObject();
+        if(relInfo == null){
+            message.put("code", "404");
+            message.put("msg","过期");
+            callbackContext.error(message);
+
+            return true;
+        }
+
+
+        userInnerId = relInfo.getUserInnerId();	// 用户id
+        String applyInnerId = ""; //申请id
+        String auditState = ""; //	审核状态  1 - 同意   2- 拒绝
+        String auditDetail = ""; //理由
+
+        if(args.length() < 1 && args != null){
+            message.put("code", "-1");
+            message.put("msg","请选择需要操作的解冻申请");
+            callbackContext.error(message);
+
+            return true;
+        }
+        applyInnerId = args.getString(0);
+        auditState = args.getString(1);
+        auditDetail = args.getString(2);
+
+        String url = BASEURL + "messageDeal";
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("applyInnerId", applyInnerId);
+        data.put("auditState", auditState);
+        data.put("auditDetail",auditDetail);
+        data.put("token", token);
+
+        String rel = HttpUtil.sendRequest(url, data);
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+
+        if(rel == null || relData.isEmpty()){
+            message.put("code","-1");
+            message.put("msg","服务器返回为空");
+            callbackContext.error(message);
+            return true;
+        }
+
+        String state = (String) relData.get(Constans.STATE);
+        if(!state.equals(Constans.STATE_200)){
+            if(state.equals(Constans.STATE_404)){
+                message.put("code","404");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else if(state.equals(Constans.STATE_405)){
+                message.put("code","405");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+            else {
+                message.put("code","-1");
+                message.put("msg",relData.get("msg"));
+                callbackContext.error(message);
+                return true;
+            }
+        }
+
+        callbackContext.success("操作成功");
+
+        return true;
+    }
+
 
 }
