@@ -705,7 +705,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         String startDate = ""; //开始时间
         String endDate = ""; //结束时间
 
-        if(args.length() > 0 && args != null){
+        if(args.length() > 1 && args != null && !args.equals("''")){
             startDate = args.getString(0);
             endDate = args.getString(1);
         }

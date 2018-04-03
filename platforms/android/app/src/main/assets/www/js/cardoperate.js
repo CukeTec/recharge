@@ -35,7 +35,7 @@ document.addEventListener('deviceready', function () {
 
 
 function getCardInfo(){
-    cordova.exec(succeed, fail, "httpRequest", "cardInfo", ["http://sireyun.com:8081/PSMGABService/cardInfo"]);
+    cordova.exec(succeed, fails, "httpRequest", "cardInfo", ["http://sireyun.com:8081/PSMGABService/cardInfo"]);
 }
 
  function succeed(msg){
