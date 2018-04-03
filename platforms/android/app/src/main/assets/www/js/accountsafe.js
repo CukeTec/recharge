@@ -12,3 +12,18 @@ function success(msg){
 function fail(msg){
 //	alert(fail);
 }
+
+$("#setquestion").click(function(){
+    cordova.exec(success1, fail1, "httpRequest", "GETQUESTION",[]);
+});
+function success1(msg){
+    var questions = JSON.parse(msg);
+    if(questions.length == 3){
+         window.location.href = "valquestion.html";
+    }else{
+         window.location.href= "setting.html";
+    }
+}
+function fail1(){
+
+}

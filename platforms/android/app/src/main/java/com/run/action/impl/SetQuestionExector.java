@@ -34,7 +34,7 @@ public class SetQuestionExector implements CommandExecutor {
         CallbackContext callbackContext = actionReceiver.getCallbackContext();
         JSONArray args = actionReceiver.getParams();
         String url = actionReceiver.getUrl();
-        JSONArray questions = args.getJSONArray(1);
+        JSONArray questions = args.getJSONArray(0);
         List<Question> result = new ArrayList<>();
         String questionJson = null;
         Question question = null;

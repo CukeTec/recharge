@@ -42,12 +42,11 @@ $(".makeSureBtn").click(function(){
        question.questionKey = $(v).val().trim();
        result.push(question);
     });
-    cordova.exec(success, fail, "httpRequest", "SETQUESTION", [result]);
+    cordova.exec(success, fail, "httpRequest", "VALIDATEQUESTION", [result]);
 });
 
 function success(msg){
-    alert(msg);
-    window.location.href= "accountsafe.html";
+      window.location.href = "setting.html";
 }
 function fail(msg){
     alert(msg);
