@@ -1,7 +1,7 @@
 document.addEventListener('deviceready', function () {
      var url = document.URL;
      var id = url.split("?")[1];
-     cordova.exec(success, fail, "httpRequest", "msgDetail", ["http://sireyun.com:8081/PSMGABService/messageDetail", id]);
+     cordova.exec(success, fail, "httpRequest", "MESSAGEDETAIL", [id]);
 }, false);
 function success(msg){
     var message = JSON.parse(msg);

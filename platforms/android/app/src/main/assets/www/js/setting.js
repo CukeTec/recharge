@@ -42,7 +42,7 @@ $(".makeSureBtn").click(function(){
        question.questionKey = $(v).val().trim();
        result.push(question);
     });
-    cordova.exec(success, fail, "httpRequest", "setQuestion", ["http://sireyun.com:8081/PSMGABService/setCodeSure", result]);
+    cordova.exec(success, fail, "httpRequest", "SETQUESTION", [result]);
 });
 
 function success(msg){

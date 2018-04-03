@@ -12,7 +12,7 @@ document.addEventListener('deviceready', function () {
  * 填充卡信息
  */
 function fixCardInfo(){
-   cordova.exec(success, fail, "httpRequest", "cardInfo", ["http://sireyun.com:8081/PSMGABService/cardInfo"]);
+   cordova.exec(success, fail, "httpRequest", "CARDINFO",[]);
 }
 
 //获取卡信息成功

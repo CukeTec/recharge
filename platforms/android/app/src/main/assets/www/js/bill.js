@@ -7,7 +7,7 @@ document.addEventListener('deviceready', function () {
 }, false);
 
 function  getBillInfo(){
-   cordova.exec(succeed, fails, "httpRequest", "consumtionaction", []);
+   cordova.exec(succeed, fails, "httpRequest", "COMSUMTIONACTION", []);
 }
 
 var billId = [];

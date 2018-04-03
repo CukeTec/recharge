@@ -1,6 +1,6 @@
 var messageId = [];
 document.addEventListener('deviceready', function () {
-     cordova.exec(success, fail, "httpRequest", "msg", ["http://sireyun.com:8081/PSMGABService/messageRecord"]);
+     cordova.exec(success, fail, "httpRequest", "GETMESSAGE", []);
 }, false);
 function success(msg){
     var message;
@@ -25,5 +25,5 @@ function jumpto(msg){
     return;
 }
 $("#clear").click(function(){
-    cordova.exec(jumpto, fail, "httpRequest", "msgdel", ["http://sireyun.com:8081/PSMGABService/messageDel", messageId]);
+    cordova.exec(jumpto, fail, "httpRequest", "DELETEMESSAGE", []);
 })

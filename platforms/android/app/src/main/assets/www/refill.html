@@ -17,7 +17,7 @@
         }, false);
 
         function getCardno(){
-            cordova.exec(succ, error, "httpRequest", "rechargepre", [""]);
+            cordova.exec(succ, error, "httpRequest", "RECHARGEPRE", []);
         }
         function succ(msg){
             $("#cardId").text(msg);
@@ -43,7 +43,7 @@
 <div class="bggrey"></div>
 <div class="refillMoney am-cf">
     <label class="am-fl">充值金额：</label>
-    <input type="text" class="am-fl" id="amount" value="100.00">
+    <input type="text" class="am-fl refillinput" id="amount" value="100.00">
 </div>
 <div class="bggrey"></div>
 <div class="cardStatus am-cf yesboder">
@@ -70,8 +70,6 @@
     </div>
 </div>
 <a href="javascript:void(0);" id="makeSureBtn" class="nextStep">下一步</a>
-
-<input type="hidden" id="cardno" value="1272223438">
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
     <ul class="am-navbar-nav am-cf am-avg-sm-4 navUl">
@@ -88,7 +86,7 @@
             </a>
         </li>
         <li class="centerBtn relative selt navBtn">
-            <a href="refill.html" class="centerA relative">
+            <a href="refill.html" class="centerA relative am-animation-scale-up">
                 <img src="images/btnbg.png" alt="" class="allbg am-img-responsive"/>
                 <img src="images/btniconhover_5.png"  alt="充值" class="centerImg"/>
                 <span class="am-navbar-label">充值</span>
@@ -110,5 +108,4 @@
 </div>
 
 </body>
-
 </html>
