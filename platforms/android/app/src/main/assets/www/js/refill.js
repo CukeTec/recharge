@@ -25,7 +25,7 @@ $(document).ready(function(){
             return true;
         }
 
-        cordova.exec(success, fail, "httpRequest", "rechargeaction", [amount,pay,cardno]);
+        cordova.exec(success, fail, "httpRequest", "RECHARGE", [amount,pay,cardno]);
     });
 });
 

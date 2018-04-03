@@ -17,7 +17,7 @@
         }, false);
 
         function getCardno(){
-            cordova.exec(succ, error, "httpRequest", "rechargepre", [""]);
+            cordova.exec(succ, error, "httpRequest", "RECHARGEPRE", []);
         }
         function succ(msg){
             $("#cardId").text(msg);

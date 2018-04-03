@@ -1,10 +1,10 @@
 $(document).ready(function(){
     $("#frezenCard").click(function(){ //冻结请求
-        cordova.exec(success, fail, "httpRequest", "freezeCard", [""]);
+        cordova.exec(success, fail, "httpRequest", "FREEZECARD", []);
     });
 
     $("#unfreezeInfo").click(function(){ //解冻申请
-           cordova.exec(success, fail, "httpRequest", "unfreezeInfo", [""]);
+           cordova.exec(success, fail, "httpRequest", "UNFREEZEINFO", []);
      });
 });
 
@@ -35,7 +35,7 @@ document.addEventListener('deviceready', function () {
 
 
 function getCardInfo(){
-    cordova.exec(succeed, fails, "httpRequest", "cardInfo", ["http://sireyun.com:8081/PSMGABService/cardInfo"]);
+    cordova.exec(succeed, fails, "httpRequest", "CARDINFO", []);
 }
 
  function succeed(msg){
