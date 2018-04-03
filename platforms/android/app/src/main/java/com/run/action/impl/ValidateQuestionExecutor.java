@@ -49,10 +49,12 @@ public class ValidateQuestionExecutor implements CommandExecutor {
         data.put("question", result);
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
-        if (null != rel) {
-            callbackContext.success(relData.get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+        String code =  relData.get("state").toString();
+        if (null != rel && "200".equals(code)) {
+            callbackContext.success();//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
+            callbackContext.error(relData.get("msg").toString());
             return false;
         }
     }
