@@ -35,6 +35,7 @@ public class RelInfo {
     private String fdeviceInnerId;
     private String fcarNum;
     private String fstate;
+    private Integer userTypeInnerId; //人员类型	1-员工 2-管理员
 
     public String getUserId() {
         return userId;
@@ -282,5 +283,13 @@ public class RelInfo {
 
     public void setFstate(String fstate) {
         this.fstate = fstate;
+    }
+
+    public Integer getUserTypeInnerId() {
+        return userTypeInnerId;
+    }
+
+    public void setUserTypeInnerId(Integer userTypeInnerId) {
+        this.userTypeInnerId = userTypeInnerId;
     }
 }
