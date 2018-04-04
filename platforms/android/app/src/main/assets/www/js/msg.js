@@ -1,6 +1,6 @@
 var messageId = [];
 document.addEventListener('deviceready', function () {
-     cordova.exec(success, fail, "httpRequest", "GETMESSAGE", []);
+     cordova.exec(success, fail, "httpRequest", "GETMESSAGE", [1, 10]);
 }, false);
 function success(msg){
     var message;
