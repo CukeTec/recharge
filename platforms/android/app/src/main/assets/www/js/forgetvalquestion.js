@@ -1,17 +1,26 @@
 var url = document.URL;
-var param = url.split("?")[1];
-var id = param.split("&");
-var selects = $("select[class='am-fl'");
-var options;
-$.each(id, function(i,v){
-    options = $(selects[i]).find("option");
-    $.each(options, function(index,value){
-        if($(value).val() == v){
-            $(value).attr("selected", "selected");
-        }
-    });
+var account = url.split("?")[1];
+function success1(msg){
+    var questions = JSON.parse(msg);
+    var selects = $("select[class='am-fl'");
+    var options;
+    $.each(questions, function(i,v){
+        options = $(selects[i]).find("option");
+        $.each(options, function(index,value){
+            if($(value).val() == v.questionInnerId){
+                $(value).attr("selected", "selected");
+            }
+        });
     $(selects[i]).attr("disabled", "disabled");
-})
+    })
+}
+function fail1(msg){
+
+}
+document.addEventListener('deviceready', function () {
+     cordova.exec(success1, fail1, "httpRequest", "FORGETPASSWORD",[account]);
+
+}, false);
 
 $(".makeSureBtn").click(function(){
     var selects = $("select[class='am-fl'");
@@ -61,7 +70,7 @@ $(".makeSureBtn").click(function(){
 });
 
 function success(msg){
-      window.location.href = "setting.html";
+    window.location.href = "findpwd.html";
 }
 function fail(msg){
     alert(msg);
