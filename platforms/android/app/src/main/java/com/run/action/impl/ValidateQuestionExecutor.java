@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.cordova.whitelist.HttpRequestPlugin.userId;
+
 
 /**
  * Created by zengxiao on 2018/4/3.
@@ -27,12 +29,20 @@ public class ValidateQuestionExecutor extends CommandExecutor {
         CallbackContext callbackContext = actionReceiver.getCallbackContext();
         JSONArray args = actionReceiver.getParams();
         String url = actionReceiver.getUrl();
-        String id = args.getString(0);
-        JSONArray questions = args.getJSONArray(1);
+        String id = null;
+        JSONArray questions = null;
+        if(args.length() == 1){
+            id = userId;
+            questions = args.getJSONArray(0);
+        }
+        if(args.length() == 2){
+            id = args.getString(0);
+            questions = args.getJSONArray(1);
+        }
         List<Question> result = new ArrayList<>();
         String questionJson = null;
         Question question = null;
-        for(int i=0;i<questions.length();i++){
+        for(int i=0;null != questions && i<questions.length();i++){
             questionJson = questions.get(i).toString();
             question = JsonParser.toObj(questionJson, Question.class);
             result.add(question);

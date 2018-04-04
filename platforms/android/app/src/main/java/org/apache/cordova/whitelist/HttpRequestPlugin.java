@@ -52,6 +52,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
     public static String token = "";
     public static Result relData = null; //登录返回消息
     public static RelInfo relInfo = null; //登录消息详情
+    public static String userId;
 
 /*    private static String RECHARGEPRE = "rechargepre";//进入充值请求
     private static String RECHARGE = "rechargeaction"; //充值请求
