@@ -6,6 +6,13 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css?a=233543" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/examinelist.js"></script>
+
 </head>
 <body onload="iscroll()" class="overflowH">
 <!-- Header -->
@@ -19,258 +26,44 @@
     <h1 class="am-header-title relative">申请列表</h1>
 </header>
 <div class="am-tabs" id="examinetab" data-am-tabs>
-    <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-        <li class="am-active"><a href="javascript:;">全部</a></li>
-        <li class=""><a href="javascript:;">已审核</a></li>
-        <li class="relative">
-            <span class="am-badge am-badge-danger am-round positionsize">4</span>
-            <a href="javascript:;">待审核</a>
-        </li>
-    </ul>
     <div id="wrapper" class="wraper morehigh">
-        <div class="am-tabs-bd noborder">
-        <div class="am-tab-panel am-active billCon">
-            <div class="examineList yellow">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">待审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList yellow">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">待审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
+        <div class="am-tab-panel am-active  billCon" id="records">
+        
+         
         </div>
-        <div class="am-tab-panel billCon">
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-            <div class="examineList">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">已审核</span>
-                </div>
-            </div>
-        </div>
-        <div class="am-tab-panel billCon">
-            <div class="examineList yellow">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">待审核</span>
-                </div>
-            </div>
-            <div class="examineList yellow">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">待审核</span>
-                </div>
-            </div>
-            <div class="examineList yellow">
-                <div class='examineTitle am-cf'>
-                    <span class="am-fl titleLeft">卡片解冻申请</span>
-                    <span class="am-fr titleRight">2018-03-01  11:02:11</span>
-                </div>
-                <div class="examineType am-cf">
-                    <label class="am-fl">卡号：</label>
-                    <span class="am-fl numberColor">2100005198744</span>
-                    <span class="am-fr examineStaus">待审核</span>
-                </div>
-            </div>
-        </div>
-    </div>
+
     </div>
 </div>
+</div>
+
 <!--底部弹出的审核内容-->
+<input type="hidden" id="userid" value="" />
+<input type="hidden" id="applyid" value="" />
+
 <div class="upBox hide">
     <div class="examineCon am-animation-slide-right">
         <div class="am-cf sureList paddingT95">
             <label class="am-fl">智能卡状态：</label>
-            <span class="am-fl">正常</span>
+            <span class="am-fl" id="cardstatus"></span>
         </div>
         <div class="am-cf sureList">
             <label class="am-fl">申请时间：</label>
-            <span class="am-fl">2018-03-01  11:25:11</span>
+            <span class="am-fl" id="applydate"></span>
         </div>
         <div class="am-cf sureList">
             <label class="am-fl">申请人：</label>
-            <span class="am-fl">张三</span>
+            <span class="am-fl" id="apply"></span>
         </div>
         <div class="am-cf sureList">
             <label class="am-fl">申请权限：</label>
-            <span class="am-fl">食堂权限</span>
+            <span class="am-fl" id="applystatus"></span>
         </div>
         <div class="bottomBtn am-cf">
-            <a href="javascript:;" class="agreeBtn am-fl">同意</a>
+            <a href="javascript:void(0);" onclick="agree(1);" class="agreeBtn am-fl">同意</a>
             <a href="javascript:;" class="refuseBtn am-fl">拒绝</a>
         </div>
     </div>
+
     <div class="examineCon hide am-animation-slide-right">
         <div class="am-cf sureList paddingT30">
             <span class="am-fl">拒绝理由：</span>
@@ -282,6 +75,8 @@
     </div>
 
 </div>
+
+
 <div class="upshadow" style="display: none;"></div>
 <!--底部弹出的审核内容-->
 <!--审核成功提示-->
@@ -293,10 +88,6 @@
     </div>
 </div>
 <!--审核成功提示-->
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/iscroll.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/examinelist.js"></script>
+
 </body>
 </html>
