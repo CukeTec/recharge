@@ -14,6 +14,8 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.apache.cordova.whitelist.HttpRequestPlugin.userId;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.relData;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
@@ -30,6 +32,7 @@ public class LoginExecutor extends CommandExecutor {
         String url = actionReceiver.getUrl();
         CallbackContext callbackContext = actionReceiver.getCallbackContext();
         Map<String, String> data = new HashMap<>();
+        userId = args.getString(0);
         data.put("userId", args.getString(0));
         data.put("userPassword", Encript.md5(args.getString(1)));//MD5处理
         data.put("macid", SecurityUtil.getMac()); //获取mac地址

@@ -4,6 +4,7 @@ import com.run.action.CommandExecutor;
 import com.run.receiver.ActionReceiver;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
+import com.run.util.SecurityUtil;
 
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
@@ -26,7 +27,7 @@ public class SetPasswordExecutor extends CommandExecutor {
         String password = params.getString(1);
         Map<String, String> data = new HashMap<>();
         data.put("userId", account);
-        data.put("userPassword", password);
+        data.put("userPassword", SecurityUtil.getMd5(password));
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if (null != rel) {

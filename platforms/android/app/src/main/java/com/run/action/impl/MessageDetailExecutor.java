@@ -35,8 +35,10 @@ public class MessageDetailExecutor extends CommandExecutor {
         data.put("token", token);//MD5处理
         data.put("messageInnerId", messageId);
         String rel = HttpUtil.sendRequest(url, data);
-        if (null != rel) {
-            callbackContext.success(rel);//如果不调用success回调，则js中successCallback不会执行
+        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
+        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
+        if (null != rel && "200".equals(relData.get("state"))) {
+            callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
             return false;
