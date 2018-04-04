@@ -19,12 +19,8 @@ import java.util.Map;
  * Created by zengxiao on 2018/4/3.
  */
 
-public class CardInfoExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
+public class CardInfoExecutor extends CommandExecutor {
 
-    public CardInfoExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
     @Override
     public boolean execute() throws JSONException {
         String url = actionReceiver.getUrl();
@@ -43,5 +39,17 @@ public class CardInfoExecutor implements CommandExecutor {
         } else {
             return false;
         }
+    }
+
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }

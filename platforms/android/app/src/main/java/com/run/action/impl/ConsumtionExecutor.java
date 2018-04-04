@@ -23,12 +23,7 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
  * Created by Xiao on 2018/4/3.
  */
 
-public class ConsumtionExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
-
-    public ConsumtionExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
+public class ConsumtionExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() throws JSONException {
@@ -86,5 +81,16 @@ public class ConsumtionExecutor implements CommandExecutor {
         ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>)relData.get("result");
         callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
         return true;
+    }
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }

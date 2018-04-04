@@ -22,12 +22,7 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
  * Created by Xiao on 2018/4/3.
  */
 
-public class MessageDealExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
-
-    public MessageDealExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
+public class MessageDealExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() throws JSONException {
@@ -91,5 +86,16 @@ public class MessageDealExecutor implements CommandExecutor {
         }
         callbackContext.success("操作成功");
         return true;
+    }
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }

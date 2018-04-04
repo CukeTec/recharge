@@ -21,12 +21,7 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
  * Created by Xiao on 2018/4/3.
  */
 
-public class UnfreezeCardExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
-
-    public UnfreezeCardExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
+public class UnfreezeCardExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() throws JSONException {
@@ -82,5 +77,16 @@ public class UnfreezeCardExecutor implements CommandExecutor {
         }
         callbackContext.success("申请成功");
         return true;
+    }
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }
