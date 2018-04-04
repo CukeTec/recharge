@@ -62,15 +62,15 @@ $(".makeSureBtn").click(function(){
     $.each(inputs, function(i,v){
        question = {};
        question.questionInnerId = selectArray[i];
-       question.questionName = $(selects[i]).find("option:selected").text();
+//       question.questionName = $(selects[i]).find("option:selected").text();
        question.questionKey = $(v).val().trim();
        result.push(question);
     });
-    cordova.exec(success, fail, "httpRequest", "VALIDATEQUESTION", [result]);
+    cordova.exec(success, fail, "httpRequest", "VALIDATEQUESTION", [account, result]);
 });
 
 function success(msg){
-    window.location.href = "findpwd.html";
+    window.location.href = "findpwd.html?" + account;
 }
 function fail(msg){
     alert(msg);

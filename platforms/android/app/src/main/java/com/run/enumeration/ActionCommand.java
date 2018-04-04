@@ -24,8 +24,7 @@ public enum ActionCommand {
     MYAPPACTION("http://sireyun.com:8081/PSMGABService/cardInfo", "MyApplicationExecutor"),
     FORGETPASSWORD("http://sireyun.com:8081/PSMGABService/forgetPassword","ForgetPasswordExecutor"),
 	RECHARGERECORD("http://sireyun.com:8081/PSMGABService/rechargeRecord", "RechargeRecordExecutor"),  //充值记录接口
-
-    ;
+	SETPASSWORD("http://sireyun.com:8081/PSMGABService/setPassWord", "SetPasswordExecutor");
     ActionCommand(String url, String className) {
         this.url = url;
         this.className = className;

@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
-import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
 
 /**
  * Created by zengxiao on 2018/4/3.
@@ -29,7 +27,8 @@ public class ValidateQuestionExecutor extends CommandExecutor {
         CallbackContext callbackContext = actionReceiver.getCallbackContext();
         JSONArray args = actionReceiver.getParams();
         String url = actionReceiver.getUrl();
-        JSONArray questions = args.getJSONArray(0);
+        String id = args.getString(0);
+        JSONArray questions = args.getJSONArray(1);
         List<Question> result = new ArrayList<>();
         String questionJson = null;
         Question question = null;
@@ -39,8 +38,7 @@ public class ValidateQuestionExecutor extends CommandExecutor {
             result.add(question);
         }
         Map<String, Object> data = new HashMap<>();
-        data.put("userInnerId", userInnerId);
-        data.put("token", token);
+        data.put("userId", id);
         data.put("question", result);
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
