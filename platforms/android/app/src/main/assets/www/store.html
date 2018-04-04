@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
 </head>
-<body onload="iscroll()">
+<body onload="load()">
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
     <h1 class="am-header-title relative">商户</h1>
 </header>
 <div data-am-widget="list_news" class="am-list-news am-list-news-default storeListNew" id="wrapper">
-    <!--<ul class="am-list">
+    <div id="scroller">
+        <div class="pullDown">
+            <div class="pullDownLabel">下拉刷新</div>
+        </div>
+        <!-- <ul class="am-list" id="thelist">
             <li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left am-cf">
                 <div class="am-list-thumb storeList am-fl">
                     <a href="javascript:;" class="">
@@ -168,6 +172,7 @@
             </div>
         </li>
         </ul>-->
+    </div>
     <!--提示框-->
     <div class="am-modal am-modal-no-btn" tabindex="-1" id="mymodal">
         <div class="am-modal-dialog">
@@ -177,7 +182,6 @@
         </div>
     </div>
 </div>
-
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
     <ul class="am-navbar-nav am-cf am-avg-sm-4 navUl">
@@ -213,11 +217,13 @@
             </a>
         </li>
     </ul>
+
 </div>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/iscroll-probe.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/storerefresh.js"></script>
 <script>
     $(function(){
             $('#mymodal').modal('open');
