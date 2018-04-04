@@ -8,8 +8,6 @@ import android.os.Message;
 import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
-import com.run.bean.ApplyRecord;
-import com.run.bean.Bill;
 import com.run.bean.CardInfo;
 import com.run.bean.CardResult;
 import com.run.bean.Question;
@@ -38,8 +36,8 @@ import java.util.Map;
  * 前端JS调用http请求
  */
 public class HttpRequestPlugin extends CordovaPlugin {
-    private static String LOGIN = "login"; //HTTP请求
-    private static String CARDINFO = "cardInfo"; //获取卡片信息
+    private static String LOGIN = "LOGIN"; //HTTP请求
+    private static String CARDINFO = "CARDINFO"; //获取卡片信息
     private static String CHANGEPWD = "changepwd"; //修改密码
     private static String SETQUESTION = "setQuestion"; //设置问题
     private static String VALQUESTION = "validateQuestion"; //验证问题
@@ -47,7 +45,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String MSG = "msg"; //获取消息
     private static String MSGDEL = "msgdel"; //删除消息
     private static String MSGDETAIL = "msgDetail"; //获取消息
-    private static Integer userInnerId;
+    public static Integer userInnerId;
     public static String token = "";
     public static Result relData = null; //登录返回消息
     public static RelInfo relInfo = null; //登录消息详情
@@ -60,6 +58,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String COMSUMTIONACTION = "consumtionaction"; //消费记录接口
     private static String APPLYRECORD = "applyrecordaction"; //申请记录接口
     private static String MESSAGEDEAL = "messagedealaction"; //审核处理接口
+    private static String MYAPPACTION = "myappaction"; //
 
     private Handler mHandler = null;
 
@@ -118,6 +117,10 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
             return messageDealAction(args, callbackContext);
         }
+        else if(MYAPPACTION.equals(action)){ //我的请求
+
+            return myAppAction(args, callbackContext);
+        }
         else{ //默认第一个参数就是数据
             String url = args.getString(0);
             String data = args.getString(1);
@@ -139,9 +142,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
      * @return
      */
     private boolean login(JSONArray args, CallbackContext callbackContext) throws JSONException {
-        String url = args.getString(0);
-        String userId = args.getString(1);
-        String userPassword = args.getString(2);
+        String url = BASEURL + "loginAuth";
+        String userId = args.getString(0);
+        String userPassword = args.getString(1);
         Map<String, String> data = new HashMap<>();
         data.put("userId", userId);
         data.put("userPassword", Encript.md5(userPassword));//MD5处理
@@ -170,10 +173,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
      * @throws JSONException
      */
     private boolean getCardInfo(JSONArray args, CallbackContext callbackContext) throws JSONException {
-        String url = args.getString(0);
-        if(url == null || url.length() < 1 || url == ""){
-            url = BASEURL + "cardInfo";
-        }
+        String url = BASEURL + "cardInfo";
 
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
@@ -888,5 +888,40 @@ public class HttpRequestPlugin extends CordovaPlugin {
         return true;
     }
 
+    /**
+     * 我的请求
+     *
+     * @param args
+     * @param callbackContext
+     * @return
+     * @throws JSONException
+     */
+    private boolean myAppAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        Integer userTypeInnerId = 1;
+        if(relInfo != null){
+            userTypeInnerId = relInfo.getUserTypeInnerId();
+        }
+
+        String url =  BASEURL + "cardInfo";
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInnerId", userInnerId);
+        data.put("token", token);//MD5处理
+
+
+
+        String rel = HttpUtil.sendRequest(url, data);
+        CardResult relData = JsonParser.toObj(rel, CardResult.class);
+        CardInfo cardInfo = relData.getResult().get(0);
+        cardInfo.setCardId(relInfo.getCardId());
+        if (null != rel) {
+            JSONObject obj = new JSONObject(JsonParser.toJson(relData.getResult().get(0)));
+            obj.put("userTypeInnerId", userTypeInnerId);
+
+            callbackContext.success(obj);//如果不调用success回调，则js中successCallback不会执行
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
