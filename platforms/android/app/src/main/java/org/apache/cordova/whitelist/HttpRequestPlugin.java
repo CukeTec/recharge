@@ -136,14 +136,15 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }*/
     }
 
-   /* *//**
+
+  /**
      * 登陆处理
      *
      * @param args
      * @param callbackContext
      * @return
-     *//*
-    private boolean login(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+    /*private boolean login(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         String userId = args.getString(1);
         String userPassword = args.getString(2);
@@ -164,17 +165,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
+    }*/
 
-    *//**
+    /**
      * 获取卡片信息
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean getCardInfo(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean getCardInfo(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         if(url == null || url.length() < 1 || url == ""){
             url = BASEURL + "cardInfo";
@@ -195,17 +196,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
+    }*/
 
-    *//**
+    /**
      * 修改密码
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean changePassword(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+/*    private boolean changePassword(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
@@ -220,17 +221,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
+    }*/
 
-    *//**
+    /**
      * 修改密码
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean setQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+    /*private boolean setQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         JSONArray questions = args.getJSONArray(1);
         List<Question> result = new ArrayList<>();
@@ -253,17 +254,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
+    }*/
 
-    *//**
+    /**
      * 验证问题
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean validateQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean validateQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         JSONArray questions = args.getJSONArray(1);
         List<Question> result = new ArrayList<>();
@@ -286,17 +287,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
+    }*/
 
-    *//**
+    /**
      * 查看问题
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean getQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+    /*private boolean getQuestion(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
@@ -309,17 +310,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
+    }*/
 
-    *//**
+    /**
      * 支付宝充值请求
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    public boolean rechargePre(JSONArray args, CallbackContext callbackContext) throws JSONException{
+     */
+    /*public boolean rechargePre(JSONArray args, CallbackContext callbackContext) throws JSONException{
         if (relInfo == null){
 
             callbackContext.error("查询不到卡号");
@@ -330,17 +331,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         callbackContext.success(cardId);
 
         return true;
-    }
+    }*/
 
-    *//**
+    /**
      * 支付宝充值请求
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    public boolean zfbRecharge(JSONArray args, CallbackContext callbackContext) throws JSONException{
+     */
+   /* public boolean zfbRecharge(JSONArray args, CallbackContext callbackContext) throws JSONException{
         JSONObject message = new JSONObject();
         if(args == null || args.length() < 1){
             message.put("code","-1");
@@ -464,6 +465,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         return false;
     }
+*/
 
     //onActivityResult为第二个Activity执行完后的回调接收方法
     @Override
@@ -480,15 +482,15 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
 
 
-    *//**
+    /**
      * 获取消息
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean getMessage(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean getMessage(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = args.getString(0);
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
@@ -503,16 +505,16 @@ public class HttpRequestPlugin extends CordovaPlugin {
         } else {
             return false;
         }
-    }
-    *//**
+    }*/
+    /**
      * 删除消息
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean delMessage(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean delMessage(JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONArray messageId = args.getJSONArray(1);
         String url = args.getString(0);
         Map<String, Object> data = new HashMap<>();
@@ -525,16 +527,16 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }
         callbackContext.success("success");//如果不调用success回调，则js中successCallback不会执行
         return true;
-    }
-    *//**
+    }*/
+    /**
      * 删除消息
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean mesDetail(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean mesDetail(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String messageId = args.getString(1);
         String url = args.getString(0);
         Map<String, Object> data = new HashMap<>();
@@ -552,16 +554,16 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return false;
         }
     }
-
-    *//**
+*/
+    /**
      * 冻结卡片
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean freezeCard(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+    /*private boolean freezeCard(JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONObject message = new JSONObject();
         if(relInfo == null){
             message.put("code", "404");
@@ -617,17 +619,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         callbackContext.success("冻结成功");
         return true;
     }
+*/
 
-
-    *//**
+    /**
      * 解冻申请
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean unFreeze(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean unFreeze(JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONObject message = new JSONObject();
         if(relInfo == null){
             message.put("code", "404");
@@ -685,17 +687,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         callbackContext.success("申请成功");
         return true;
-    }
+    }*/
 
-    *//**
+    /**
      * 账单
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean consumtionAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+  /*  private boolean consumtionAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONObject message = new JSONObject();
         if(relInfo == null){
             message.put("code", "404");
@@ -757,17 +759,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
 
         return true;
-    }
+    }*/
 
-    *//**
+    /**
      * 申请记录
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean applyrecordAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean applyrecordAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONObject message = new JSONObject();
         if(relInfo == null){
             message.put("code", "404");
@@ -822,17 +824,17 @@ public class HttpRequestPlugin extends CordovaPlugin {
         callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
 
         return true;
-    }
+    }*/
 
-    *//**
+    /**
      * 解冻申请审核
      *
      * @param args
      * @param callbackContext
      * @return
      * @throws JSONException
-     *//*
-    private boolean messageDealAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
+     */
+   /* private boolean messageDealAction(JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONObject message = new JSONObject();
 
         if(args.length() < 1 && args != null){
@@ -892,7 +894,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         return true;
     }
-
+*/
     /**
      * 我的请求
      *
