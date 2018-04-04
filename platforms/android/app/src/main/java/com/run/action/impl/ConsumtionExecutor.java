@@ -20,6 +20,8 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
 
 /**
+ * 消费记录
+ *
  * Created by Xiao on 2018/4/3.
  */
 
@@ -48,6 +50,8 @@ public class ConsumtionExecutor extends CommandExecutor {
         data.put("userInnerId", userInnerId);
         data.put("startDate", startDate);
         data.put("endDate", endDate);
+        data.put("pages", 1);
+        data.put("rows", 20);
         data.put("token", token);
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);

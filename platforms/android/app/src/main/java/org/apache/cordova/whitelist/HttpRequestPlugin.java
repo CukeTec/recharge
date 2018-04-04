@@ -336,8 +336,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     /**
      * 支付宝充值请求
      *
-     * @param args
-     * @param callbackContext
+     * @param
+     * @param
      * @return
      * @throws JSONException
      */
