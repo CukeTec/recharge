@@ -19,7 +19,7 @@ $("#setquestion").click(function(){
 function success1(msg){
     var questions = JSON.parse(msg);
     if(questions.length == 3){
-         window.location.href = "valquestion.html";
+         window.location.href = "valquestion.html?" + questions[0].questionInnerId + "&" + questions[1].questionInnerId + "&" + questions[2].questionInnerId;
     }else{
          window.location.href= "setting.html";
     }

@@ -21,7 +21,8 @@ public enum ActionCommand {
     COMSUMTIONACTION("http://sireyun.com:8081/PSMGABService/getConsumptionInfo", "ConsumtionExecutor"), //消费记录接口
     APPLYRECORD("http://sireyun.com:8081/PSMGABService/unfreezeInfo", "ApplyRecordExecutor"), //申请记录接口
     MESSAGEDEAL("http://sireyun.com:8081/PSMGABService/messageDeal", "MessageDealExecutor"),  //审核处理接口
-    MYAPPACTION("http://sireyun.com:8081/PSMGABService/cardInfo", "MyApplicationExecutor");
+    MYAPPACTION("http://sireyun.com:8081/PSMGABService/cardInfo", "MyApplicationExecutor"),
+    FORGETPASSWORD("http://sireyun.com:8081/PSMGABService/forgetPassword","ForgetPasswordExecutor");
     ActionCommand(String url, String className) {
         this.url = url;
         this.className = className;
