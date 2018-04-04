@@ -12,12 +12,7 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.relInfo;
  * Created by Xiao on 2018/4/3.
  */
 
-public class RechargePreExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
-
-    public RechargePreExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
+public class RechargePreExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() throws JSONException {
@@ -29,5 +24,16 @@ public class RechargePreExecutor implements CommandExecutor {
         String cardId = relInfo.getCardId(); //卡号
         callbackContext.success(cardId);
         return true;
+    }
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }

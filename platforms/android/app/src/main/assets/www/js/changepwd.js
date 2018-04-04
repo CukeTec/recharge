@@ -1,5 +1,5 @@
 $(".makeSureBtn").click(function(){
-    var inputs = $("input[class='am-fl'");
+    var inputs = $("input[class='am-fl inputbg'");
     if(inputs[1].value != inputs[2].value){
         alert("密码不一致");
         return;

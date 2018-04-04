@@ -20,12 +20,7 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
  * Created by Xiao on 2018/4/3.
  */
 
-public class GetMessageExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
-
-    public GetMessageExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
+public class GetMessageExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() {
@@ -44,5 +39,16 @@ public class GetMessageExecutor implements CommandExecutor {
         } else {
             return false;
         }
+    }
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }

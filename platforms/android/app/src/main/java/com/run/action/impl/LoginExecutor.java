@@ -22,12 +22,7 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.relInfo;
 /**
  * Created by zengxiao on 2018/4/2.
  */
-public class LoginExecutor implements CommandExecutor {
-    private ActionReceiver actionReceiver;
-
-    public LoginExecutor(ActionReceiver actionReceiver) {
-        this.actionReceiver = actionReceiver;
-    }
+public class LoginExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() throws JSONException {
@@ -49,5 +44,16 @@ public class LoginExecutor implements CommandExecutor {
         } else {
             return false;
         }
+    }
+    private ActionReceiver actionReceiver;
+
+    @Override
+    public ActionReceiver getActionReceiver() {
+        return actionReceiver;
+    }
+
+    @Override
+    public void setActionReceiver(ActionReceiver actionReceiver) {
+        this.actionReceiver = actionReceiver;
     }
 }
