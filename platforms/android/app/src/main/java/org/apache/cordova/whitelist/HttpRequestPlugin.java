@@ -467,6 +467,18 @@ public class HttpRequestPlugin extends CordovaPlugin {
     }
 */
 
+    //onActivityResult为第二个Activity执行完后的回调接收方法
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent){
+        switch (resultCode) { //resultCode为回传的标记，我在第二个Activity中回传的是RESULT_OK
+            case Activity.RESULT_OK:
+                Bundle b=intent.getExtras();  //data为第二个Activity中回传的Intent
+                String str=b.getString("change01");//str即为回传的值
+                break;
+            default:
+                break;
+        }
+    }
 
 
 
