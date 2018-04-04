@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="css/app.css?a=233543" type="text/css">
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/amazeui.min.js"></script>
-    <script type="text/javascript" src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/iscroll-probe.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/examinelist.js"></script>
 
 </head>
-<body onload="iscroll()" class="overflowH">
+<body onload="load()" class="overflowH">
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
@@ -26,13 +26,27 @@
     <h1 class="am-header-title relative">申请列表</h1>
 </header>
 <div class="am-tabs" id="examinetab" data-am-tabs>
+    <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+        <li class="am-active"><a href="javascript:;">全部</a></li>
+        <li class=""><a href="javascript:;">已审核</a></li>
+        <li class="relative">
+            <span class="am-badge am-badge-danger am-round positionsize">4</span>
+            <a href="javascript:;">待审核</a>
+        </li>
+    </ul>
+    <div id="scroller">
+        <div class="pullDown">
+            <div class="pullDownLabel">下拉刷新</div>
+        </div>
+        <div class="am-tabs-bd noborder">
     <div id="wrapper" class="wraper morehigh">
         <div class="am-tab-panel am-active  billCon" id="records">
-        
-         
+
+
         </div>
 
     </div>
+</div>
 </div>
 </div>
 
@@ -63,7 +77,6 @@
             <a href="javascript:;" class="refuseBtn am-fl">拒绝</a>
         </div>
     </div>
-
     <div class="examineCon hide am-animation-slide-right">
         <div class="am-cf sureList paddingT30">
             <span class="am-fl">拒绝理由：</span>
@@ -75,8 +88,6 @@
     </div>
 
 </div>
-
-
 <div class="upshadow" style="display: none;"></div>
 <!--底部弹出的审核内容-->
 <!--审核成功提示-->

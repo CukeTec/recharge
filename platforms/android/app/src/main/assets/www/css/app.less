@@ -128,8 +128,8 @@ h3.am-list-item-hd{font-size:46/@rem;}
 .bottom0{bottom:0!important;}
 .msgDetail .page{display:inline-block; font-size:32/@rem; line-height: 60/@rem; color:#999; padding:0 80/@rem; margin-top:40/@rem; margin-bottom:368/@rem; font-weight: normal;}
 .timeBox{margin-left:80/@rem;}
-.timeBox label{display:block; color:#666; font-size:24/@rem; font-weight: normal;}
-.timeBox label span{color:#333!important; font-size:24/@rem;}
+.timeBox label{display:block; color:#666; font-size:32/@rem; font-weight: normal;}
+.timeBox label span{color:#333!important; font-size:32/@rem;}
 
 .am-with-fixed-header{padding-top:147/@rem;}
 .am-header .am-header-title{height:147/@rem; line-height:147/@rem; font-weight:normal; font-size:52/@rem;}
@@ -153,15 +153,16 @@ h3.am-list-item-hd{font-size:46/@rem;}
 .numType{display:inline-block; font-family: '微软雅黑'; font-size: 120/@rem; font-weight: bolder; position: relative; top:-100/@rem; left:80/@rem; margin-left:-32/@rem;}
 .bigNum{display:inline-block; font-family: font_card; font-size: 290/@rem; margin-top:100/@rem;}
 .smallNum{display:inline-block; font-family: font_card; font-size: 100/@rem; margin-top:100/@rem;}
-.cardMoney{height:682/@rem; /*margin-top:100/@rem;*/}
+.cardMoney{height:682/@rem; /*margin-top:100/@rem;*/ color:#333;}
 .bottomText{width:100%; font-size:28/@rem; position: absolute; bottom:48/@rem; text-align: center; color:#ccc; z-index:15;}
 .bdHidden{overflow:hidden;}
+.homebgmain{overflow:hidden; height:1920/@rem; background: none;position: relative; z-index:100;}
 .homebg{overflow:hidden; /*height:1920/@rem;*/ background: none;position: relative; z-index:100;}
 .homebg.test{background: none; position: relative; z-index: 10;}
 //.homebgtest{height:70%; width:100%; position: absolute; top:0px; left:0px; z-index:0; overflow: hidden;}
 //.homebg img{display:block; max-height:1920/@rem;}
-.logo{width:210/@rem; height:301/@rem; overflow:hidden; position: absolute; top:386/@rem; left:50%; margin-left:-105/@rem;}
-.logo img{display:inline-block; width:210/@rem; height:301/@rem;}
+.logo{width:210/@rem; height:301/@rem; overflow:hidden; position: absolute; top:386/@rem; left:50%; margin-left:-105/@rem; z-index:101;}
+.logo img{display:block; width:210/@rem; height:301/@rem;}
 
 .loginlogo{width:210/@rem; height:301/@rem; overflow:hidden; position: absolute; top:286/@rem; left:50%; margin-left:-105/@rem;}
 .loginlogo img{display:inline-block; width:210/@rem; height:301/@rem;}
@@ -230,7 +231,7 @@ fieldset{margin:0; padding:0;}
 .makeSureBtn:hover{color:#fff;}
 .warnBox{position: absolute; bottom:0; left:155/@rem;}
 //.warnBox img{display: inline-block; width:40/@rem; margin-right:12/@rem; margin-top:4/@rem;}
-.warnBox .msgWarnicon{display: inline-block; width:50/@rem; height:40/@rem; margin-right:10/@rem; background: url("../images/warn.png") no-repeat right center; background-size:cover; }
+.warnBox .msgWarnicon{display: inline-block; width:48/@rem; height:40/@rem; margin-right:10/@rem; background: url("../images/warn.png") no-repeat center center; background-size:cover; }
 .msgWarn{font-size:26/@rem; color:#e59a17; line-height:50/@rem; }
 .am-panel-default{border-color:#dedede;}
 /***********************************卡片操作*******************************/
@@ -296,8 +297,8 @@ fieldset{margin:0; padding:0;}
   border-bottom:8/@rem solid #ec900c;
   color:#ec900c;
 }
-.am-tabs-bd .am-tab-panel.billCon{background-color: #f5f5f5; padding:20/@rem; overflow:auto; -webkit-overflow-scrolling:touch; margin-top:0;}
-.billList{width:100%; height:358/@rem; border:1px solid #dedede; margin-bottom:20/@rem; background-color: #fff;}
+.am-tabs-bd .am-tab-panel.billCon{background-color: #f5f5f5; padding:20/@rem; overflow:auto; -webkit-overflow-scrolling:touch; margin-top:0; margin-bottom:0;}
+.billList{display:block; width:100%; height:358/@rem; border:1px solid #dedede; margin-bottom:20/@rem; background-color: #fff;}
 .billTitle{height:100/@rem;}
 .billTitle .titleLeft{height:100/@rem; line-height: 115/@rem; font-size:46/@rem; color:#333; margin-left:40/@rem;}
 .billTitle .titleRight{height:100/@rem; line-height: 130/@rem; font-size:32/@rem; color:#666; margin-right:32/@rem;}
@@ -312,7 +313,7 @@ fieldset{margin:0; padding:0;}
 .examineTitle{height:90/@rem;}
 .examineTitle .titleLeft{height:90/@rem; line-height: 90/@rem; font-size:36/@rem; color:#333; margin-left:40/@rem;}
 .examineTitle .titleRight{height:90/@rem; line-height: 110/@rem; font-size:32/@rem; color:#666; margin-right:32/@rem;}
-.examineList{width:100%; height:180/@rem; border:1px solid #dedede; border-left:6/@rem solid #189100; margin-bottom:20/@rem; background-color: #fff;}
+.examineList{display:block; width:100%; height:180/@rem; border:1px solid #dedede; border-left:6/@rem solid #189100; margin-bottom:20/@rem; background-color: #fff;}
 .examineList.yellow{border-left:6/@rem solid #ec900c;}
 .examineType label{display: inline-block; margin-left:40/@rem; text-align:right; height:80/@rem; line-height: 80/@rem; font-weight:normal; margin-bottom:0; color:#999; font-size: 32/@rem;}
 .examineType .numberColor{display: inline-block; height:80/@rem; line-height: 80/@rem; font-weight:normal; color:#2054c9; font-size: 32/@rem;}
@@ -332,6 +333,7 @@ fieldset{margin:0; padding:0;}
 .am-modal-bd{padding:40/@rem; font-size: 36/@rem; line-height: 60/@rem; color:#ccc;}
 .am-with-fixed-navbar{padding-bottom:160/@rem;}
 body{position: static; width:100%;height:100%; }
+.mainBox{width:100%;height:100%; }
 #wrapper {
   position: absolute;
   top: 150/@rem;
@@ -344,13 +346,13 @@ body{position: static; width:100%;height:100%; }
 #wrapper.wraper {
   position: absolute;
   top: 270/@rem;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
 }
 #wrapper.morehigh {
   position: absolute;
   top: 270/@rem;
   bottom: 50/@rem;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
 }
 #wrapper.myapp{
   top:0;
@@ -377,12 +379,32 @@ body{position: static; width:100%;height:100%; }
 .examineCon{height:816/@rem;}
 .paddingT95{padding-top:95/@rem;}
 .overflowH{overflow:hidden;}
-.am-badge{font-size:32/@rem; min-width:10/@rem; line-height:32/@rem; padding:10/@rem 20/@rem; font-weight: normal; z-index:100;}
+.am-badge{font-size:32/@rem; min-width:10/@rem; height:50/@rem; line-height:50/@rem; padding:0/@rem 15/@rem; font-weight: normal; z-index:100;}
 .am-badge.positionsize{position: absolute; right:45/@rem; top:35/@rem;}
 
-
-
-
+.pullDownLabel,
+.pullUpLabel {
+  color: #999;
+  text-align: center;
+}
+.pullDown,
+.pullUp {
+  background: #fff;
+  height: 2.17777778rem;
+  line-height: 2.17777778rem;
+  font-size: 0.47407407rem;
+  color: #999;
+  text-align: center;
+}
+.am-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.am-tabs .pullDown,
+.am-tabs .pullUp {
+  background: #f5f5f5;
+}
+.am-list{margin-top:0; margin-bottom:0;}
 
 @media only screen and (max-width: 320px){
   .am-navbar-nav a .am-navbar-label,

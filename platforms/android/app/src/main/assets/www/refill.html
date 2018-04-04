@@ -106,6 +106,15 @@
         </li>
     </ul>
 </div>
-
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script>
+$(function(){
+   $('.refillinput').off().on('focus',function(){
+        $(this).val('');
+   });
+});
+</script>
 </body>
 </html>

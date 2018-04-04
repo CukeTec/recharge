@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
 </head>
-<body onload="iscroll()">
+<body onload="load()">
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
     <img src="images/toptitle.png" alt="" class="am-img-responsive topbgImg"/>
@@ -19,11 +19,16 @@
     </div>
 </header>
 <div data-am-widget="list_news" class="am-list-news am-list-news-default msgListnew" id="wrapper">
-    <ul class="am-list msgList">
+    <div id="scroller">
+        <div id="" class="pullDown">
+            <div class="pullDownLabel">下拉刷新</div>
+        </div>
+        <ul class="am-list msgList" id="thelist">
+
 
     </ul>
+    </div>
 </div>
-
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
     <ul class="am-navbar-nav am-cf am-avg-sm-4 navUl">
@@ -67,5 +72,7 @@
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/msg.js"></script>
+<script type="text/javascript" src="js/iscroll-probe.js"></script>
+<script type="text/javascript" src="js/msgrefresh.js"></script>
 </body>
 </html>
