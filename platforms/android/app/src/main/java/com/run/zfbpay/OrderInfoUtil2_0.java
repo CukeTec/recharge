@@ -1,5 +1,9 @@
 package com.run.zfbpay;
 
+import com.run.util.DateUtil;
+
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -59,25 +63,31 @@ public class OrderInfoUtil2_0 {
     }
 
     /**
-     * 构造支付订单参数列表
-     * @param
+     *  构造支付订单参数列表
+     *
+     * @param rsa2
+     * @param amount 充值金额
+     * @param orderno 订单号
      * @return
      */
-    public static Map<String, String> buildOrderParamMap(boolean rsa2) {
+    public static Map<String, String> buildOrderParamMap(boolean rsa2,String amount,String orderno) throws Exception {
+        //拓展参数
+        JSONObject jsonobject = new JSONObject();
+        jsonobject.put("timeout_express",ZfbUtil.TIMEOUT_EXPRESS);
+        jsonobject.put("product_code",ZfbUtil.PRODUCT_CODE);
+        jsonobject.put("total_amount",ZfbUtil.formatAmount(amount));
+        jsonobject.put("subject",ZfbUtil.SUBJECT);
+        jsonobject.put("body",ZfbUtil.BODY);
+        jsonobject.put("out_trade_no",orderno);
+
         Map<String, String> keyValues = new HashMap<String, String>();
-
         keyValues.put("app_id", ZfbUtil.ZFB_APPID);
-
-        keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\"0.01\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
-
+        keyValues.put("biz_content", jsonobject.toString());
+       // keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\"0.01\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
         keyValues.put("charset", "utf-8");
-
         keyValues.put("method", "alipay.trade.app.pay");
-
         keyValues.put("sign_type", "RSA");
-
-        keyValues.put("timestamp", "2016-07-29 16:55:53");
-
+        keyValues.put("timestamp", DateUtil.formatDate(new Date(),DateUtil.YYYY_MM_DD_HHMMSS));
         keyValues.put("version", "1.0");
 
         return keyValues;

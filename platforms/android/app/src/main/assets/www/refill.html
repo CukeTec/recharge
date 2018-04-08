@@ -28,7 +28,8 @@
             alert("查询不到卡号");
         }
 
-</script>
+    </script>
+
 </head>
 <body>
 <!-- Header -->
@@ -38,12 +39,12 @@
 </header>
 <div class="cardOperate am-cf noborder">
     <label class="am-fl">卡号</label>
-    <span class="am-fl" id="cardId">1272223438</span>
+    <span class="am-fl" id="cardId"></span>
 </div>
 <div class="bggrey"></div>
 <div class="refillMoney am-cf">
     <label class="am-fl">充值金额：</label>
-    <input type="text" class="am-fl refillinput" id="amount" value="100.00">
+    <input type="number" class="am-fl refillinput" id="amount" value="100.00">
 </div>
 <div class="bggrey"></div>
 <div class="cardStatus am-cf yesboder">
@@ -69,7 +70,8 @@
         </label>
     </div>
 </div>
-<a href="javascript:void(0);" id="makeSureBtn" class="nextStep">下一步</a>
+<input type="hidden" id="cardno" value="" />
+<a href="javascript:void(0);" class="nextStep" id="makeSureBtn">下一步</a>
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
     <ul class="am-navbar-nav am-cf am-avg-sm-4 navUl">
@@ -106,9 +108,7 @@
         </li>
     </ul>
 </div>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
+
 <script>
 $(function(){
    $('.refillinput').off().on('focus',function(){

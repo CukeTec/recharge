@@ -102,7 +102,7 @@ public class ZfbRechargeExecutor extends CommandExecutor {
             return true;
         }
         //订单号
-        String orderNum = oerderMap.get("orderCode").toString();
+        String orderno = oerderMap.get("orderCode").toString();
         HttpRequestPlugin httpRequestPlugin = new HttpRequestPlugin();
         if(type.equals("1")){ //支付宝充值
             try {
@@ -110,7 +110,7 @@ public class ZfbRechargeExecutor extends CommandExecutor {
                 Activity myActivity = httpRequestPlugin.cordova.getActivity();
                 mHandler = new Handler();
                 boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
-                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
+                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2, amount, orderno);
                 String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
                 String privateKey = ZfbUtil.ZFB_PRIVATE_RSA;
                 String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);

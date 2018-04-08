@@ -53,6 +53,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     public static Result relData = null; //登录返回消息
     public static RelInfo relInfo = null; //登录消息详情
     public static String userId;
+    public final static String BASEURL = "http://sireyun.com:8081/PSMGABService/";
+    private Handler mHandler = null;
 
 /*    private static String RECHARGEPRE = "rechargepre";//进入充值请求
     private static String RECHARGE = "rechargeaction"; //充值请求
@@ -64,7 +66,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
     private static String MESSAGEDEAL = "messagedealaction"; //审核处理接口
     private static String MYAPPACTION = "myappaction"; //
 
-    private Handler mHandler = null;*/
+    */
 
 
 
@@ -79,9 +81,15 @@ public class HttpRequestPlugin extends CordovaPlugin {
      * @throws JSONException
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        ActionReceiver actionReceiver = new ActionReceiver(action, args, callbackContext);
-        ActionInvoker actionInvoker = new ActionInvoker(actionReceiver.getCommandExecutor());
-        return actionInvoker.invoke();
+        if("RECHARGE".equals(action)){
+
+            return zfbRecharge(args, callbackContext);
+        }else{
+            ActionReceiver actionReceiver = new ActionReceiver(action, args, callbackContext);
+            ActionInvoker actionInvoker = new ActionInvoker(actionReceiver.getCommandExecutor());
+            return actionInvoker.invoke();
+        }
+
 /*        if (LOGIN.equals(action)) {
             return login(args, callbackContext);
         } else if (CARDINFO.equals(action)) {
@@ -341,8 +349,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
      * @param
      * @return
      * @throws JSONException
-     */
-   /* public boolean zfbRecharge(JSONArray args, CallbackContext callbackContext) throws JSONException{
+     */public boolean zfbRecharge(JSONArray args, CallbackContext callbackContext) throws JSONException{
         JSONObject message = new JSONObject();
         if(args == null || args.length() < 1){
             message.put("code","-1");
@@ -352,16 +359,24 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return true;
         }
 
+        if(relInfo == null){
+            message.put("code","-1");
+            message.put("msg","卡信息为空");
+            callbackContext.error(message);
+
+            return true;
+        }
+
         String amount = args.getString(0); //充值金额
         String type = args.getString(1); //充值方式
 
         String url = BASEURL + "orderNum"; //订单号url
-        String userInnerId = "1"; //获取用户id
-        String cardId = "1272223438"; //获取卡号
-        String userId = "469747"; //用户id
+        Integer userInnerId = relInfo.getUserInnerId(); //获取用户id
+        String cardId = relInfo.getCardId(); //获取卡号
+        String userId = relInfo.getUserId(); //用户id
 
         //获取订单号
-        Map<String,String>  data = new HashMap<>();
+        Map<String,Object>  data = new HashMap<String,Object>();
         data.put("userInnerId",userInnerId);
         data.put("cardId",cardId);
         data.put("userId",userId);
@@ -398,10 +413,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
 
         }
 
-
         List<Map<String,Object>> result = (List<Map<String,Object>>)relData.get("result");
-        //Object 转 数组 再取数组里面的 json字符串  再取value值  object = "result":[{"orderCode":"201803270250251"}]
-        //TODO 拼接充值参数
         if(result == null || result.size() < 1){
             message.put("code","-1");
             message.put("msg","服务器订单号为空");
@@ -417,7 +429,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }
 
         //订单号
-        String orderNum = oerderMap.get("orderCode").toString();
+        String orderno = oerderMap.get("orderCode").toString();
 
         if(type.equals("1")){ //支付宝充值
             try {
@@ -426,7 +438,7 @@ public class HttpRequestPlugin extends CordovaPlugin {
                 mHandler = new Handler();
 
                 boolean rsa2 = (ZfbUtil.ZFB_PRIVATE_RSA.length() > 0)?false:true;
-                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2);
+                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(rsa2, amount, orderno);
                 String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
                 String privateKey = ZfbUtil.ZFB_PRIVATE_RSA;
@@ -464,9 +476,9 @@ public class HttpRequestPlugin extends CordovaPlugin {
         }
 
 
-        return false;
+        return true;
     }
-*/
+
 
     //onActivityResult为第二个Activity执行完后的回调接收方法
     @Override
@@ -899,8 +911,8 @@ public class HttpRequestPlugin extends CordovaPlugin {
     /**
      * 我的请求
      *
-     * @param args
-     * @param callbackContext
+     * @param
+     * @param
      * @return
      * @throws JSONException
      */
@@ -931,5 +943,6 @@ public class HttpRequestPlugin extends CordovaPlugin {
             return false;
         }
     }*/
+
 
 }
