@@ -36,22 +36,21 @@ public class MessageDealExecutor extends CommandExecutor {
             callbackContext.error(message);
             return true;
         }
-        userInnerId = relInfo.getUserInnerId();	// 用户id
-        String applyInnerId = ""; //申请id
-        String auditState = ""; //	审核状态  1 - 同意   2- 拒绝
-        String auditDetail = ""; //理由
+
         if(args.length() < 1 && args != null){
             message.put("code", "-1");
             message.put("msg","请选择需要操作的解冻申请");
             callbackContext.error(message);
             return true;
         }
-        applyInnerId = args.getString(0);
-        auditState = args.getString(1);
-        auditDetail = args.getString(2);
+
+        String userid = args.getString(0);	// 用户id
+        String applyid = args.getString(1); //申请id
+        String auditState = args.getString(2); //	审核状态  1 - 同意   2- 拒绝
+        String auditDetail = args.getString(3); //理由
         Map<String, Object> data = new HashMap<>();
-        data.put("userInnerId", userInnerId);
-        data.put("applyInnerId", applyInnerId);
+        data.put("userInnerId", userid);
+        data.put("applyInnerId", applyid);
         data.put("auditState", auditState);
         data.put("auditDetail",auditDetail);
         data.put("token", token);

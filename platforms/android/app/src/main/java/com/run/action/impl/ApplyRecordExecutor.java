@@ -11,6 +11,7 @@ import org.apache.cordova.whitelist.Constans;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,9 +72,9 @@ public class ApplyRecordExecutor extends CommandExecutor {
             }
         }
 
-        List<ApplyRecord> list = (List<ApplyRecord>)relData.get("result");
-        message.put("obj", list);
-        callbackContext.success(message);
+        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
+        callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
+
         return true;
     }
 
