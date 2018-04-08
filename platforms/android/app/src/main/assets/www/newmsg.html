@@ -29,8 +29,10 @@
             </li>
             <li class="noborder">
                 <div class="am-form-group am-cf">
-                    <label class="labelW am-fl">接受人：</label>
-                    <input type="text"  class="am-fl inputbg" placeholder="请输入接受人">
+                    <label class="labelW am-fl">接收人：</label>
+                    <select type="text"  class="am-fl">
+                        <option value="0" class="selectFirst">请输入接收人</option>
+                    </select>
                 </div>
             </li>
         </ul>
@@ -39,12 +41,13 @@
             <label class="labelW">内容：</label>
             <textarea class="msgTextarea"></textarea>
         </div>
-        <a href="javascript:;" class="makeSureBtn">确定</a>
+        <a href="javascript:void(0)" class="makeSureBtn">确定</a>
     </fieldset>
 </form>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
-
+<script type="text/javascript" src="js/newmsg.js"></script>
 </body>
 </html>

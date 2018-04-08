@@ -22,12 +22,12 @@ public enum ActionCommand {
     APPLYRECORD("http://sireyun.com:8081/PSMGABService/applyRecord", "ApplyRecordExecutor"), //申请记录接口
     MESSAGEDEAL("http://sireyun.com:8081/PSMGABService/messageDeal", "MessageDealExecutor"),  //审核处理接口
     MYAPPACTION("http://sireyun.com:8081/PSMGABService/cardInfo", "MyApplicationExecutor"),
-    FORGETPASSWORD("http://sireyun.com:8081/PSMGABService/forgetPassword","ForgetPasswordExecutor"),
+    FORGETPASSWORD("http://sireyun.com:8081/PSMGABService/forgetPassword","ForgetPasswordExecutor"), //忘记密码接口
 	RECHARGERECORD("http://sireyun.com:8081/PSMGABService/rechargeRecord", "RechargeRecordExecutor"),  //充值记录接口
-	SETPASSWORD("http://sireyun.com:8081/PSMGABService/setPassWord", "SetPasswordExecutor"),
-    SENDMESSAGE("http://sireyun.com:8081/PSMGABService/messageSend", "SendMessageExecutor"),
+	SETPASSWORD("http://sireyun.com:8081/PSMGABService/setPassWord", "SetPasswordExecutor"),  //重新设置密码接口
+    SENDMESSAGE("http://sireyun.com:8081/PSMGABService/messageSend", "SendMessageExecutor"),// 发送消息接口
     LOGOUT("http://sireyun.com:8081/PSMGABService/exitLogon", "LogOutExecutor"),  //退出登录
-
+    MESSAGEGROUP("http://sireyun.com:8081/PSMGABService/messageGroup", "MessageGroupExecutor"), // 获取消息组接口
     ;
     ActionCommand(String url, String className) {
         this.url = url;

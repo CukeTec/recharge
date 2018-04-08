@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
   $('.clearBtn').off().on('click',function(){
     $('#mymodal').modal('open');
     setTimeout(function(){
@@ -8,7 +8,7 @@ $(function(){
   $('.msgList li').die().live('click',function(){
     window.location.href='msgdetail.html';
   });
-});
+});*/
 /**
  * @description load 下拉刷新 加载更多
  */
