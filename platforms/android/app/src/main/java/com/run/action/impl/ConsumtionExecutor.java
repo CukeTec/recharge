@@ -4,6 +4,7 @@ import com.run.action.CommandExecutor;
 import com.run.receiver.ActionReceiver;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
+import com.run.util.Utils;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.whitelist.Constans;
@@ -42,16 +43,15 @@ public class ConsumtionExecutor extends CommandExecutor {
         userInnerId = relInfo.getUserInnerId();	// 用户id
         String startDate = ""; //开始时间
         String endDate = ""; //结束时间
-        if(args.length() > 0 && args != null){
-            startDate = args.getString(0);
-            endDate = args.getString(1);
-        }
+        String page = args.getString(0); //页数
+        String rows = args.getString(1); //每页显示条数
+
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
         data.put("startDate", startDate);
         data.put("endDate", endDate);
-        data.put("pages", 1);
-        data.put("rows", 20);
+        data.put("page", page);
+        data.put("rows", rows);
         data.put("token", token);
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
@@ -82,8 +82,21 @@ public class ConsumtionExecutor extends CommandExecutor {
                 return true;
             }
         }
+        int total = Utils.strToInt(String.valueOf(relData.get("total"))); //总条数
+        int currpage = Utils.strToInt(String.valueOf(relData.get("page"))); //当前页
+
+        int ypage = total%(Integer.parseInt(rows));
+        int totalpage = total/Integer.parseInt(rows);
+        if(ypage > 0 && total < Integer.parseInt(rows)){
+            totalpage = totalpage + 1;
+        }
+
         ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>)relData.get("result");
-        callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
+        message.put("total",total);
+        message.put("currpage",currpage);
+        message.put("totalpage",totalpage);
+        message.put("result",result);
+        callbackContext.success(JsonParser.toJson(message));//如果不调用success回调，则js中successCallback不会执行
         return true;
     }
     private ActionReceiver actionReceiver;
