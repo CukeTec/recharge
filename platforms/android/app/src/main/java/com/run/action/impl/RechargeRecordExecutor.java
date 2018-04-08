@@ -96,6 +96,7 @@ public class RechargeRecordExecutor extends CommandExecutor {
         message.put("total",total);
         message.put("currpage",currpage);
         message.put("totalpage",totalpage);
+        message.put("pagesize",rows);
         message.put("result",result);
         callbackContext.success(JsonParser.toJson(message));//如果不调用success回调，则js中successCallback不会执行
         return true;

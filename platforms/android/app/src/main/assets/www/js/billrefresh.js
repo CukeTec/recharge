@@ -121,39 +121,29 @@ function load() {
      * @description pullUpAction 加载更多
      */
     function pullUpAction(){
-        setTimeout(function(){
-            var listli = '';
-            var status = '';
-            $.ajax({
-                url:'json/listbill.json',
-                dataType:'json',
-                success : function (data) {
-                    $.each(data.data,function(i,item){
-                        if(item.status == '1'){
-                            status = 'green';
-                        }else{
-                            status = '';
-                        }
-                        listli+='<li class="billList">'
-                            +'<div class="billTitle am-cf">'
-                            +'<span class="am-fl titleLeft">'+item.name+'</span>'
-                            +'<span class="am-fr titleRight">'+item.time+'</span>'
-                            +'</div>'
-                            +'<div class="billMoneyTitle">金额</div>'
-                            +'<div class="billMoney '+status+'"><em>￥</em>'+item.num+'</div>'
-                            +'<div class="billType am-cf">'
-                            +'<label class="am-fl">消费种类：</label>'
-                            +'<span class="am-fl">'+item.type+'</span>'
-                            +'</div>'
-                            +'</li>';
-                    });
-                    container.append(listli);
-                    pullUp.attr('class','pullUp').hide();
-                    myScroll.refresh();
-                    loadingStep = 0;
-                }
-            });
+    	var currpage = $("#currpage").val(); //当前页
+    	var pagesize = $("#pagesize").val(); //每页条数
+    	var totalpage = $("#totalpage").val(); //总共页数
+    	var type = $("#type").val(); //查看内容  0：全部  1：消费记录  2：充值记录
+    	if(currpage === totalpage){
 
+            return true;
+    	}
+    	var nextpage = parseFloat(currpage) + 1;
+
+        setTimeout(function(){
+
+            if(type === 0){  //查看内容  0：全部  1：消费记录  2：充值记录
+
+            }else if(type === 1){ //  1：消费记录
+                getConsumBill(nextpage,pagesize);
+            }else{ // 2：充值记录
+                getRechargeBill(nextpage,pagesize);
+            }
+            pullUp.attr('class','pullUp').hide();
+            myScroll.refresh();
+            loadingStep = 0;
+                
         },1000);
     }
 
@@ -176,6 +166,7 @@ function succeed(msg){
     var total = jsonobject.total;
     var currpage = jsonobject.currpage;
     var totalpage = jsonobject.totalpage;
+    var pagesize = jsonobject.pagesize;
     var result = jsonobject.result;
     var bills = "";
     if(result.length > 0){
@@ -189,7 +180,7 @@ function succeed(msg){
 
            bills  = bills + '<li class="billList"><div class="billTitle am-cf"><span class="am-fl titleLeft">' + conType + '</span>'
                           +'<span class="am-fr titleRight">' + conDate + '</span></div>'
-                          +'<div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>' + money + '</div>'
+                          +'<div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>-' + money + '</div>'
                           +'<div class="billType am-cf"><label class="am-fl">消费种类：</label>'
                           +'<span class="am-fl">刷卡消费</span></div></li>';
 
@@ -197,8 +188,13 @@ function succeed(msg){
      }else{
         bills = "无消费记录";
      }
-     $("#records").append(bills);
 
+    $("#currpage").val(currpage); //当前页
+    $("#pagesize").val(pagesize); //每页条数
+    $("#totalpage").val(totalpage); //总共页数
+    $("#type").val(1); //查看内容  0：全部  1：消费记录  2：充值记录
+
+    $("#records").append(bills);
 }
 
 function fail(msg){
@@ -228,6 +224,7 @@ function success(msg){
     var total = jsonobject.total;
     var currpage = jsonobject.currpage;
     var totalpage = jsonobject.totalpage;
+    var pagesize = jsonobject.pagesize;
     var result = jsonobject.result;
     var bills = "";
     for(var p in result){//遍历json数组时，这么写p为索引，0,1
@@ -260,10 +257,15 @@ function success(msg){
        bills = bills + '<li class="billList"><div class="billTitle am-cf">'
              +'<span class="am-fl titleLeft">' + recharge + '</span>'
              +'<span class="am-fr titleRight">' + AccountDate + '</span></div>'
-             +'<div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>' + Money + '</div>'
+             +'<div class="billMoneyTitle">金额</div><div class="billMoney green"><em>￥</em>' + Money + '</div>'
              +'<div class="billType am-cf"><label class="am-fl">消费种类：</label>'
              +'<span class="am-fl">充值</span></div></li>';
     }
+
+    $("#currpage").val(currpage); //当前页
+    $("#pagesize").val(pagesize); //每页条数
+    $("#totalpage").val(totalpage); //总共页数
+    $("#type").val(2); //查看内容  0：全部  1：消费记录  2：充值记录
 
     $("#records").append(bills);
 
