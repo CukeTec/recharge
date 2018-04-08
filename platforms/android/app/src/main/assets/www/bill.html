@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css?a=233543" type="text/css">
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/amazeui.min.js"></script>
     <script type="text/javascript" src="js/iscroll-probe.js"></script>
-    <script type="text/javascript" src="js/billrefresh.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/bill.js"></script>
+    <script type="text/javascript" src="js/billrefresh.js"></script>
+
 </head>
 <body onload="load()">
 <!-- Header -->
@@ -27,17 +27,24 @@
 </header>
 <div class="am-tabs" id="billtab" data-am-tabs>
     <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-        <li class="am-active"><a href="javascript:void(0);" id="totalBtn">全部</a></li>
-        <li class=""><a href="javascript:void(0);" id="billBtn">消费</a></li>
-        <li class=""><a href="javascript:void(0);" id="rechargeBtn">充值</a></li>
+        <li class="am-active"><a href="javascript:void(0);">全部</a></li>
+        <li class=""><a href="javascript:void(0);">消费</a></li>
+        <li class=""><a href="javascript:void(0);">充值</a></li>
     </ul>
     <div id="wrapper" class="wraper">
-    <div class="am-tabs-bd">
-        <ul class="am-tab-panel am-active billCon" id="total_bill">
+        <div id="scroller">
+            <div class="pullDown">
+                <div class="pullDownLabel">下拉刷新</div>
+            </div>
+            <div class="am-tabs-bd">
+                <ul class="am-tab-panel am-active billCon" style="overflow-y:auto;" id="records">
 
-        </ul>
-    </div>
-    </div>
+                </ul>
+            </div>
+            <div class="pullUp">
+                <div class="pullUpLabel">加载更多</div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -77,17 +84,5 @@
         </li>
     </ul>
 </div>
-<script>
-    $(function(){
-        $('#billtab').find('a').on('opened.tabs.amui',function(e){
-            myScroll.scrollTo(0,0,100)
-        });
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
-            capture: false,
-            passive: false
-        } : false);
-    });
-
-</script>
 </body>
 </html>

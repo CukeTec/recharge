@@ -1,8 +1,29 @@
-$(function(){
+$(document).ready(function(){
+	
     $('#billtab').find('a').on('opened.tabs.amui',function(e){
         myScroll.destroy();
         load();
     });
+    
+    $(".am-tabs-nav>li").click(function(){
+		$(".am-tabs-nav>li").removeClass("am-active");
+		$(this).addClass("am-active");
+		var index = $(this).index();
+		if(index == 0) { //全部
+		    $("#records").empty();
+			getBill(); 
+		} 
+		else if(index == 1) { //消费
+		   $("#records").empty();
+			getConsumBill(1,10);
+		} 
+		else if(index == 2) { //充值
+		   $("#records").empty();
+			getRechargeBill(1,10);
+		} 
+		
+	});
+    
 });
 /**
  * @description load 下拉刷新 加载更多
@@ -141,3 +162,141 @@ function load() {
         passive: false
     } : false);
 }
+
+//消费
+function getConsumBill(currpage,pagesize){
+   cordova.exec(succeed, fail, "httpRequest", "COMSUMTIONACTION", [currpage,pagesize]);
+}
+
+
+function succeed(msg){
+    var jsonObj = JSON.parse(msg);
+    var bills = "";
+    if(jsonObj.length > 0){
+        for(var p in jsonObj){//遍历json数组时，这么写p为索引，0,1
+           var conDate = jsonObj[p].conDate; // 交易时间
+           var userInnerId = jsonObj[p].userInnerId; // 人员id
+           var conType = jsonObj[p].conType; //交易地点
+           var money = jsonObj[p].money; // 交易金额
+           var cardId = jsonObj[p].cardId; //卡号
+           var conNumber = jsonObj[p].conNumber; //交易流水号
+
+           bills  = bills + '<li class="billList"><div class="billTitle am-cf">'
+                          +'<span class="am-fl titleLeft">' + conType + '</span>'
+                          +'<span class="am-fr titleRight">' + conDate + '</span></div>'
+                          +'<div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>' + money + '</div>'
+                          +'<div class="billType am-cf"><label class="am-fl">消费种类：</label>'
+                          +'<span class="am-fl">' + 刷卡消费 + '</span></div></li>';
+
+        }
+     }else{
+        bills = "无消费记录【";
+     }
+     $("#total_bill").append(bills);
+
+}
+
+function fail(msg){
+    var err = JSON.stringify(msg);
+  /*  alert(err);
+    var code = err.get("code");
+    var msg = err.get("msg");
+    if(code === '404' || code === '405'){
+        alert(err.get("msg"));
+        window.location.href="index.html";
+    }else{
+        alert(err.get("msg"));
+    }*/
+}
+
+
+
+
+//充值记录
+function getRechargeBill(currpage,pagesize){
+	 cordova.exec(success, failed, "httpRequest", "RECHARGERECORD", [currpage,pagesize]);
+}
+
+//充值记录成功
+function success(msg){
+    var jsonObj = JSON.parse(msg);
+    var jsonobject = jsonObj.nameValuePairs;
+
+    var total = jsonobject.total;
+    var currpage = jsonobject.currpage;
+    var totalpage = jsonobject.totalpage;
+    var result = jsonobject.result;
+    var bills = "";
+    for(var p in result){//遍历json数组时，这么写p为索引，0,1
+        var AccountDate = result[p].AccountDate; // 充值时间
+        var userInnerId = result[p].userInnerId; // 人员id
+        // 0：平台有卡 1：平台无卡 2：安卓app 3：IOSapp 4：微信app 5：现金圈存机6：银行圈存机
+        var RechargeType = result[p].RechargeType; //充值方式
+        var Money = result[p].Money; // 金额
+        var AccountTypeName = result[p].AccountTypeName; //卡号
+        var StreamCode = result[p].StreamCode; //流水号
+
+        var recharge = "";
+        if(RechargeType === 0){
+            recharge = "平台有卡";
+        }else if(RechargeType === 1){
+            recharge = "平台无卡";
+        }else if(RechargeType === 2){
+            recharge = "安卓app";
+        }else if(RechargeType === 3){
+            recharge = "IOS app";
+        }else if(RechargeType === 4){
+            recharge = "微信app";
+        }else if(RechargeType === 5){
+            recharge = "现金圈存机";
+        }else if(RechargeType === 6){
+            recharge = "银行圈存机";
+        }else{
+            recharge = RechargeType;
+        }
+       bills = bills + '<li class="billList"><div class="billTitle am-cf">'
+             +'<span class="am-fl titleLeft">' + recharge + '</span>'
+             +'<span class="am-fr titleRight">' + AccountDate + '</span></div>'
+             +'<div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>' + Money + '</div>'
+             +'<div class="billType am-cf"><label class="am-fl">消费种类：</label>'
+             +'<span class="am-fl">充值</span></div></li>';
+    }
+
+    $("#records").append(bills);
+
+}
+
+function failed(msg){
+    alert(msg);
+   /* var code = msg.get("code");
+    var msg = msg.get("msg");
+    if(code === 404 || code === 405){
+        alert(msg.get("msg"));
+        window.location.href="index.html";
+    }else{
+        alert(msg.get("msg"));
+    }*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
