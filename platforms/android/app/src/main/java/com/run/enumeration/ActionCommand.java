@@ -25,7 +25,10 @@ public enum ActionCommand {
     FORGETPASSWORD("http://sireyun.com:8081/PSMGABService/forgetPassword","ForgetPasswordExecutor"),
 	RECHARGERECORD("http://sireyun.com:8081/PSMGABService/rechargeRecord", "RechargeRecordExecutor"),  //充值记录接口
 	SETPASSWORD("http://sireyun.com:8081/PSMGABService/setPassWord", "SetPasswordExecutor"),
-    SENDMESSAGE("http://sireyun.com:8081/PSMGABService/messageSend", "SendMessageExecutor");
+    SENDMESSAGE("http://sireyun.com:8081/PSMGABService/messageSend", "SendMessageExecutor"),
+    LOGOUT("http://sireyun.com:8081/PSMGABService/exitLogon", "LogOutExecutor"),  //退出登录
+
+    ;
     ActionCommand(String url, String className) {
         this.url = url;
         this.className = className;
