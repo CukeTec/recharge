@@ -9,9 +9,18 @@ $(document).ready(function(){
 		$(".am-tabs-nav>li").removeClass("am-active");
 		$(this).addClass("am-active");
 		var index = $(this).index();
+		if(index == 0) { //消费
+        	$("#records").empty();
+        	getConsumBill(1,10);
+        }
+        else if(index == 1) { //充值
+        	$("#records").empty();
+        	getRechargeBill(1,10);
+        }
+		/*
 		if(index == 0) { //全部
 		    $("#records").empty();
-			getBill(); 
+			getBill();
 		} 
 		else if(index == 1) { //消费
 		   $("#records").empty();
@@ -20,7 +29,8 @@ $(document).ready(function(){
 		else if(index == 2) { //充值
 		   $("#records").empty();
 			getRechargeBill(1,10);
-		} 
+		}
+		*/
 		
 	});
     
@@ -84,9 +94,9 @@ function load() {
         var type = $("#type").val(); //查看内容  0：全部  1：消费记录  2：充值记录
         setTimeout(function(){
             if(type === 0){  //查看内容  0：全部  1：消费记录  2：充值记录
-
+               getConsumBill(1,10);
             }else if(type === 1){ //  1：消费记录
-                getConsumBill(1,10);
+               getRechargeBill(1,10);
             }else{ // 2：充值记录
                getRechargeBill(1,10);
             }
@@ -115,9 +125,9 @@ function load() {
         setTimeout(function(){
 
             if(type === 0){  //查看内容  0：全部  1：消费记录  2：充值记录
-
-            }else if(type === 1){ //  1：消费记录
                 getConsumBill(nextpage,pagesize);
+            }else if(type === 1){ //  1：消费记录
+                getRechargeBill(nextpage,pagesize);
             }else{ // 2：充值记录
                 getRechargeBill(nextpage,pagesize);
             }
