@@ -80,39 +80,20 @@ function load() {
      * @description pullDownAction下拉刷新
      */
     function pullDownAction(){
+         $("#records").empty();
+        var type = $("#type").val(); //查看内容  0：全部  1：消费记录  2：充值记录
         setTimeout(function(){
-            container.html('');
-            var listli = '';
-            var status = '';
-            $.ajax({
-                url:'json/listbill.json',
-                dataType:'json',
-                success : function (data) {
-                    $.each(data.data,function(i,item){
-                        if(item.status == '1'){
-                            status = 'green';
-                        }else{
-                            status = '';
-                        }
-                        listli+='<li class="billList">'
-                            +'<div class="billTitle am-cf">'
-                            +'<span class="am-fl titleLeft">'+item.name+'</span>'
-                            +'<span class="am-fr titleRight">'+item.time+'</span>'
-                            +'</div>'
-                            +'<div class="billMoneyTitle">金额</div>'
-                            +'<div class="billMoney '+status+'"><em>￥</em>'+item.num+'</div>'
-                            +'<div class="billType am-cf">'
-                            +'<label class="am-fl">消费种类：</label>'
-                            +'<span class="am-fl">'+item.type+'</span>'
-                            +'</div>'
-                            +'</li>';
-                    });
-                    container.append(listli);
-                    pullDown.attr('class','pullDown').hide();
-                    myScroll.refresh();
-                    loadingStep = 0;
-                }
-            });
+            if(type === 0){  //查看内容  0：全部  1：消费记录  2：充值记录
+
+            }else if(type === 1){ //  1：消费记录
+                getConsumBill(1,10);
+            }else{ // 2：充值记录
+               getRechargeBill(1,10);
+            }
+
+            pullDown.attr('class','pullDown').hide();
+            myScroll.refresh();
+            loadingStep = 0;
 
         },1000);
     }
@@ -195,6 +176,7 @@ function succeed(msg){
     $("#type").val(1); //查看内容  0：全部  1：消费记录  2：充值记录
 
     $("#records").append(bills);
+    load();
 }
 
 function fail(msg){
@@ -268,7 +250,7 @@ function success(msg){
     $("#type").val(2); //查看内容  0：全部  1：消费记录  2：充值记录
 
     $("#records").append(bills);
-
+    load();
 }
 
 function failed(msg){

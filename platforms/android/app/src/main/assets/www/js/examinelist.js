@@ -96,7 +96,7 @@ function load () {
         myScroll.refresh();
       }else if(this.y < (this.maxScrollY - 14)){//上拉加载更多
         pullUp.addClass("refresh").show();
-        pullUpLabel.text("正在载入");
+       // pullUpLabel.text("正在载入");
         loadingStep = 1;
         pullUpAction();
       }
@@ -116,6 +116,7 @@ function load () {
    * @description pullDownAction 下拉刷新
    */
   function pullDownAction(){
+    /**
     setTimeout(function(){
       container.html('');
       var listli = '';
@@ -150,12 +151,14 @@ function load () {
       });
 
     },1000);
+    **/
   }
 
   /**
    * @description pullUpAction 加载更多
    */
   function pullUpAction(){
+    /**
     setTimeout(function(){
       var listli = '';
       var status = '';
@@ -189,6 +192,7 @@ function load () {
       });
 
     },1000);
+    **/
   }
 
   document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
@@ -239,6 +243,7 @@ function success(msg){
              +'</div></li>';
    }
    $("#records").append(record);
+   load();
 }
 
 function fail(msg){
