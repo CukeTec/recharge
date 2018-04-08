@@ -171,42 +171,45 @@ function getConsumBill(currpage,pagesize){
 
 function succeed(msg){
     var jsonObj = JSON.parse(msg);
-    var bills = "";
-    if(jsonObj.length > 0){
-        for(var p in jsonObj){//遍历json数组时，这么写p为索引，0,1
-           var conDate = jsonObj[p].conDate; // 交易时间
-           var userInnerId = jsonObj[p].userInnerId; // 人员id
-           var conType = jsonObj[p].conType; //交易地点
-           var money = jsonObj[p].money; // 交易金额
-           var cardId = jsonObj[p].cardId; //卡号
-           var conNumber = jsonObj[p].conNumber; //交易流水号
+    var jsonobject = jsonObj.nameValuePairs;
 
-           bills  = bills + '<li class="billList"><div class="billTitle am-cf">'
-                          +'<span class="am-fl titleLeft">' + conType + '</span>'
+    var total = jsonobject.total;
+    var currpage = jsonobject.currpage;
+    var totalpage = jsonobject.totalpage;
+    var result = jsonobject.result;
+    var bills = "";
+    if(result.length > 0){
+        for(var p in result){//遍历json数组时，这么写p为索引，0,1
+           var conDate = result[p].conDate; // 交易时间
+           var userInnerId = result[p].userInnerId; // 人员id
+           var conType = result[p].conType; //交易地点
+           var money = result[p].money; // 交易金额
+           var cardId = result[p].cardId; //卡号
+           var conNumber = result[p].conNumber; //交易流水号
+
+           bills  = bills + '<li class="billList"><div class="billTitle am-cf"><span class="am-fl titleLeft">' + conType + '</span>'
                           +'<span class="am-fr titleRight">' + conDate + '</span></div>'
                           +'<div class="billMoneyTitle">金额</div><div class="billMoney"><em>￥</em>' + money + '</div>'
                           +'<div class="billType am-cf"><label class="am-fl">消费种类：</label>'
-                          +'<span class="am-fl">' + 刷卡消费 + '</span></div></li>';
+                          +'<span class="am-fl">刷卡消费</span></div></li>';
 
         }
      }else{
-        bills = "无消费记录【";
+        bills = "无消费记录";
      }
-     $("#total_bill").append(bills);
+     $("#records").append(bills);
 
 }
 
 function fail(msg){
-    var err = JSON.stringify(msg);
-  /*  alert(err);
-    var code = err.get("code");
-    var msg = err.get("msg");
-    if(code === '404' || code === '405'){
-        alert(err.get("msg"));
-        window.location.href="index.html";
-    }else{
-        alert(err.get("msg"));
-    }*/
+   var code = msg.code;
+   var msg = msg.msg;
+   if(code === 404 || code === 405){
+      alert(msg);
+      window.location.href="home.html";
+   }else{
+      alert(msg);
+   }
 }
 
 
@@ -267,15 +270,14 @@ function success(msg){
 }
 
 function failed(msg){
-    alert(msg);
-   /* var code = msg.get("code");
-    var msg = msg.get("msg");
-    if(code === 404 || code === 405){
-        alert(msg.get("msg"));
-        window.location.href="index.html";
-    }else{
-        alert(msg.get("msg"));
-    }*/
+   var code = msg.code;
+   var msg = msg.msg;
+   if(code === 404 || code === 405){
+       alert(msg);
+       window.location.href="home.html";
+   }else{
+       alert(msg);
+   }
 }
 
 

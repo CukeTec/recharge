@@ -29,16 +29,14 @@ function succeed(msg){
 }
 
 function fail(msg){
-    var err = JSON.stringify(msg);
-  /*  alert(err);
-    var code = err.get("code");
-    var msg = err.get("msg");
-    if(code === '404' || code === '405'){
-        alert(err.get("msg"));
-        window.location.href="index.html";
-    }else{
-        alert(err.get("msg"));
-    }*/
+   var code = msg.code;
+   var msg = msg.msg;
+   if(code === 404 || code === 405){
+       alert(msg);
+       window.location.href="index.html";
+   }else{
+       alert(msg);
+   }
 }
 
 //点击事件
@@ -96,13 +94,12 @@ function success(msg){
 }
 
 function failed(msg){
-    alert(msg);
-   /* var code = msg.get("code");
-    var msg = msg.get("msg");
-    if(code === 404 || code === 405){
-        alert(msg.get("msg"));
-        window.location.href="index.html";
-    }else{
-        alert(msg.get("msg"));
-    }*/
+   var code = msg.code;
+   var msg = msg.msg;
+   if(code === 404 || code === 405){
+       alert(msg);
+       window.location.href="index.html";
+   }else{
+       alert(msg);
+   }
 }
