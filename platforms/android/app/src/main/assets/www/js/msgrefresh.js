@@ -66,34 +66,13 @@ function load () {
      */
     function pullDownAction(){
         setTimeout(function(){
-            var listli = '';
             container.html('');
-            $.ajax({
-                url:'json/listmsg.json',
-                dataType:'json',
-                success : function (data) {
-                    $.each(data.data,function(i,item){
-                        listli+='<li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left">'
-                            +'<div class="am-u-sm-4 am-list-thumb msgListH relative">'
-                            +'<a href="javascript:;" class="">'
-                            +'<img src="'+item.img+'" alt="ddd"/>'
-                            +'</a>'
-                            +'<span class="listiconText">'+item.name+'</span>'
-                            +'</div>'
-                            +'<div class="am-u-sm-8 am-list-main msgListH">'
-                            +'<h3 class="am-list-item-hd">'+item.title+'</h3>'
-                            +'<div class="am-list-item-text listCon">'+item.content+'</div>'
-                            +'<div class="am-list-item-text listTime">'+item.time+'</div>'
-                            +'</div>'
-                            +'</li>';
-                    });
-                    container.append(listli);
-                    pullDown.attr('class','pullDown').hide();
-                    myScroll.refresh();
-                    loadingStep = 0;
-                }
-            });
-
+            page = 1;
+            messageId = [];
+            more(page, row);
+            pullDown.attr('class','pullDown').hide();
+            myScroll.refresh();
+            loadingStep = 0;
         },1000);
     }
 
@@ -102,33 +81,10 @@ function load () {
      */
     function pullUpAction(){
         setTimeout(function(){
-            var listli = '';
-            $.ajax({
-                url:'json/listmsg.json',
-                dataType:'json',
-                success : function (data) {
-                    $.each(data.data,function(i,item){
-                        listli+='<li class="am-g am-list-item-desced am-list-item-thumb am-list-item-thumb-left">'
-                            +'<div class="am-u-sm-4 am-list-thumb msgListH relative">'
-                            +'<a href="javascript:;" class="">'
-                            +'<img src="'+item.img+'" alt="ddd"/>'
-                            +'</a>'
-                            +'<span class="listiconText">'+item.name+'</span>'
-                            +'</div>'
-                            +'<div class="am-u-sm-8 am-list-main msgListH">'
-                            +'<h3 class="am-list-item-hd">'+item.title+'</h3>'
-                            +'<div class="am-list-item-text listCon">'+item.content+'</div>'
-                            +'<div class="am-list-item-text listTime">'+item.time+'</div>'
-                            +'</div>'
-                            +'</li>';
-                    });
-                    container.append(listli);
-                    pullUp.attr('class','pullUp').hide();
-                    myScroll.refresh();
-                    loadingStep = 0;
-                }
-            });
-
+        more(page, row);
+        pullUp.attr('class','pullUp').hide();
+        myScroll.refresh();
+        loadingStep = 0;
         },1000);
     }
 
