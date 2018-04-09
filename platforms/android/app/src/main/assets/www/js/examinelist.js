@@ -248,13 +248,13 @@ function success(msg){
 
 function fail(msg){
     var err = JSON.parse(msg);
-    var code = err.get("code");
-    var msg = err.get("msg");
-    if(code === '404' || code === '405'){
-        alert(err.get("msg"));
-        window.location.href="index.html";
+    var code = err.code;
+    var msg = err.msg;
+    if(code === '404' || code === '405' || code === '-100'){
+        alert(msg);
+        window.location.href="home.html";
     }else{
-        alert(err.get("msg"));
+        alert(msg);
     }
 }
 
@@ -271,12 +271,12 @@ function succeed(msg){
 
 function failed(msg){
     var err = JSON.parse(msg);
-    var code = err.get("code");
-    var msg = err.get("msg");
-    if(code === '404' || code === '405'){
-        alert(err.get("msg"));
+    var code = err.code;
+    var msg = err.msg;
+    if(code === '404' || code === '405' || code === '-100'){
+        alert(msg);
         window.location.href="index.html";
     }else{
-        alert(err.get("msg"));
+        alert(msg);
     }
 }

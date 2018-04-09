@@ -18,6 +18,9 @@ public class Constans {
     /** 第三方返回 404 过期 */
     public final static String STATE_404 = "404";
 
+    /** -100 未登录 或 登录失效  */
+    public final static String NO_LOGIN = "-100";
+
     /** 状态码  */
     public final static String STATE = "state";
 
