@@ -17,11 +17,11 @@ $(".makeSureBtn").click(function(){
         }
     });
     if(sflag){
-        alert("请选择问题");
+        weakdialg("请选择问题");
         return;
     }
     if(dflag){
-        alert("请选择不同的问题");
+        weakdialg("请选择不同的问题");
         return;
     }
     $.each(inputs, function(i,v){
@@ -30,7 +30,7 @@ $(".makeSureBtn").click(function(){
         }
     });
     if(nflag){
-        alert("答案不可为空");
+        weakdialg("答案不可为空");
         return;
     }
     var result = [];
@@ -46,9 +46,9 @@ $(".makeSureBtn").click(function(){
 });
 
 function success(msg){
-    alert(msg);
+    weakdialg(msg);
     window.location.href= "accountsafe.html";
 }
 function fail(msg){
-    alert(msg);
+    weakdialg(msg);
 }
