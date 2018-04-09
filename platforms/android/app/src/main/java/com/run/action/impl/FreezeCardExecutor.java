@@ -7,6 +7,7 @@ import com.run.util.JsonParser;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.whitelist.Constans;
+import org.apache.cordova.whitelist.HttpRequestPlugin;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,11 +37,10 @@ public class FreezeCardExecutor extends CommandExecutor {
         }
         userInnerId = relInfo.getUserInnerId();	// 用户id
         String cardId = relInfo.getCardId(); //卡号
-        String token = relInfo.getToken(); //验证
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
         data.put("cardId", cardId);
-        data.put("token", token);
+        data.put("token", HttpRequestPlugin.token);
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
         if(rel == null || relData.isEmpty()){
