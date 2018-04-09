@@ -37,9 +37,9 @@ function success(msg){
 function fail(msg){
     var code = msg.code;
     var msg = msg.msg;
-    if(code === 404 || code === 405){
+    if(code === '404' || code === '405'){
         alert(msg);
-        window.location.href="index.html";
+        window.location.href="home.html";
     }else{
         alert(msg);
     }

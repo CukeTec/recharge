@@ -41,7 +41,15 @@ function success(msg){
 }
 
 function fail(msg){
-	alert(fail);
+	var code = msg.code;
+    var msg = msg.msg;
+    if(code === '404' || code === '405' || code === '-100'){
+        alert(msg);
+       window.location.href="home.html";
+    }else{
+       alert(msg);
+       window.location.href="app.html";
+    }
 }
 
 

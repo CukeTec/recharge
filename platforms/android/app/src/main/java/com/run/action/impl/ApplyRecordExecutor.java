@@ -31,11 +31,12 @@ public class ApplyRecordExecutor extends CommandExecutor {
         String url = actionReceiver.getUrl();
         JSONObject message = new JSONObject();
         if(relInfo == null){
-            message.put("code", "404");
-            message.put("msg","过期");
+            message.put("code",Constans.NO_LOGIN);
+            message.put("msg","未登录或登录失效");
             callbackContext.error(message);
             return true;
         }
+
         userInnerId = relInfo.getUserInnerId();	// 用户id
         String cardId = relInfo.getCardId(); //卡号
         Map<String, Object> data = new HashMap<>();
