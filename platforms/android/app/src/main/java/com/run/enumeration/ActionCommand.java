@@ -17,7 +17,7 @@ public enum ActionCommand {
     RECHARGEPRE("http://sireyun.com:8081/PSMGABService/", "RechargePreExecutor"),//进入充值请求
     RECHARGE("http://sireyun.com:8081/PSMGABService/orderNum", "ZfbRechargeExecutor"), //充值请求
     FREEZECARD("http://sireyun.com:8081/PSMGABService/freezeCard", "FreezeCardExecutor"), //冻结接口
-    UNFREEZEINFO("http://sireyun.com:8081/PSMGABService/unfreezeCard", "UnfreezeCardExecutor"), //解冻申请
+    UNFREEZEINFO("http://sireyun.com:8081/PSMGABService/unfreezeInfo", "UnfreezeCardExecutor"), //解冻申请
     COMSUMTIONACTION("http://sireyun.com:8081/PSMGABService/getConsumptionInfo", "ConsumtionExecutor"), //消费记录接口
     APPLYRECORD("http://sireyun.com:8081/PSMGABService/applyRecord", "ApplyRecordExecutor"), //申请记录接口
     MESSAGEDEAL("http://sireyun.com:8081/PSMGABService/messageDeal", "MessageDealExecutor"),  //审核处理接口
