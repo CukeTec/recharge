@@ -31,7 +31,6 @@ function fail(msg){
  */
 document.addEventListener('deviceready', function () {
      getCardInfo();
-
 }, false);
 
 
