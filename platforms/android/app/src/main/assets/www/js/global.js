@@ -45,5 +45,19 @@ function isPassive() {
   return supportsPassiveOption;
 }
 
+//错误弹出框 类似于 alert
+function dialg(tip){
+    layer.open({
+        content: tip,
+        btn: '<font style="color:black;">确定</font>'
+    });
+}
 
-
+// 弱提示框 3秒后消失
+function weakdialg(tip){
+    layer.open({
+        content: tip,
+        time: 3000,
+        btn: '<font style="color:black;">确定</font>'
+    });
+}
