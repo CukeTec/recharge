@@ -6,6 +6,7 @@
     <title></title>
     <link rel="stylesheet" href="css/amazeui.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
+
 </head>
 <body onload="load()">
 <!-- Header -->
@@ -174,13 +175,13 @@
         </ul>-->
     </div>
     <!--提示框-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="mymodal">
+    <!--<div class="am-modal am-modal-no-btn" tabindex="-1" id="mymodal">
         <div class="am-modal-dialog">
             <div class="am-modal-bd">
                 正在努力开发中。。。。敬请期待！
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 <!-- Navbar -->
 <div data-am-widget="navbar" class="am-navbar am-cf">
@@ -222,15 +223,13 @@
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/amazeui.min.js"></script>
 <script type="text/javascript" src="js/iscroll-probe.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/storerefresh.js"></script>
-<script>
-    $(function(){
-            $('#mymodal').modal('open');
-            setTimeout(function(){
-                $('#mymodal').modal('close');
-            },1000);
-    });
-</script>
+<script type="text/javascript">
+        $(function(){
+            weakdialg("正在努力开发中。。。。敬请期待！");
+        });
+    </script>
 </body>
 </html>

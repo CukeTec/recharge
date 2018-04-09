@@ -56,8 +56,10 @@ function dialg(tip){
 // 弱提示框 3秒后消失
 function weakdialg(tip){
     layer.open({
-        content: tip,
-        time: 3000,
-        btn: '<font style="color:black;">确定</font>'
+        content: tip
     });
+
+    setTimeout(function(){
+        layer.closeAll();
+    },3000);
 }
