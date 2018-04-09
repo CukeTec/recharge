@@ -44,10 +44,10 @@ function fail(msg){
 	var code = msg.code;
     var msg = msg.msg;
     if(code === '404' || code === '405' || code === '-100'){
-        alert(msg);
+       dialg(msg);
        window.location.href="home.html";
     }else{
-       alert(msg);
+       dialg(msg);
        window.location.href="app.html";
     }
 }
@@ -67,5 +67,5 @@ function succeed(msg){
 }
 
 function failed(msg){
-	alert(fail);
+	dialg(msg);
 }

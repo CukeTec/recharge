@@ -251,10 +251,10 @@ function fail(msg){
     var code = err.code;
     var msg = err.msg;
     if(code === '404' || code === '405' || code === '-100'){
-        alert(msg);
+        dialg(msg);
         window.location.href="home.html";
     }else{
-        alert(msg);
+        dialg(msg);
     }
 }
 
@@ -274,9 +274,9 @@ function failed(msg){
     var code = err.code;
     var msg = err.msg;
     if(code === '404' || code === '405' || code === '-100'){
-        alert(msg);
+        dialg(msg);
         window.location.href="index.html";
     }else{
-        alert(msg);
+        dialg(msg);
     }
 }

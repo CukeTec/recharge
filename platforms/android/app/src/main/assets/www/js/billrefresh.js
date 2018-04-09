@@ -274,7 +274,13 @@ function failed(msg){
    }
 }
 
-
+/**
+ * document.ready不能立马执行cordova.exec   test
+ */
+document.addEventListener('deviceready', function () {
+    $("#records").empty();
+    getConsumBill(1,10);
+}, false);
 
 
 
