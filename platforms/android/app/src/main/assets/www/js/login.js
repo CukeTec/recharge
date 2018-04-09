@@ -1,8 +1,15 @@
 $(document).ready(function(){
 
     $("#loginBtn").click(function(){
+        var userId = $("#userId").val(); //用户
+        var userPassword = $("#userPassword").val(); //密码
+        if(userId == null || userId == "" || userPassword == null || userPassword == "" ){
+             dialg("用户名或密码不能为空");
 
-         cordova.exec(success, fail, "httpRequest", "LOGIN", ["469747","123456"]);
+             return true;
+        }
+
+         cordova.exec(success, fail, "httpRequest", "LOGIN", [userId,userPassword]);
     });
 
     $("#forget").click(function(){
@@ -17,5 +24,5 @@ function success(msg){
 }
 
 function fail(msg){
-	alert(fail);
+    dialg(msg);
 }
