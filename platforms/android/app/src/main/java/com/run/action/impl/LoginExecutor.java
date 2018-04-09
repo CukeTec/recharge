@@ -38,13 +38,14 @@ public class LoginExecutor extends CommandExecutor {
         data.put("macid", SecurityUtil.getMac()); //获取mac地址
         String rel = HttpUtil.sendRequest(url, data);
         relData = JsonParser.toObj(rel, Result.class);
-        token = relData.getToken();
-        relInfo = relData.getResult().get(0);
-        userInnerId = relInfo.getUserInnerId();
-        if (null != rel) {
+        if (null != rel && "200".equals(relData.getState())) {
+            token = relData.getToken();
+            relInfo = relData.getResult().get(0);
+            userInnerId = relInfo.getUserInnerId();
             callbackContext.success(rel);//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
+            callbackContext.error(relData.getMsg());
             return false;
         }
     }

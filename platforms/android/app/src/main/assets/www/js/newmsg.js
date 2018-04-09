@@ -18,22 +18,22 @@ $(".makeSureBtn").click(function(){
     var group = $("input[class='am-fl inputbg personinput'").val();
     var content = $("textarea[class='msgTextarea'").val();
     if(name.trim() == ""){
-        alert("请输入消息标题");
+        weakdialg("请输入消息标题");
         return;
     }
     if(content.trim() == ""){
-        alert("请输入消息内容");
+        weakdialg("请输入消息内容");
         return;
     }
     if(group == ""){
-        alert("请选择接收人");
+        weakdialg("请选择接收人");
         return;
     }
     cordova.exec(success1, fail1, "httpRequest", "SENDMESSAGE",[name, content, group]);
 });
 
 function success1(msg){
-    alert(msg);
+    weakdialg(msg);
 }
 function fail1(msg){
 }
