@@ -22,6 +22,7 @@ function fail(msg){
         window.location.href="home.html";
     }else{
        alert(msg);
+       window.location.href="cardoperate.html";
     }
 }
 
@@ -30,7 +31,6 @@ function fail(msg){
  */
 document.addEventListener('deviceready', function () {
      getCardInfo();
-
 }, false);
 
 
