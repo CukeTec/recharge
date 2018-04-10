@@ -28,6 +28,7 @@ public enum ActionCommand {
     SENDMESSAGE("http://sireyun.com:8081/PSMGABService/messageSend", "SendMessageExecutor"),// 发送消息接口
     LOGOUT("http://sireyun.com:8081/PSMGABService/exitLogon", "LogOutExecutor"),  //退出登录
     MESSAGEGROUP("http://sireyun.com:8081/PSMGABService/messageGroup", "MessageGroupExecutor"), // 获取消息组接口
+    WAITCHECK("http://sireyun.com:8081/PSMGABService/waitCheck","WaitCheckExecutor"), //待审核列表
     
 	;
     ActionCommand(String url, String className) {
