@@ -1,10 +1,14 @@
-
+$(function(){
+    //加载层
+    var index = layer.load(1, {
+      shade: [0.1,'#fff'] //0.1透明度的白色背景
+    });
+});
 /**
  * document.ready不能立马执行cordova.exec   test
  */
 document.addEventListener('deviceready', function () {
      myapp();
-
 }, false);
 
 function myapp(){
@@ -38,9 +42,11 @@ function success(msg){
          $("#fbxx").css("display","block");
    }
 
+   layer.close(index);
 }
 
 function fail(msg){
+    layer.close(index);
 	var code = msg.code;
     var msg = msg.msg;
     if(code === '404' || code === '405' || code === '-100'){
@@ -68,4 +74,8 @@ function succeed(msg){
 
 function failed(msg){
 	dialg(msg);
+}
+
+function shenhe(msg){
+	dialg('<font style="color:black;">审核接口正在开发中... </font>');
 }
