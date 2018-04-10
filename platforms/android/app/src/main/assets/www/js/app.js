@@ -1,9 +1,3 @@
-$(function(){
-    //加载层
-    var index = layer.load(1, {
-      shade: [0.1,'#fff'] //0.1透明度的白色背景
-    });
-});
 /**
  * document.ready不能立马执行cordova.exec   test
  */
@@ -41,8 +35,6 @@ function success(msg){
         $("#shsq").css("display","block");
          $("#fbxx").css("display","block");
    }
-
-   layer.close(index);
 }
 
 function fail(msg){
