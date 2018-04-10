@@ -103,6 +103,7 @@ public class ZfbRechargeExecutor extends CommandExecutor {
         }
         //订单号
         String orderno = oerderMap.get("orderCode").toString();
+
         HttpRequestPlugin httpRequestPlugin = new HttpRequestPlugin();
         if(type.equals("1")){ //支付宝充值
             try {

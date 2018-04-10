@@ -10,6 +10,7 @@ import org.apache.cordova.whitelist.Constans;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,10 +19,9 @@ import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
 
 /**
- * Created by Xiao on 2018/4/3.
+ * 待审核列表
  */
-
-public class UnfreezeCardExecutor extends CommandExecutor {
+public class WaitCheckExecutor extends CommandExecutor {
 
     @Override
     public boolean execute() throws JSONException {
@@ -29,22 +29,17 @@ public class UnfreezeCardExecutor extends CommandExecutor {
         String url = actionReceiver.getUrl();
         JSONObject message = new JSONObject();
         if(relInfo == null){
-            message.put("code", "404");
-            message.put("msg","过期");
+            message.put("code", Constans.NO_LOGIN);
+            message.put("msg","未登录或登录失效");
             callbackContext.error(message);
-
             return true;
         }
 
         userInnerId = relInfo.getUserInnerId();	// 用户id
         String cardId = relInfo.getCardId(); //卡号
-        String applyType = "1"; //1 解冻申请
-        String applyRemark = "申请解冻"; // 申请理由
         Map<String, Object> data = new HashMap<>();
         data.put("userInnerId", userInnerId);
         data.put("cardId", cardId);
-        data.put("applyType", applyType);
-        data.put("applyRemark", applyRemark);
         data.put("token", token);
         String rel = HttpUtil.sendRequest(url, data);
         Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
@@ -74,12 +69,14 @@ public class UnfreezeCardExecutor extends CommandExecutor {
                 callbackContext.error(message);
                 return true;
             }
-        }else{
-            callbackContext.success("申请成功");
         }
+
+        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
+        callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
 
         return true;
     }
+
     private ActionReceiver actionReceiver;
 
     @Override

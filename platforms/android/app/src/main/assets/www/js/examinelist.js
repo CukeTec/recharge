@@ -44,14 +44,15 @@ $(function(){
 
   //点击拒绝
   $('.refuseBtn').off().on('touchend',function(e){
-        var reason = $("#reason").val();
-        dodeal("2",reason);
         $('.examineCon').eq(0).addClass('hide');
         $('.examineCon').eq(1).removeClass('hide');
   });
 
   //拒绝点击确定
   $('.sureBtn').off().on('touchend',function(e){
+        var reason = $("#reason").val();
+        dodeal("2",reason);
+
         setTimeout(function(){
             $('.examineCon').eq(1).addClass('hide');
             $('.examineCon').eq(0).removeClass('hide');
@@ -212,7 +213,7 @@ document.addEventListener('deviceready', function () {
 
 
 function  getApplyRecord(){
-   cordova.exec(success, fail, "httpRequest", "APPLYRECORD", []);
+   cordova.exec(success, fail, "httpRequest", "WAITCHECK", []);
 }
 
 function success(msg){
@@ -260,9 +261,8 @@ function fail(msg){
 
 //审核处理
 function dodeal(i,j){
-    var userid = $("#userid").val();
     var applyid = $("#applyid").val();
-    cordova.exec(succeed, failed, "httpRequest", "MESSAGEDEAL", [userid,applyid,i,j]);
+    cordova.exec(succeed, failed, "httpRequest", "MESSAGEDEAL", [applyid,i,j]);
 }
 
 function succeed(msg){

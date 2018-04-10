@@ -44,12 +44,11 @@ public class MessageDealExecutor extends CommandExecutor {
             return true;
         }
 
-        String userid = args.getString(0);	// 用户id
-        String applyid = args.getString(1); //申请id
-        String auditState = args.getString(2); //	审核状态  1 - 同意   2- 拒绝
-        String auditDetail = args.getString(3); //理由
+        String applyid = args.getString(0); //申请id
+        String auditState = args.getString(1); //	审核状态  1 - 同意   2- 拒绝
+        String auditDetail = args.getString(2); //理由
         Map<String, Object> data = new HashMap<>();
-        data.put("userInnerId", userid);
+        data.put("userInnerId", userInnerId);
         data.put("applyInnerId", applyid);
         data.put("auditState", auditState);
         data.put("auditDetail",auditDetail);
@@ -82,8 +81,10 @@ public class MessageDealExecutor extends CommandExecutor {
                 callbackContext.error(message);
                 return true;
             }
+        }else{
+            callbackContext.success("操作成功");
         }
-        callbackContext.success("操作成功");
+
         return true;
     }
     private ActionReceiver actionReceiver;
