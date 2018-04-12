@@ -20,6 +20,9 @@
 package io.cordova.hellocordova;
 
 import android.os.Bundle;
+
+import com.alipay.sdk.app.EnvUtils;
+
 import org.apache.cordova.*;
 
 public class MainActivity extends CordovaActivity
@@ -27,6 +30,7 @@ public class MainActivity extends CordovaActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         super.onCreate(savedInstanceState);
 
         // enable Cordova apps to be started in the background
