@@ -22,6 +22,7 @@ package io.cordova.hellocordova;
 import android.os.Bundle;
 
 import com.alipay.sdk.app.EnvUtils;
+import com.run.util.XmlParseUtil;
 
 import org.apache.cordova.*;
 
@@ -38,7 +39,7 @@ public class MainActivity extends CordovaActivity
         if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {
             moveTaskToBack(true);
         }
-
+        new XmlParseUtil().parse(this.getBaseContext());
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }
