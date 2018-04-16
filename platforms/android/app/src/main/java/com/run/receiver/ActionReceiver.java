@@ -3,8 +3,8 @@ package com.run.receiver;
 import org.apache.cordova.CallbackContext;
 
 import com.run.action.CommandExecutor;
-import com.run.enumeration.ActionCommand;
-import com.run.invoker.ActionInvoker;
+import com.run.bean.HttpRequestBean;
+import com.run.collections.CommandExecutorCollection;
 
 import org.json.JSONArray;
 
@@ -13,26 +13,15 @@ import org.json.JSONArray;
  */
 
 public class ActionReceiver {
+    private String action;
     private String url;
     private JSONArray params;
     private CallbackContext callbackContext;
-    private CommandExecutor commandExecutor;
 
     public ActionReceiver(String action, JSONArray params, CallbackContext callbackContext) {
-        ActionCommand actionCommand = ActionCommand.valueOf(action);
-        this.url = actionCommand.getUrl();
+        this.action = action;
         this.params = params;
         this.callbackContext = callbackContext;
-        try {
-            commandExecutor = (CommandExecutor) Class.forName(actionCommand.getClassName()).newInstance();
-            commandExecutor.setActionReceiver(this);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getUrl() {
@@ -48,6 +37,10 @@ public class ActionReceiver {
     }
 
     public CommandExecutor getCommandExecutor() {
+        HttpRequestBean requestBean = CommandExecutorCollection.getInstance().get(action);
+        this.url = requestBean.getUrl();
+        CommandExecutor commandExecutor = requestBean.getCommandExecutor();
+        commandExecutor.setActionReceiver(this);
         return commandExecutor;
     }
 
