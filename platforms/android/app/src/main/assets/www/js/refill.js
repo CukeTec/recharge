@@ -32,6 +32,7 @@ $(document).ready(function(){
 
 function success(msg){
 	dialg(msg);
+	window.location.href="refill.html";
 }
 
 function fail(msg){
@@ -43,4 +44,23 @@ function fail(msg){
     }else{
         dialg(msg);
     }
+}
+
+
+//初始化
+document.addEventListener('deviceready', function () {
+    getCardno();
+}, false);
+
+function getCardno(){
+    cordova.exec(succ, error, "httpRequest", "RECHARGEPRE", []);
+}
+
+function succ(msg){
+    $("#cardId").text(msg);
+    $("#cardno").val(msg);
+}
+
+function error(msg){
+    alert("查询不到卡号");
 }

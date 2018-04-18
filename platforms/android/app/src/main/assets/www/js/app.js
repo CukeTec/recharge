@@ -38,7 +38,11 @@ function success(msg){
 }
 
 function fail(msg){
-    layer.close(index);
+    if("网络访问错误" === msg ){
+        weakdialg(msg);
+
+        return;
+    }
 	var code = msg.code;
     var msg = msg.msg;
     if(code === '404' || code === '405' || code === '-100'){
@@ -68,6 +72,3 @@ function failed(msg){
 	dialg(msg);
 }
 
-function shenhe(msg){
-	dialg('<font style="color:black;">审核接口正在开发中... </font>');
-}

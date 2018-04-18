@@ -89,6 +89,7 @@ public class OrderInfoUtil2_0 {
         keyValues.put("sign_type", "RSA");
         keyValues.put("timestamp", DateUtil.formatDate(new Date(),DateUtil.YYYY_MM_DD_HHMMSS));
         keyValues.put("version", "1.0");
+        keyValues.put("notify_url",ZfbUtil.NOTIFY_URL);
 
         return keyValues;
     }

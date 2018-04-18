@@ -57,6 +57,7 @@ public class ZfbUtil {
     /**商品的标题/交易标题/订单标题/订单关键字等。 */
     public final static String SUBJECT = "食堂饭卡一卡通充值";
 
+    public final static String NOTIFY_URL = "http://1ir5000709.imwork.net:39938/rechargeBack/zfbrecharge/nsyrechargeback";
 
 
 
