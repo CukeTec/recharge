@@ -15,6 +15,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.apache.cordova.whitelist.HttpRequestPlugin.relData;
+import static org.apache.cordova.whitelist.HttpRequestPlugin.relInfo;
+import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
+import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
+
 /**
  * Created by zengxiao on 2018/4/3.
  */
@@ -30,13 +35,16 @@ public class CardInfoExecutor extends CommandExecutor {
         data.put("token", HttpRequestPlugin.token);
         String rel = HttpUtil.sendRequest(url, data);
         CardResult relData = JsonParser.toObj(rel, CardResult.class);
-        CardInfo cardInfo = relData.getResult().get(0);
-        cardInfo.setCardId(HttpRequestPlugin.relInfo.getCardId());
-        if (null != rel) {
-            JSONObject obj = new JSONObject(JsonParser.toJson(relData.getResult().get(0)));
-            callbackContext.success(obj);//如果不调用success回调，则js中successCallback不会执行
+        if (null != rel && "200".equals(relData.getState())) {
+            CardInfo cardInfo = relData.getResult().get(0);
+            cardInfo.setCardId(HttpRequestPlugin.relInfo.getCardId());
+            callbackContext.success(JsonParser.toJson(cardInfo));//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
+            HashMap<String, String> result = new HashMap<>();
+            result.put("msg", relData.getMsg());
+            result.put("code", relData.getState());
+            callbackContext.error(JsonParser.toJson(result));
             return false;
         }
     }

@@ -2,6 +2,7 @@ package com.run.action.impl;
 
 import com.run.action.CommandExecutor;
 import com.run.bean.Question;
+import com.run.bean.Result;
 import com.run.receiver.ActionReceiver;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.cordova.whitelist.HttpRequestPlugin.relData;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
 
@@ -43,11 +45,15 @@ public class SetQuestionExector extends CommandExecutor {
         data.put("token", token);//MD5处理
         data.put("question", result);
         String rel = HttpUtil.sendRequest(url, data);
-        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
-        if (null != rel) {
-            callbackContext.success(relData.get("msg").toString());//如果不调用success回调，则js中successCallback不会执行
+        relData = JsonParser.toObj(rel, Result.class);
+        if (null != rel && "200".equals(relData.getState())) {
+            callbackContext.success(relData.getMsg());//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
+            HashMap<String, String> msg = new HashMap<>();
+            msg.put("msg", relData.getMsg());
+            msg.put("code", relData.getState());
+            callbackContext.error(JsonParser.toJson(msg));
             return false;
         }
     }

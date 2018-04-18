@@ -7,17 +7,17 @@ import java.util.List;
  *  @author lordtan
  */
 public class CardResult {
-    private String success;
+    private String state;
     private String msg;
     private List<CardInfo> result;
     private String token;
 
-    public String getSuccess() {
-        return success;
+    public String getState() {
+        return state;
     }
 
-    public void setSuccess(String success) {
-        this.success = success;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getMsg() {
