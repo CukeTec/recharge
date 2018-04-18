@@ -11,6 +11,11 @@ function success(msg){
 }
 
 function fail(msg){
+    var data = JSON.parse(msg);
+            weakdialg(data.msg);
+            if(data.code == "405"){
+                window.location.href = "logintext.html";
+            }
 }
 
 $(".makeSureBtn").click(function(){
@@ -34,8 +39,14 @@ $(".makeSureBtn").click(function(){
 
 function success1(msg){
     weakdialg(msg);
+    window.location.href="app.html";
 }
 function fail1(msg){
+        var data = JSON.parse(msg);
+        weakdialg(data.msg);
+        if(data.code == "405"){
+            window.location.href = "logintext.html";
+        }
 }
 
 $('.personinput').off().on('focus',function(){

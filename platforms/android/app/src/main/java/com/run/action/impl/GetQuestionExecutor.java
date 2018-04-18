@@ -1,6 +1,7 @@
 package com.run.action.impl;
 
 import com.run.action.CommandExecutor;
+import com.run.bean.Result;
 import com.run.receiver.ActionReceiver;
 import com.run.util.HttpUtil;
 import com.run.util.JsonParser;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.apache.cordova.whitelist.HttpRequestPlugin.relData;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.token;
 import static org.apache.cordova.whitelist.HttpRequestPlugin.userInnerId;
 
@@ -29,12 +31,15 @@ public class GetQuestionExecutor extends CommandExecutor {
         data.put("userInnerId", userInnerId);
         data.put("token", token);//MD5处理
         String rel = HttpUtil.sendRequest(url, data);
-        Map<String, Object> relData = JsonParser.toObj(rel, Map.class);
-        ArrayList<Map<String, Object>> result = (ArrayList<Map<String, Object>>) relData.get("result");
-        if (null != rel) {
-            callbackContext.success(JsonParser.toJson(result));//如果不调用success回调，则js中successCallback不会执行
+        relData = JsonParser.toObj(rel, Result.class);
+        if (null != rel && "200".equals(relData.getState())) {
+            callbackContext.success(JsonParser.toJson(relData.getResult()));//如果不调用success回调，则js中successCallback不会执行
             return true;
         } else {
+            HashMap<String, String> result = new HashMap<>();
+            result.put("msg", relData.getMsg());
+            result.put("code", relData.getState());
+            callbackContext.error(JsonParser.toJson(result));
             return false;
         }
     }

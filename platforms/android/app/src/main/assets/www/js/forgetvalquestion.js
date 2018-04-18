@@ -15,7 +15,11 @@ function success1(msg){
     })
 }
 function fail1(msg){
-
+        var data = JSON.parse(msg);
+        weakdialg(data.msg);
+        if(data.code == "405"){
+            window.location.href = "logintext.html";
+        }
 }
 document.addEventListener('deviceready', function () {
      cordova.exec(success1, fail1, "httpRequest", "FORGETPASSWORD",[account]);
@@ -73,5 +77,9 @@ function success(msg){
     window.location.href = "findpwd.html?" + account;
 }
 function fail(msg){
-    weakdialg(msg);
+        var data = JSON.parse(msg);
+        weakdialg(data.msg);
+        if(data.code == "405"){
+            window.location.href = "logintext.html";
+        }
 }

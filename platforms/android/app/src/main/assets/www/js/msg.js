@@ -31,7 +31,11 @@ function success(msg){
     load();
 }
 function fail(msg){
-    return;
+        var data = JSON.parse(msg);
+        weakdialg(data.msg);
+        if(data.code == "405"){
+            window.location.href = "logintext.html";
+        }
 }
 function jumpto(msg){
     window.location.href="msg.html";

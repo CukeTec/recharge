@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 
 function success(msg){
-	weakdialg(msg);
+	dialg(msg);
 	window.location.href="cardoperate.html";
 }
 
@@ -18,10 +18,10 @@ function fail(msg){
     var code = msg.code;
     var msg = msg.msg;
     if(code === 404 || code === 405){
-        weakdialg(msg);
+        dialg(msg);
         window.location.href="home.html";
     }else{
-       weakdialg(msg);
+       dialg(msg);
     }
 }
 
@@ -38,7 +38,7 @@ function getCardInfo(){
 }
 
  function succeed(msg){
-    var sucee =  JSON.parse(JSON.stringify(msg));
+    var sucee =  JSON.parse(msg);
     var cardId = sucee.cardId;
     var accountState = sucee.accountState;
     $("#cardid").text(cardId);
@@ -59,7 +59,7 @@ function getCardInfo(){
  }
 
 function fails(msg){
-    weakdialg(msg);
+    dialg(msg);
 }
 
 

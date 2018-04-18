@@ -50,5 +50,9 @@ function success(msg){
     window.location.href= "accountsafe.html";
 }
 function fail(msg){
-    weakdialg(msg);
+   var data = JSON.parse(msg);
+           weakdialg(data.msg);
+           if(data.code == "405"){
+               window.location.href = "logintext.html";
+           }
 }

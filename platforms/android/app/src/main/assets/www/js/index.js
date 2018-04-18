@@ -17,11 +17,12 @@ function fixCardInfo(){
 
 //获取卡信息成功
 function success(msg){
-   var rechargeRatio = msg.rechargeRatio;
-   var cardId = msg.cardId;
-   var cardTime = msg.endTime;
-   var accountMoney = msg.accountMoney;
-   var cardType = msg.cardType;
+   var data = JSON.parse(msg);
+   var rechargeRatio = data.rechargeRatio;
+   var cardId = data.cardId;
+   var cardTime = data.endTime;
+   var accountMoney = data.accountMoney;
+   var cardType = data.cardType;
    //alert("rechargeRatio:"+rechargeRatio+"cardId:"+cardId);
     $("#cardType").text(cardType);
    $("#cardId").text(cardId);
@@ -32,5 +33,9 @@ function success(msg){
 
 function fail(msg){
 
-	weakdialg(msg);
+	    var data = JSON.parse(msg);
+        weakdialg(data.msg);
+        if(data.code == "405"){
+            window.location.href = "logintext.html";
+        }
 }

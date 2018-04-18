@@ -10,7 +10,11 @@ function success(msg){
 }
 
 function fail(msg){
-//	alert(fail);
+    var data = JSON.parse(msg);
+    weakdialg(data.msg);
+    if(data.code == "405"){
+        window.location.href = "logintext.html";
+    }
 }
 
 $("#setquestion").click(function(){
@@ -24,6 +28,10 @@ function success1(msg){
          window.location.href= "setting.html";
     }
 }
-function fail1(){
-
+function fail1(msg){
+        var data = JSON.parse(msg);
+        weakdialg(data.msg);
+        if(data.code == "405"){
+            window.location.href = "logintext.html";
+        }
 }

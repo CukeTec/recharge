@@ -36,6 +36,11 @@ public class RelInfo {
     private String fcarNum;
     private String fstate;
     private Integer userTypeInnerId; //人员类型	1-员工 2-管理员
+    private String departmentName;
+    private Integer departmentId;
+    private String sendDate;
+    private String sendUser;
+
 
     public String getUserId() {
         return userId;
@@ -291,5 +296,37 @@ public class RelInfo {
 
     public void setUserTypeInnerId(Integer userTypeInnerId) {
         this.userTypeInnerId = userTypeInnerId;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(String sendDate) {
+        this.sendDate = sendDate;
+    }
+
+    public String getSendUser() {
+        return sendUser;
+    }
+
+    public void setSendUser(String sendUser) {
+        this.sendUser = sendUser;
     }
 }
