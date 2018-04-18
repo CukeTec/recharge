@@ -24,5 +24,5 @@ function success(msg){
 }
 
 function fail(msg){
-    dialg(msg);
+    weakdialg(msg);
 }

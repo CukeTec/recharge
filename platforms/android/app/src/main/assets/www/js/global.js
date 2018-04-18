@@ -56,10 +56,22 @@ function dialg(tip){
 // 弱提示框 3秒后消失
 function weakdialg(tip){
     layer.open({
+        content: '<font style="color:black;">'+tip+'</font>'
+    });
+
+    setTimeout(function(){
+        layer.closeAll();
+    },3000);
+}
+
+// 弱提示框 3秒后消失 并跳转新页面
+function weakdialgAndTip(tip,newhtml){
+    layer.open({
         content: tip
     });
 
     setTimeout(function(){
         layer.closeAll();
+        window.location.href = newhtml;
     },3000);
 }

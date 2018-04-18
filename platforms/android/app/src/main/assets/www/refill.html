@@ -12,24 +12,6 @@
     <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/refill.js"></script>
-    <script type="text/javascript">
-        document.addEventListener('deviceready', function () {
-             getCardno();
-        }, false);
-
-        function getCardno(){
-            cordova.exec(succ, error, "httpRequest", "RECHARGEPRE", []);
-        }
-        function succ(msg){
-            $("#cardId").text(msg);
-            $("#cardno").val(msg);
-        }
-
-        function error(msg){
-            alert("查询不到卡号");
-        }
-
-    </script>
 
 </head>
 <body>

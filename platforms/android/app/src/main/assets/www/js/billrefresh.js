@@ -190,13 +190,17 @@ function succeed(msg){
 }
 
 function fail(msg){
+   if("网络访问错误" === msg ){
+       weakdialg(msg);
+
+       return;
+   }
    var code = msg.code;
    var msg = msg.msg;
-   if(code === '404' || code === '405'){
-      alert(msg);
-      window.location.href="home.html";
+   if(code === '404' || code === '405' || code === '-100'){
+       weakdialgAndTip(msg,"home.html");
    }else{
-      alert(msg);
+       weakdialg(msg);
    }
 }
 
@@ -264,13 +268,17 @@ function success(msg){
 }
 
 function failed(msg){
+   if("网络访问错误" === msg ){
+      weakdialg(msg);
+
+      return;
+   }
    var code = msg.code;
    var msg = msg.msg;
-   if(code === '404' || code === '405'){
-       alert(msg);
-       window.location.href="home.html";
+   if(code === '404' || code === '405' || code === '-100'){
+       weakdialgAndTip(msg,"home.html");
    }else{
-       alert(msg);
+       weakdialg(msg);
    }
 }
 

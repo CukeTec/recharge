@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 
 function success(msg){
-	dialg(msg);
+	weakdialg(msg);
 	window.location.href="cardoperate.html";
 }
 
@@ -18,10 +18,10 @@ function fail(msg){
     var code = msg.code;
     var msg = msg.msg;
     if(code === 404 || code === 405){
-        dialg(msg);
+        weakdialg(msg);
         window.location.href="home.html";
     }else{
-       dialg(msg);
+       weakdialg(msg);
     }
 }
 
@@ -59,7 +59,7 @@ function getCardInfo(){
  }
 
 function fails(msg){
-    dialg(msg);
+    weakdialg(msg);
 }
 
 
